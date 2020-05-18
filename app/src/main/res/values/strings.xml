@@ -1,3 +1,4 @@
 <resources>
-  <string name="app_name">Time to Meet</string>
+  <string name="app_name" translatable="false">Time to Meet</string>
+  <string name="splash_image_description">The app\'s logo, sillouette of people sitting in a meeting.</string>
 </resources>
