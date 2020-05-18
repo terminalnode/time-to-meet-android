@@ -2,6 +2,7 @@ package com.example.timetomeet.retrofit;
 
 import com.example.timetomeet.retrofit.entity.LoginCredentials;
 import com.example.timetomeet.retrofit.entity.Token;
+import com.example.timetomeet.retrofit.entity.User;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -19,4 +20,9 @@ public class RetrofitHelper {
   public static Call<Token> login(LoginCredentials loginCredentials) {
     return getBase().login(loginCredentials);
   }
+
+  public static Call<User> signUp(User user) {
+    return getBase().signUp(user);
+  }
+
 }

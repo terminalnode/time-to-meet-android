@@ -16,7 +16,7 @@ public class Token {
   @NonNull
   @Override
   public String toString() {
-    return String.format("<Token token=%s>", token);
+    return String.format("Token{token=%s}", token);
   }
 
   //----- Setters -----//

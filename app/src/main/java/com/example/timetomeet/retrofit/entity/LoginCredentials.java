@@ -19,7 +19,7 @@ public class LoginCredentials {
   @NonNull
   @Override
   public String toString() {
-    return String.format("<LoginCredentials username=%s>", userName);
+    return String.format("LoginCredentials{username=%s}", userName);
   }
 
   //----- Setters -----//
