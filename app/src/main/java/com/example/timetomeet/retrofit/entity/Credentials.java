@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LoginCredentials {
+public class Credentials {
   @SerializedName("username")
   private String userName;
 
@@ -12,7 +12,7 @@ public class LoginCredentials {
   private String password;
 
   //----- Constructors -----//
-  public LoginCredentials() {
+  public Credentials() {
   }
 
   //----- Methods -----//

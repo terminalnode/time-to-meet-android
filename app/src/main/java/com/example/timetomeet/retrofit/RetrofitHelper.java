@@ -1,6 +1,6 @@
 package com.example.timetomeet.retrofit;
 
-import com.example.timetomeet.retrofit.entity.LoginCredentials;
+import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
 
@@ -17,12 +17,11 @@ public class RetrofitHelper {
         .create(Endpoint.class);
   }
 
-  public static Call<Token> login(LoginCredentials loginCredentials) {
-    return getBase().login(loginCredentials);
+  public static Call<Token> signIn(Credentials credentials) {
+    return getBase().signIn(credentials);
   }
 
   public static Call<User> signUp(User user) {
     return getBase().signUp(user);
   }
-
 }
