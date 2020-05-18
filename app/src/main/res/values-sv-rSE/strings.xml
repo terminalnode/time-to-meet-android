@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="splash_image_description">Appens logga, silluetter av människor som sitter i möte.</string>
+  <string name="username">Användarnamn</string>
+  <string name="password">Lösenord</string>
+  <string name="sign_in">Logga in</string>
+  <string name="sign_up">Registrera</string>
 </resources>

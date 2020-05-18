@@ -1,19 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context=".activity.LoginActivity">
 
-  <TextView
-    android:id="@+id/textView"
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/signInTitleConstraint"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="LOGIN ACTIVITY"
+    app:layout_constraintBottom_toTopOf="@+id/midpoint"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <TextView
+      android:id="@+id/signInTitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/app_name"
+      android:textSize="36sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+      android:id="@+id/editUsername"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="80dp"
+      android:autofillHints=""
+      android:ems="10"
+      android:hint="@string/username"
+      android:inputType="textPersonName"
+      android:textAlignment="center"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/signInTitle" />
+
+    <EditText
+      android:id="@+id/editPassword"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:autofillHints="@string/password"
+      android:ems="10"
+      android:hint="@string/password"
+      android:inputType="textPassword"
+      android:textAlignment="center"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/editUsername" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/signInButtonConstraint"
+    android:layout_width="@dimen/sign_in_button_width"
+    android:layout_height="120dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    app:layout_constraintTop_toTopOf="@+id/midpoint">
+
+    <Button
+      android:id="@+id/signInButton"
+      android:layout_width="@dimen/sign_in_button_width"
+      android:layout_height="wrap_content"
+      android:text="@string/sign_in"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.444"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+      android:id="@+id/signUpButton"
+      android:layout_width="@dimen/sign_in_button_width"
+      android:layout_height="wrap_content"
+      android:text="@string/sign_up"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <androidx.constraintlayout.widget.Guideline
+    android:id="@+id/midpoint"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.50" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
