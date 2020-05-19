@@ -2,8 +2,11 @@ package com.example.timetomeet.retrofit;
 
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.Credentials;
+import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -20,4 +23,7 @@ public interface Endpoint {
 
   @GET("city/{cityId}/")
   Call<City> getCityById(@Path("cityId") int cityId);
+
+  @GET("paymentalternative/")
+  Call<List<PaymentAlternative>> getPaymentAlternatives();
 }
