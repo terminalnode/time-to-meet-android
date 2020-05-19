@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class City {
   @SerializedName("id")
-  private String id;
+  private Long id;
 
   @SerializedName("name")
   private String nameSv;
@@ -13,7 +13,7 @@ public class City {
   private String nameEn;
 
   @SerializedName("topLocation")
-  private Boolean topLocation;
+  private Boolean isTopLocation;
 
   @SerializedName("region")
   private String region;
@@ -44,7 +44,7 @@ public class City {
         "id='" + id + '\'' +
         ", nameSv='" + nameSv + '\'' +
         ", nameEn='" + nameEn + '\'' +
-        ", topLocation=" + topLocation +
+        ", topLocation=" + isTopLocation +
         ", region='" + region + '\'' +
         ", county='" + county + '\'' +
         ", geoCoordinate='" + geoCoordinate + '\'' +
@@ -55,7 +55,7 @@ public class City {
   }
 
   //----- Setters -----//
-  public void setId(String id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -67,8 +67,8 @@ public class City {
     this.nameEn = nameEn;
   }
 
-  public void setTopLocation(Boolean topLocation) {
-    this.topLocation = topLocation;
+  public void setTopLocation(Boolean isTopLocation) {
+    this.isTopLocation = isTopLocation;
   }
 
   public void setRegion(String region) {
@@ -96,7 +96,7 @@ public class City {
   }
 
   //----- Getters -----//
-  public String getId() {
+  public Long getId() {
     return id;
   }
 
@@ -108,8 +108,8 @@ public class City {
     return nameEn;
   }
 
-  public Boolean getTopLocation() {
-    return topLocation;
+  public Boolean isTopLocation() {
+    return isTopLocation;
   }
 
   public String getRegion() {
