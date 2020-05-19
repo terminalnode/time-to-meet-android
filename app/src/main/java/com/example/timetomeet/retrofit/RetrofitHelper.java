@@ -1,5 +1,6 @@
 package com.example.timetomeet.retrofit;
 
+import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
@@ -28,5 +29,10 @@ public class RetrofitHelper {
 
   public static Call<User> signUp(User user) {
     return getBase().signUp(user);
+  }
+
+
+  public static Call<City> getCityById(int cityId) {
+    return getBase().getCityById(cityId);
   }
 }
