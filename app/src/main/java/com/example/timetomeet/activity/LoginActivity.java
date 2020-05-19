@@ -2,6 +2,7 @@ package com.example.timetomeet.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -62,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
           SharedPreferences.Editor spe = sharedPreferences.edit();
           spe.putString(usernamePref, username);
           spe.apply();
+          startMainMenu("Token " + token.getToken());
 
         } else {
           Log.i(Logging.LoginActivity, "Failed to log in");
@@ -78,6 +80,14 @@ public class LoginActivity extends AppCompatActivity {
         Snackbar.make(view, R.string.something_went_wrong, Snackbar.LENGTH_LONG).show();
       }
     });
+  }
+
+  private void startMainMenu(String token) {
+    Log.i(Logging.LoginActivity, "Creating intent to start MainMenuActivity.");
+    Intent intent = new Intent(this, MainMenuActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    intent.putExtra("token", token);
+    startActivity(intent);
   }
 
   private void signUpButtonClick(View view) {

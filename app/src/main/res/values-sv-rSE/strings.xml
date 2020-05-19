@@ -7,4 +7,6 @@
   <string name="sign_up">Registrera</string>
   <string name="something_went_wrong">Hejsan hoppsan lillebror, något gick snett.</string>
   <string name="invalid_credentials">Felaktigt användarnamn eller lösenord</string>
+  <string name="pick_start_date">Välj ett startdatum</string>
+  <string name="pick_end_date">Välj ett slutdatum</string>
 </resources>
