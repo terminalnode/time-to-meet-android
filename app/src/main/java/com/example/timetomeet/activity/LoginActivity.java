@@ -2,10 +2,8 @@ package com.example.timetomeet.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +15,8 @@ import com.example.timetomeet.R;
 import com.google.android.material.snackbar.Snackbar;
 
 public class LoginActivity extends AppCompatActivity {
+  private static String usernamePref = "login-activity-username";
+
   private Button signInButton, signUpButton;
   private EditText usernameText, passwordText;
   private SharedPreferences sharedPreferences;
@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Retrieve saved username from shared preferences
     sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-    usernameText.setText(sharedPreferences.getString("login-activity-username", ""));
+    usernameText.setText(sharedPreferences.getString(usernamePref, ""));
 
     // Bind buttons to methods
     signInButton.setOnClickListener(this::signInButtonClick);
@@ -46,6 +46,10 @@ public class LoginActivity extends AppCompatActivity {
     Snackbar.make(view, "Signing in!", Snackbar.LENGTH_LONG).show();
     String username = usernameText.getText().toString();
     String password = passwordText.getText().toString();
+
+    SharedPreferences.Editor spe = sharedPreferences.edit();
+    spe.putString(usernamePref, username);
+    spe.apply();
   }
 
   private void signUpButtonClick(View view) {
