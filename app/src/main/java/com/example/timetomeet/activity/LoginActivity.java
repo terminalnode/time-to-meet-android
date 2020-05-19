@@ -12,7 +12,15 @@ import android.widget.EditText;
 
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
+import com.example.timetomeet.retrofit.RetrofitHelper;
+import com.example.timetomeet.retrofit.entity.Token;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
   private static String usernamePref = "login-activity-username";
@@ -43,13 +51,33 @@ public class LoginActivity extends AppCompatActivity {
   }
 
   private void signInButtonClick(View view) {
-    Snackbar.make(view, "Signing in!", Snackbar.LENGTH_LONG).show();
     String username = usernameText.getText().toString();
     String password = passwordText.getText().toString();
 
-    SharedPreferences.Editor spe = sharedPreferences.edit();
-    spe.putString(usernamePref, username);
-    spe.apply();
+    RetrofitHelper.signIn(username, password).enqueue(new Callback<Token>() {
+      @Override
+      public void onResponse(Call<Token> call, Response<Token> response) {
+        Token token = response.body();
+        if (token != null) {
+          SharedPreferences.Editor spe = sharedPreferences.edit();
+          spe.putString(usernamePref, username);
+          spe.apply();
+
+        } else {
+          Log.i(Logging.LoginActivity, "Failed to log in");
+          try {
+            Log.i(Logging.LoginActivity, response.errorBody().string());
+          } catch (IOException e) { e.printStackTrace(); }
+
+          Snackbar.make(view, R.string.invalid_credentials, Snackbar.LENGTH_LONG).show();
+        }
+      }
+
+      @Override
+      public void onFailure(Call<Token> call, Throwable t) {
+        Snackbar.make(view, R.string.something_went_wrong, Snackbar.LENGTH_LONG).show();
+      }
+    });
   }
 
   private void signUpButtonClick(View view) {

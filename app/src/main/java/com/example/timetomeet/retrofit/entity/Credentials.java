@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Credentials {
   @SerializedName("username")
-  private String userName;
+  private String username;
 
   @SerializedName("password")
   private String password;
@@ -19,12 +19,12 @@ public class Credentials {
   @NonNull
   @Override
   public String toString() {
-    return String.format("LoginCredentials{username=%s}", userName);
+    return String.format("LoginCredentials{username=%s}", username);
   }
 
   //----- Setters -----//
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public void setPassword(String password) {
@@ -32,8 +32,8 @@ public class Credentials {
   }
 
   //----- Getters -----//
-  public String getUserName() {
-    return userName;
+  public String getUsername() {
+    return username;
   }
 
   public String getPassword() {

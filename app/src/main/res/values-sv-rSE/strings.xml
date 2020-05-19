@@ -5,4 +5,6 @@
   <string name="password">Lösenord</string>
   <string name="sign_in">Logga in</string>
   <string name="sign_up">Registrera</string>
+  <string name="something_went_wrong">Hejsan hoppsan lillebror, något gick snett.</string>
+  <string name="invalid_credentials">Felaktigt användarnamn eller lösenord</string>
 </resources>

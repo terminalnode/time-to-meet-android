@@ -9,9 +9,9 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface Endpoint {
-  @POST("api-token-auth")
+  @POST("api-token-auth/")
   Call<Token> signIn(@Body Credentials credentials);
 
-  @POST("user/add")
+  @POST("user/add/")
   Call<User> signUp(@Body User user);
 }
