@@ -19,7 +19,7 @@ public class DateDisplayListener implements View.OnClickListener {
   }
 
   private void onDateSet(DatePicker datePicker, int year, int month, int day) {
-    textView.setText(String.format("%s-%s-%s", year, month + 1, day));
+    textView.setText(String.format("%s-%02d-%02d", year, month + 1, day));
   }
 
   @Override
