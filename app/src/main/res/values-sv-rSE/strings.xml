@@ -10,4 +10,12 @@
   <string name="pick_start_date">Välj ett startdatum</string>
   <string name="pick_end_date">Välj ett slutdatum</string>
   <string name="create_booking_button_label">Skapa Bokning</string>
+  <string name="loading_label">Laddar...</string>
+  <string name="fetched_cities">Hämtat städer!</string>
+  <string name="fetching_cities">Hämtar städer...</string>
+  <string name="fetched_technology">Hämtat teknologier!</string>
+  <string name="fetching_technology">Hämtar teknologier...</string>
+  <string name="fetched_payment_alternatives">Hämtat betalningsalternativ!</string>
+  <string name="fetching_payment_alternatives">Hämtar betalningsalternativ...</string>
+  <string name="everything_loaded">Allt laddat!</string>
 </resources>

@@ -19,4 +19,12 @@
   <string name="hello_first_fragment">Hello first fragment</string>
   <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
   <string name="create_booking_button_label">Create Booking</string>
+  <string name="loading_label">Loading...</string>
+  <string name="fetched_cities">Got cities!</string>
+  <string name="fetching_cities">Fetching cities...</string>
+  <string name="fetched_technology">Got technology!</string>
+  <string name="fetching_technology">Fetching technology...</string>
+  <string name="fetched_payment_alternatives">Got payment alternatives!</string>
+  <string name="fetching_payment_alternatives">Fetching payment alternatives...</string>
+  <string name="everything_loaded">Everything loaded!</string>
 </resources>

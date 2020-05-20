@@ -28,4 +28,24 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:srcCompat="@drawable/conference" />
+
+  <ProgressBar
+    android:id="@+id/progressBar"
+    style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+    android:layout_width="200dp"
+    android:layout_height="25dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/splashTitle" />
+
+  <TextView
+    android:id="@+id/loadingTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/loading_label"
+    android:textSize="20sp"
+    app:layout_constraintBottom_toTopOf="@+id/progressBar"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
