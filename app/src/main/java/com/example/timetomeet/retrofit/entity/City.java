@@ -54,6 +54,14 @@ public class City {
         '}';
   }
 
+  public String getLocalizedName(String locale) {
+    switch (locale) {
+      case "en": return nameEn;
+      case "sv": return nameSv;
+      default: return nameSv;
+    }
+  }
+
   //----- Setters -----//
   public void setId(Long id) {
     this.id = id;

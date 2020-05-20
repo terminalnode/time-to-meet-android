@@ -1,6 +1,7 @@
 package com.example.timetomeet.customview;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.os.ConfigurationCompat;
 
+import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
 
 import java.util.List;
+import java.util.Locale;
 
 public class CitySimplifiedSpinnerAdapter extends ArrayAdapter<CitySimplified> {
   private int listLayout;
@@ -31,7 +35,7 @@ public class CitySimplifiedSpinnerAdapter extends ArrayAdapter<CitySimplified> {
 
     CitySimplified currentCity = getItem(position);
     TextView cityNameTextView = convertView.findViewById(R.id.cityNameTextView);
-    cityNameTextView.setText(currentCity.getNameSv());
+    cityNameTextView.setText(currentCity.getLocalizedName(Helper.getLocale()));
 
     return convertView;
   }

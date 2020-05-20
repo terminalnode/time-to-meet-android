@@ -1,5 +1,7 @@
 package com.example.timetomeet.retrofit.entity;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
 public class CitySimplified {
@@ -26,6 +28,15 @@ public class CitySimplified {
   @Override
   public String toString() {
     return String.format("CitySimplified{id=%s, nameSv='%s', nameEn='%s'}", id, nameSv, nameEn);
+  }
+
+  public String getLocalizedName(String locale) {
+    Log.i("YOLO", locale);
+    switch (locale) {
+      case "en": return nameEn;
+      case "sv": return nameSv;
+      default: return nameSv;
+    }
   }
 
   //----- Setters -----//
