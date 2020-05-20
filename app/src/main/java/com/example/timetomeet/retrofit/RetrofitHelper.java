@@ -3,6 +3,7 @@ package com.example.timetomeet.retrofit;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
+import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
 
@@ -40,5 +41,9 @@ public class RetrofitHelper {
 
   public static Call<List<PaymentAlternative>> getPaymentAlternatives() {
     return getBase().getPaymentAlternatives();
+  }
+
+  public static Call<List<Technology>> getTechnology() {
+    return getBase().getTechnology();
   }
 }

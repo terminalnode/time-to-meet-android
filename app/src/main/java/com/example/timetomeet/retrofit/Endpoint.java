@@ -3,6 +3,7 @@ package com.example.timetomeet.retrofit;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
+import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
 
@@ -26,4 +27,7 @@ public interface Endpoint {
 
   @GET("paymentalternative/")
   Call<List<PaymentAlternative>> getPaymentAlternatives();
+
+  @GET("technology/")
+  Call<List<Technology>> getTechnology();
 }
