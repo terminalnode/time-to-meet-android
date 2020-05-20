@@ -3,18 +3,19 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/nav_graph"
-  app:startDestination="@id/FirstFragment">
+  app:startDestination="@id/CreateBookingDateFragment">
 
   <fragment
-    android:id="@+id/FirstFragment"
-    android:name="com.example.timetomeet.activity.FirstFragment"
+    android:id="@+id/CreateBookingDateFragment"
+    android:name="com.example.timetomeet.activity.CreateBookingDateFragment"
     android:label="@string/first_fragment_label"
-    tools:layout="@layout/fragment_first">
+    tools:layout="@layout/fragment_create_booking_date">
 
     <action
       android:id="@+id/action_FirstFragment_to_SecondFragment"
       app:destination="@id/SecondFragment" />
   </fragment>
+
   <fragment
     android:id="@+id/SecondFragment"
     android:name="com.example.timetomeet.activity.SecondFragment"
@@ -23,6 +24,6 @@
 
     <action
       android:id="@+id/action_SecondFragment_to_FirstFragment"
-      app:destination="@id/FirstFragment" />
+      app:destination="@id/CreateBookingDateFragment" />
   </fragment>
 </navigation>

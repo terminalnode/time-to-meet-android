@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.timetomeet.Logging;
@@ -14,8 +16,7 @@ import com.example.timetomeet.R;
 import com.example.timetomeet.customview.DateDisplayListener;
 
 public class MainMenuActivity extends AppCompatActivity {
-  private ConstraintLayout startDateDisplay;
-  private ConstraintLayout endDateDisplay;
+  private Button createBookingButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +24,13 @@ public class MainMenuActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main_menu);
     Log.i(Logging.MainMenuActivity, "Activity started");
 
-    startDateDisplay = findViewById(R.id.startDateDisplay);
-    endDateDisplay = findViewById(R.id.endDateDisplay);
+    createBookingButton = findViewById(R.id.createBookingButton);
+    createBookingButton.setOnClickListener(this::startCreateBookingActivity);
+  }
 
-    TextView startDateText = startDateDisplay.findViewById(R.id.dateTextView);
-    startDateText.setText(R.string.pick_start_date);
-
-    TextView endDateText = endDateDisplay.findViewById(R.id.dateTextView);
-    endDateText.setText(R.string.pick_end_date);
-
-    startDateDisplay.setOnClickListener(new DateDisplayListener(this, startDateText));
-    endDateDisplay.setOnClickListener(new DateDisplayListener(this, endDateText));
+  private void startCreateBookingActivity(View view) {
+    Intent intent = new Intent(this, CreateBookingActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    startActivity(intent);
   }
 }

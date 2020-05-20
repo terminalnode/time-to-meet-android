@@ -1,0 +1,38 @@
+package com.example.timetomeet.customview;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.example.timetomeet.R;
+import com.example.timetomeet.retrofit.entity.CitySimplified;
+
+import java.util.List;
+
+public class CitySimplifiedSpinnerAdapter extends ArrayAdapter<CitySimplified> {
+  private int listLayout;
+
+  public CitySimplifiedSpinnerAdapter(@NonNull Context context, int listView, int textView, @NonNull List<CitySimplified> objects) {
+    super(context, listView, textView, objects);
+    this.listLayout = listView;
+  }
+
+  @NonNull
+  @Override
+  public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    LayoutInflater inflater = LayoutInflater.from(getContext());
+    convertView = inflater.inflate(listLayout, parent, false);
+
+    CitySimplified currentCity = getItem(position);
+    TextView cityNameTextView = convertView.findViewById(R.id.cityNameTextView);
+    cityNameTextView.setText(currentCity.getNameSv());
+
+    return convertView;
+  }
+}
