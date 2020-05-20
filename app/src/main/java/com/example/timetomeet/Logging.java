@@ -2,8 +2,8 @@ package com.example.timetomeet;
 
 public class Logging {
   // Activity names
-  public static String LoginActivity = "LoginActivity";
-  public static String SplashActivity = "SplashActivity";
-  public static String MainMenuActivity = "MainMenuActivity";
-  public static String CreateBookingActivity = "CreateBookingActivity";
+  public static final String LoginActivity = "LoginActivity";
+  public static final String SplashActivity = "SplashActivity";
+  public static final String MainMenuActivity = "MainMenuActivity";
+  public static final String CreateBookingActivity = "CreateBookingActivity";
 }

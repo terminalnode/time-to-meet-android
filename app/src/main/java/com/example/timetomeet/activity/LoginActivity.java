@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.RetrofitHelper;
@@ -24,8 +25,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-  private static String usernamePref = "login-activity-username";
-
   private Button signInButton, signUpButton;
   private EditText usernameText, passwordText;
   private SharedPreferences sharedPreferences;
@@ -44,7 +43,8 @@ public class LoginActivity extends AppCompatActivity {
 
     // Retrieve saved username from shared preferences
     sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-    usernameText.setText(sharedPreferences.getString(usernamePref, ""));
+    usernameText.setText(sharedPreferences.getString(Helper.PREF_USERNAME, ""));
+    passwordText.setText(sharedPreferences.getString(Helper.PREF_PASSWORD, ""));
 
     // Bind buttons to methods
     signInButton.setOnClickListener(this::signInButtonClick);
@@ -61,7 +61,8 @@ public class LoginActivity extends AppCompatActivity {
         Token token = response.body();
         if (token != null) {
           SharedPreferences.Editor spe = sharedPreferences.edit();
-          spe.putString(usernamePref, username);
+          spe.putString(Helper.PREF_USERNAME, username);
+          spe.putString(Helper.PREF_PASSWORD, password);
           spe.apply();
           startMainMenu("Token " + token.getToken());
 

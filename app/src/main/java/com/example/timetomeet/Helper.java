@@ -7,6 +7,8 @@ import android.content.res.Resources;
  * used in multiple parts of the application.
  */
 public class Helper {
+  public static final String PREF_USERNAME = "username";
+  public static final String PREF_PASSWORD = "password";
   private static String[] supportedLocales = new String[]{"en", "sv"};
 
   /**
