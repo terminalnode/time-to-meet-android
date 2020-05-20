@@ -28,12 +28,16 @@ public class LoginActivity extends AppCompatActivity {
   private Button signInButton, signUpButton;
   private EditText usernameText, passwordText;
   private SharedPreferences sharedPreferences;
+  private Bundle apiData;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
     Log.i(Logging.LoginActivity, "Activity started");
+
+    // Unpack intents
+    apiData = getIntent().getExtras();
 
     // Find views in activity
     signInButton = findViewById(R.id.signInButton);
@@ -64,7 +68,8 @@ public class LoginActivity extends AppCompatActivity {
           spe.putString(Helper.PREF_USERNAME, username);
           spe.putString(Helper.PREF_PASSWORD, password);
           spe.apply();
-          startMainMenu("Token " + token.getToken());
+          apiData.putString(Helper.BUNDLE_TOKEN, String.format("Token %s", token.getToken()));
+          startMainMenu();
 
         } else {
           Log.i(Logging.LoginActivity, "Failed to log in");
@@ -83,11 +88,11 @@ public class LoginActivity extends AppCompatActivity {
     });
   }
 
-  private void startMainMenu(String token) {
+  private void startMainMenu() {
     Log.i(Logging.LoginActivity, "Creating intent to start MainMenuActivity.");
     Intent intent = new Intent(this, MainMenuActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    intent.putExtra("token", token);
+    intent.putExtras(apiData);
     startActivity(intent);
   }
 

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.RetrofitHelper;
@@ -16,6 +17,7 @@ import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Technology;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,6 +27,8 @@ import retrofit2.Response;
 public class SplashActivity extends AppCompatActivity {
   private ProgressBar progressBar;
   private TextView loadingTextView;
+  private Runnable activityStarter;
+  private Bundle apiData;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +36,14 @@ public class SplashActivity extends AppCompatActivity {
     setContentView(R.layout.activity_splash);
     Log.i(Logging.SplashActivity, "Activity started");
 
-    long startTime = System.currentTimeMillis() + 4000;
-    startLoginScreen(startTime);
-
     progressBar = findViewById(R.id.progressBar);
     loadingTextView = findViewById(R.id.loadingTextView);
+
+    apiData = new Bundle();
     loadContent();
+
+    long startTime = System.currentTimeMillis() + 4000;
+    startLoginScreen(startTime);
   }
 
   /**
@@ -56,13 +62,18 @@ public class SplashActivity extends AppCompatActivity {
 
   private void fetchCities() {
     loadingTextView.setText(R.string.fetching_cities);
+    ArrayList<CitySimplified> cities = new ArrayList<>();
+    apiData.putParcelableArrayList(Helper.BUNDLE_CITIES, cities);
 
-    List<CitySimplified> cities = null;
     RetrofitHelper.getCitiesWithVenues().enqueue(new Callback<List<CitySimplified>>() {
       @Override
       public void onResponse(Call<List<CitySimplified>> call, Response<List<CitySimplified>> response) {
-        loadingTextView.setText(R.string.fetched_cities);
+        if (response.body() != null) {
+          cities.addAll(response.body());
+        }
+
         incrementProgressBar();
+        loadingTextView.setText(R.string.fetched_cities);
       }
 
       @Override
@@ -73,7 +84,6 @@ public class SplashActivity extends AppCompatActivity {
 
   private void fetchTechnology() {
     loadingTextView.setText(R.string.fetching_technology);
-    List<Technology> technologies = null;
 
     RetrofitHelper.getTechnology().enqueue(new Callback<List<Technology>>() {
       @Override
@@ -91,7 +101,6 @@ public class SplashActivity extends AppCompatActivity {
 
   private void fetchPaymentAlternatives() {
     loadingTextView.setText(R.string.fetching_payment_alternatives);
-    List<PaymentAlternative> paymentAlternatives = null;
 
     RetrofitHelper.getPaymentAlternatives().enqueue(new Callback<List<PaymentAlternative>>() {
       @Override
@@ -132,17 +141,23 @@ public class SplashActivity extends AppCompatActivity {
    */
   private void startActivityAtTime(final Intent intent, long startTime) {
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    long startIn = startTime - System.currentTimeMillis();
 
-    if (startIn < 1) {
-      Log.i(Logging.SplashActivity, "Start time already passed, starting activity.");
-      startActivity(intent);
-    } else {
+    Handler activityStartHandler = new Handler();
+
+    activityStarter = () -> {
+      long startIn = startTime - System.currentTimeMillis();
+      boolean startTimeHasPassed = startIn < 1;
+      boolean allTasksFinished = progressBar.getMax() >= progressBar.getProgress();
+
       Log.i(Logging.SplashActivity, String.format("Starting activity in: %s", startIn));
-      new Handler().postDelayed(() -> {
-        Log.i(Logging.SplashActivity, "Starting next activity.");
+      if (startTimeHasPassed && allTasksFinished) {
+        intent.putExtras(apiData);
         startActivity(intent);
-      }, startIn);
-    }
+
+      } else {
+        activityStartHandler.postDelayed(activityStarter, 250);
+      }
+    };
+    activityStartHandler.postDelayed(activityStarter, 250);
   }
 }

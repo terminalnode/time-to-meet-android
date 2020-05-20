@@ -9,6 +9,8 @@ import android.content.res.Resources;
 public class Helper {
   public static final String PREF_USERNAME = "username";
   public static final String PREF_PASSWORD = "password";
+  public static final String BUNDLE_CITIES = "bundle-cities-list";
+  public static final String BUNDLE_TOKEN = "bundle-token";
   private static String[] supportedLocales = new String[]{"en", "sv"};
 
   /**

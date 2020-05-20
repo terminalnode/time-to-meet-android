@@ -38,7 +38,7 @@ public class RetrofitHelper {
     return getBase().signUp(user);
   }
 
-  public static Call<City> getCityById(int cityId) {
+  public static Call<City> getCityById(long cityId) {
     return getBase().getCityById(cityId);
   }
 

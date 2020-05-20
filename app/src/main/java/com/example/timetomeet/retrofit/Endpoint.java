@@ -26,7 +26,7 @@ public interface Endpoint {
   Call<User> signUp(@Body User user);
 
   @GET("city/{cityId}/")
-  Call<City> getCityById(@Path("cityId") int cityId);
+  Call<City> getCityById(@Path("cityId") long cityId);
 
   @GET("paymentalternative/")
   Call<List<PaymentAlternative>> getPaymentAlternatives();
