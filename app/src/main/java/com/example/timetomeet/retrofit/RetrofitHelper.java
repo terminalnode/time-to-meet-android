@@ -1,5 +1,7 @@
 package com.example.timetomeet.retrofit;
 
+import com.example.timetomeet.retrofit.entity.AvailableRoomsContainer;
+import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
@@ -45,5 +47,25 @@ public class RetrofitHelper {
 
   public static Call<List<Technology>> getTechnology() {
     return getBase().getTechnology();
+  }
+
+  public static Call<AvailableRoomsContainer> searchAvailableRoomsByCity(AvailableRoomsQuery query) {
+    query.setTypeCity();
+    return getBase().searchAvailableRoomsByCity(query);
+  }
+
+  public static Call<AvailableRoomsContainer> searchAvailableRoomsByPlant(AvailableRoomsQuery query) {
+    query.setTypePlant();
+    return getBase().searchAvailableRoomsByCity(query);
+  }
+
+  public static Call<AvailableRoomsContainer> searchAvailableRoomsByOrganization(AvailableRoomsQuery query) {
+    query.setTypeOrganization();
+    return getBase().searchAvailableRoomsByCity(query);
+  }
+
+  public static Call<AvailableRoomsContainer> searchAvailableRoomsByRoom(AvailableRoomsQuery query) {
+    query.setTypeRoom();
+    return getBase().searchAvailableRoomsByCity(query);
   }
 }

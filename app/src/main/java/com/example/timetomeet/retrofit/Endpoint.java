@@ -1,5 +1,7 @@
 package com.example.timetomeet.retrofit;
 
+import com.example.timetomeet.retrofit.entity.AvailableRoomsContainer;
+import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
@@ -30,4 +32,7 @@ public interface Endpoint {
 
   @GET("technology/")
   Call<List<Technology>> getTechnology();
+
+  @POST("search/availability/period/v3")
+  Call<AvailableRoomsContainer> searchAvailableRoomsByCity(@Body AvailableRoomsQuery query);
 }
