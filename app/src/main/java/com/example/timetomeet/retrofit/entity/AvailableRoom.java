@@ -1,8 +1,11 @@
 package com.example.timetomeet.retrofit.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class AvailableRoom {
+public class AvailableRoom implements Parcelable {
   @SerializedName("fullDayPrice")
   private Double fullDayPrice;
 
@@ -53,6 +56,50 @@ public class AvailableRoom {
         ", cityId=" + cityId +
         '}';
   }
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeValue(this.fullDayPrice);
+    dest.writeValue(this.preNoonPrice);
+    dest.writeValue(this.afterNoonPrice);
+    dest.writeString(this.startDate);
+    dest.writeValue(this.id31);
+    dest.writeValue(this.id32);
+    dest.writeValue(this.roomId);
+    dest.writeValue(this.plantId);
+    dest.writeValue(this.organizationId);
+    dest.writeValue(this.cityId);
+  }
+
+  protected AvailableRoom(Parcel in) {
+    this.fullDayPrice = (Double) in.readValue(Double.class.getClassLoader());
+    this.preNoonPrice = (Double) in.readValue(Double.class.getClassLoader());
+    this.afterNoonPrice = (Double) in.readValue(Double.class.getClassLoader());
+    this.startDate = in.readString();
+    this.id31 = (Long) in.readValue(Long.class.getClassLoader());
+    this.id32 = (Long) in.readValue(Long.class.getClassLoader());
+    this.roomId = (Long) in.readValue(Long.class.getClassLoader());
+    this.plantId = (Long) in.readValue(Long.class.getClassLoader());
+    this.organizationId = (Long) in.readValue(Long.class.getClassLoader());
+    this.cityId = (Long) in.readValue(Long.class.getClassLoader());
+  }
+
+  public static final Parcelable.Creator<AvailableRoom> CREATOR = new Parcelable.Creator<AvailableRoom>() {
+    @Override
+    public AvailableRoom createFromParcel(Parcel source) {
+      return new AvailableRoom(source);
+    }
+
+    @Override
+    public AvailableRoom[] newArray(int size) {
+      return new AvailableRoom[size];
+    }
+  };
 
   //----- Setters -----//
   public void setFullDayPrice(Double fullDayPrice) {
@@ -135,4 +182,5 @@ public class AvailableRoom {
   public Long getCityId() {
     return cityId;
   }
+
 }

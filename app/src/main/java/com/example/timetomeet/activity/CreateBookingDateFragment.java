@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
@@ -140,8 +141,16 @@ public class CreateBookingDateFragment extends Fragment {
               emptyResultSnackbar(view);
 
             } else {
-              List<AvailableRoom> availableRooms = response.body().getResult();
+              ArrayList<AvailableRoom> availableRooms = new ArrayList<>(response.body().getResult());
               Log.i(Logging.CreateBookingActivity, "Query result: " + availableRooms);
+              ((CreateBookingActivity) getActivity())
+                  .getBookingBundle()
+                  .putParcelableArrayList(Helper.BUNDLE_AVAILABLE_ROOMS_LIST, availableRooms);
+              Log.i("YOLO", "All bundled up");
+
+              NavHostFragment
+                  .findNavController(CreateBookingDateFragment.this)
+                  .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
           }
 

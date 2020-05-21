@@ -10,12 +10,20 @@ import com.example.timetomeet.R;
 
 public class CreateBookingActivity extends AppCompatActivity {
 
+  private Bundle bookingBundle;
+
+
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_create_booking);
     Log.i(Logging.CreateBookingActivity, "Activity started");
+    bookingBundle = new Bundle();
 
   }
 
+  public Bundle getBookingBundle() {
+    return bookingBundle;
+  }
 }
