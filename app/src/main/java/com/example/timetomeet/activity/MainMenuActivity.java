@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 import com.example.timetomeet.customview.DateDisplayListener;
@@ -31,6 +32,7 @@ public class MainMenuActivity extends AppCompatActivity {
   private void startCreateBookingActivity(View view) {
     Intent intent = new Intent(this, CreateBookingActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    intent.putExtras(getIntent());
     startActivity(intent);
   }
 }
