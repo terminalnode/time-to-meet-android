@@ -1,8 +1,11 @@
 package com.example.timetomeet.retrofit.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Technology {
+public class Technology implements Parcelable {
   @SerializedName("id")
   private Long id;
 
@@ -50,6 +53,40 @@ public class Technology {
       default: return nameSv;
     }
   }
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeValue(this.id);
+    dest.writeString(this.nameSv);
+    dest.writeString(this.nameEn);
+    dest.writeValue(this.technologyGroup);
+    dest.writeValue(this.stateId);
+  }
+
+  protected Technology(Parcel in) {
+    this.id = (Long) in.readValue(Long.class.getClassLoader());
+    this.nameSv = in.readString();
+    this.nameEn = in.readString();
+    this.technologyGroup = (Long) in.readValue(Long.class.getClassLoader());
+    this.stateId = (Long) in.readValue(Long.class.getClassLoader());
+  }
+
+  public static final Parcelable.Creator<Technology> CREATOR = new Parcelable.Creator<Technology>() {
+    @Override
+    public Technology createFromParcel(Parcel source) {
+      return new Technology(source);
+    }
+
+    @Override
+    public Technology[] newArray(int size) {
+      return new Technology[size];
+    }
+  };
 
   //----- Setters -----//
   public void setId(Long id) {

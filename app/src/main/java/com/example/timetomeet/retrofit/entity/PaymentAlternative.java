@@ -1,8 +1,11 @@
 package com.example.timetomeet.retrofit.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class PaymentAlternative {
+public class PaymentAlternative implements Parcelable {
   @SerializedName("id")
   private Long id;
 
@@ -35,6 +38,36 @@ public class PaymentAlternative {
       default: return nameSv;
     }
   }
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeValue(this.id);
+    dest.writeString(this.nameSv);
+    dest.writeString(this.nameEn);
+  }
+
+  protected PaymentAlternative(Parcel in) {
+    this.id = (Long) in.readValue(Long.class.getClassLoader());
+    this.nameSv = in.readString();
+    this.nameEn = in.readString();
+  }
+
+  public static final Parcelable.Creator<PaymentAlternative> CREATOR = new Parcelable.Creator<PaymentAlternative>() {
+    @Override
+    public PaymentAlternative createFromParcel(Parcel source) {
+      return new PaymentAlternative(source);
+    }
+
+    @Override
+    public PaymentAlternative[] newArray(int size) {
+      return new PaymentAlternative[size];
+    }
+  };
 
   //----- Setters -----//
   public void setId(Long id) {

@@ -11,6 +11,8 @@ public class Helper {
   public static final String PREF_PASSWORD = "password";
   public static final String BUNDLE_CITIES = "bundle-cities-list";
   public static final String BUNDLE_TOKEN = "bundle-token";
+  public static final String BUNDLE_TECHNOLOGIES = "bundle-technologies";
+  public static final String BUNDLE_PAYMENT_ALTERNATIVES = "bundle-payment-alternatives";
   private static String[] supportedLocales = new String[]{"en", "sv"};
 
   /**

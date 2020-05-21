@@ -84,12 +84,18 @@ public class SplashActivity extends AppCompatActivity {
 
   private void fetchTechnology() {
     loadingTextView.setText(R.string.fetching_technology);
+    ArrayList<Technology> technologies = new ArrayList<>();
+    apiData.putParcelableArrayList(Helper.BUNDLE_TECHNOLOGIES, technologies);
 
     RetrofitHelper.getTechnology().enqueue(new Callback<List<Technology>>() {
       @Override
       public void onResponse(Call<List<Technology>> call, Response<List<Technology>> response) {
-        loadingTextView.setText(R.string.fetched_technology);
+        if (response.body() != null) {
+          technologies.addAll(response.body());
+        }
+
         incrementProgressBar();
+        loadingTextView.setText(R.string.fetched_technology);
       }
 
       @Override
@@ -101,12 +107,18 @@ public class SplashActivity extends AppCompatActivity {
 
   private void fetchPaymentAlternatives() {
     loadingTextView.setText(R.string.fetching_payment_alternatives);
+    ArrayList<PaymentAlternative> paymentAlternatives = new ArrayList<>();
+    apiData.putParcelableArrayList(Helper.BUNDLE_PAYMENT_ALTERNATIVES, paymentAlternatives);
 
     RetrofitHelper.getPaymentAlternatives().enqueue(new Callback<List<PaymentAlternative>>() {
       @Override
       public void onResponse(Call<List<PaymentAlternative>> call, Response<List<PaymentAlternative>> response) {
-        loadingTextView.setText(R.string.fetched_payment_alternatives);
+        if (response.body() != null) {
+          paymentAlternatives.addAll(response.body());
+        }
+
         incrementProgressBar();
+        loadingTextView.setText(R.string.fetched_payment_alternatives);
       }
 
       @Override
