@@ -27,4 +27,8 @@
   <string name="fetched_payment_alternatives">Got payment alternatives!</string>
   <string name="fetching_payment_alternatives">Fetching payment alternatives...</string>
   <string name="everything_loaded">Everything loaded!</string>
+  <string name="start_date_label">Start date:</string>
+  <string name="end_date_label">End date:</string>
+  <string name="pick_city">Pick a city:</string>
+  <string name="search_available_rooms_title">Search Available Rooms</string>
 </resources>

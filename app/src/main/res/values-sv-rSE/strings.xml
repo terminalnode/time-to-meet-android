@@ -18,4 +18,8 @@
   <string name="fetched_payment_alternatives">Hämtat betalningsalternativ!</string>
   <string name="fetching_payment_alternatives">Hämtar betalningsalternativ...</string>
   <string name="everything_loaded">Allt laddat!</string>
+  <string name="start_date_label">Startdatum:</string>
+  <string name="end_date_label">Slutdatum:</string>
+  <string name="pick_city">Välj en stad:</string>
+  <string name="search_available_rooms_title">Hitta Lediga Rum</string>
 </resources>
