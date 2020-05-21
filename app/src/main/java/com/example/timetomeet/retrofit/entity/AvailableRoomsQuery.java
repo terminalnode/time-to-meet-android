@@ -19,6 +19,12 @@ public class AvailableRoomsQuery {
   public AvailableRoomsQuery() {
   }
 
+  public AvailableRoomsQuery(String objectIds, String fromDate, String toDate) {
+    this.objectIds = objectIds;
+    this.fromDate = fromDate;
+    this.toDate = toDate;
+  }
+
   //----- Methods -----//
   @Override
   public String toString() {

@@ -27,4 +27,5 @@
   <string name="pick_city">Pick a city:</string>
   <string name="search_available_rooms_title">Search Available Rooms</string>
   <string name="search_button_text">Search</string>
+  <string name="no_search_results">Query returned no results!</string>
 </resources>

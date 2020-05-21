@@ -23,4 +23,5 @@
   <string name="pick_city">Välj en stad:</string>
   <string name="search_available_rooms_title">Hitta Lediga Rum</string>
   <string name="search_button_text">Sök</string>
+  <string name="no_search_results">Sökningen var fruktlös!</string>
 </resources>
