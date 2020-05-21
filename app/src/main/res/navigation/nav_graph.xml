@@ -8,7 +8,6 @@
   <fragment
     android:id="@+id/CreateBookingDateFragment"
     android:name="com.example.timetomeet.activity.CreateBookingDateFragment"
-    android:label="@string/first_fragment_label"
     tools:layout="@layout/fragment_create_booking_date">
 
     <action
@@ -19,7 +18,6 @@
   <fragment
     android:id="@+id/SecondFragment"
     android:name="com.example.timetomeet.activity.SecondFragment"
-    android:label="@string/second_fragment_label"
     tools:layout="@layout/fragment_second">
 
     <action

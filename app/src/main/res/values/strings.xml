@@ -9,14 +9,9 @@
   <string name="invalid_credentials">Invalid username or password</string>
   <string name="pick_start_date">Pick a start date</string>
   <string name="pick_end_date">Pick an end date</string>
-  <string name="title_activity_create_booking">CreateBookingActivity</string>
   <!-- Strings used for fragments for navigation -->
-  <string name="first_fragment_label">First Fragment</string>
-  <string name="second_fragment_label">Second Fragment</string>
-  <string name="next">Next</string>
   <string name="previous">Previous</string>
 
-  <string name="hello_first_fragment">Hello first fragment</string>
   <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
   <string name="create_booking_button_label">Create Booking</string>
   <string name="loading_label">Loading...</string>
@@ -31,4 +26,5 @@
   <string name="end_date_label">End date:</string>
   <string name="pick_city">Pick a city:</string>
   <string name="search_available_rooms_title">Search Available Rooms</string>
+  <string name="search_button_text">Search</string>
 </resources>

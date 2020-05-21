@@ -52,29 +52,39 @@ public class CreateBookingDateFragment extends Fragment {
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    // Set up date labels
     startDateDisplay = view.findViewById(R.id.startDateDisplay);
     endDateDisplay = view.findViewById(R.id.endDateDisplay);
-    spinCity = view.findViewById(R.id.spinCity);
     TextView startDateText = startDateDisplay.findViewById(R.id.dateTextView);
     TextView endDateText = endDateDisplay.findViewById(R.id.dateTextView);
-
     startDateText.setText(R.string.pick_start_date);
     endDateText.setText(R.string.pick_end_date);
-    startDateDisplay.setOnClickListener(new DateDisplayListener(getContext(), startDateText));
-    endDateDisplay.setOnClickListener(new DateDisplayListener(getContext(), endDateText));
 
+    // Set up listeners
+    DateDisplayListener startDateDisplayListener = new DateDisplayListener(getContext(), startDateText);
+    DateDisplayListener endDateDisplayListener = new DateDisplayListener(getContext(), endDateText);
+    //startDateDisplayListener.setLimitedDatePicker(endDateDisplayListener.getDatePickerDialog());
+    startDateDisplay.setOnClickListener(startDateDisplayListener);
+    endDateDisplay.setOnClickListener(endDateDisplayListener);
+
+    // Set up city spinner
+    spinCity = view.findViewById(R.id.spinCity);
     spinCity.setAdapter(new CitySimplifiedSpinnerAdapter(
         getContext(),
         R.layout.single_city_simplified,
         R.id.cityNameTextView,
         citiesWithVenues));
 
-    view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        NavHostFragment.findNavController(CreateBookingDateFragment.this)
-            .navigate(R.id.action_FirstFragment_to_SecondFragment);
-      }
-    });
+    // Set up button listener
+    view.findViewById(R.id.searchButton)
+        .setOnClickListener(this::onSearchClick);
+
+    view.findViewById(R.id.searchButton)
+        .setOnClickListener(view1 ->
+            NavHostFragment.findNavController(CreateBookingDateFragment.this)
+        .navigate(R.id.action_FirstFragment_to_SecondFragment));
+  }
+
+  private void onSearchClick(View view) {
   }
 }

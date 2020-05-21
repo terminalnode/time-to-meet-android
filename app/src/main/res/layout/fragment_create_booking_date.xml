@@ -26,10 +26,10 @@
     app:layout_constraintTop_toBottomOf="@+id/startDateDisplay" />
 
   <Button
-    android:id="@+id/button_first"
+    android:id="@+id/searchButton"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@string/next"
+    android:text="@string/search_button_text"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -42,8 +42,8 @@
     android:layout_marginBottom="20dp"
     app:layout_constraintBottom_toTopOf="@+id/midpointGuideline"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/textView3"
-    app:layout_constraintTop_toTopOf="@+id/textView3" />
+    app:layout_constraintStart_toEndOf="@+id/pickCityTextView"
+    app:layout_constraintTop_toTopOf="@+id/pickCityTextView" />
 
   <TextView
     android:id="@+id/endDateTextView"
@@ -79,7 +79,7 @@
     app:layout_constraintGuide_percent="0.5" />
 
   <TextView
-    android:id="@+id/textView3"
+    android:id="@+id/pickCityTextView"
     android:layout_width="wrap_content"
     android:layout_height="@dimen/date_label_height"
     android:layout_marginStart="20dp"
@@ -91,7 +91,7 @@
     app:layout_constraintStart_toStartOf="parent" />
 
   <TextView
-    android:id="@+id/textView4"
+    android:id="@+id/searchAvailableRoomsTitle"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/search_available_rooms_title"
