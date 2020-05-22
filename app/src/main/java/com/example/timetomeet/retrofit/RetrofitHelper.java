@@ -7,6 +7,7 @@ import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Technology;
+import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
 
@@ -72,5 +73,9 @@ public class RetrofitHelper {
 
   public static Call<List<CitySimplified>> getCitiesWithVenues() {
     return getBase().getCitiesWithVenues();
+  }
+
+  public static Call<List<TechnologyAvailability>> getTechonolyAvailability(long roomId) {
+    return getBase().getTechnologyAvailability(roomId);
   }
 }

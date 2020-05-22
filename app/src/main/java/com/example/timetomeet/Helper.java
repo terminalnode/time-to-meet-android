@@ -14,6 +14,7 @@ public class Helper {
   public static final String BUNDLE_TECHNOLOGIES = "bundle-technologies";
   public static final String BUNDLE_PAYMENT_ALTERNATIVES = "bundle-payment-alternatives";
   public static final String BUNDLE_AVAILABLE_ROOMS_LIST = "bundle-available-rooms-list";
+  public static final String BUNDLE_AVAILABLE_TECHNOLOGY_LIST = "bundle-available-technology-list";
   private static String[] supportedLocales = new String[]{"en", "sv"};
 
   /**

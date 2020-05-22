@@ -7,6 +7,7 @@ import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Technology;
+import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
 
@@ -39,4 +40,7 @@ public interface Endpoint {
 
   @GET("citieswithvenues/")
   Call<List<CitySimplified>> getCitiesWithVenues();
+
+  @GET("technologyavailability/confereceroom/{id}/")
+  Call<List<TechnologyAvailability>> getTechnologyAvailability(@Path("id") long roomId);
 }
