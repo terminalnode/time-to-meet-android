@@ -17,6 +17,7 @@ public class Helper {
   public static final String BUNDLE_FOOD_BEVARAGE_LIST = "bundle-food-bevarage-list";
   public static final String BUNDLE_FOOD_BEVARAGE_GROUP_LIST = "bundle-food-bevarage-group-list";
   public static final String BUNDLE_AVAILABLE_TECHNOLOGY_LIST = "bundle-available-technology-list";
+  public static final String BUNDLE_SELECTED_ROOM = "bundle-selected-room";
   private static String[] supportedLocales = new String[]{"en", "sv"};
 
   /**
