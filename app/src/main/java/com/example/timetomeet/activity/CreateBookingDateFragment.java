@@ -150,7 +150,7 @@ public class CreateBookingDateFragment extends Fragment {
 
               NavHostFragment
                   .findNavController(CreateBookingDateFragment.this)
-                  .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                  .navigate(R.id.action_DateFragment_to_SelectRoomFragment);
             }
           }
 

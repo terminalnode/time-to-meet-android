@@ -11,17 +11,17 @@
     tools:layout="@layout/fragment_create_booking_date">
 
     <action
-      android:id="@+id/action_FirstFragment_to_SecondFragment"
-      app:destination="@id/SecondFragment" />
+      android:id="@+id/action_DateFragment_to_SelectRoomFragment"
+      app:destination="@id/CreateBookingSelectRoomFragment" />
   </fragment>
 
   <fragment
-    android:id="@+id/SecondFragment"
-    android:name="com.example.timetomeet.activity.SecondFragment"
-    tools:layout="@layout/fragment_second">
+    android:id="@+id/CreateBookingSelectRoomFragment"
+    android:name="com.example.timetomeet.activity.CreateBookingSelectRoomFragment"
+    tools:layout="@layout/fragment_create_booking_select_room">
 
     <action
-      android:id="@+id/action_SecondFragment_to_FirstFragment"
+      android:id="@+id/action_SelectRoomFragment_to_DateFragment"
       app:destination="@id/CreateBookingDateFragment" />
   </fragment>
 </navigation>
