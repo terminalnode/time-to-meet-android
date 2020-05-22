@@ -31,4 +31,6 @@
   <string name="city_place_holder">Hämtar stad...</string>
   <string name="fetching_food_bevarage_group_list">Hämtar måltider...</string>
   <string name="fetched_food_bevarage_group_list">Hämtat måltider!</string>
+  <string name="fetching_food_bevarage_list">Hämtar mat och dryck...</string>
+  <string name="fetched_food_bevarage_list">Hämtat måltider!</string>
 </resources>

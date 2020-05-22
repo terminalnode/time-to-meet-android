@@ -15,6 +15,7 @@ import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
+import com.example.timetomeet.retrofit.entity.FoodBevarageList;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Technology;
 
@@ -53,13 +54,36 @@ public class SplashActivity extends AppCompatActivity {
    */
   private void loadContent() {
     // Set max value on progress bar to the number of items we're fetching.
-    progressBar.setMax(4);
+    progressBar.setMax(5);
 
     // Fetch items
     fetchCities();
     fetchFoodBevarageGroupList();
+    fetchFoodBevarageList();
     fetchTechnology();
     fetchPaymentAlternatives();
+  }
+
+  private void fetchFoodBevarageList() {
+    loadingTextView.setText(R.string.fetching_food_bevarage_list);
+    ArrayList<FoodBevarageList> foodNDrinks = new ArrayList<>();
+    apiData.putParcelableArrayList(Helper.BUNDLE_FOOD_BEVARAGE_LIST, foodNDrinks);
+
+    RetrofitHelper.getFoodBevarageList().enqueue(new Callback<List<FoodBevarageList>>() {
+      @Override
+      public void onResponse(Call<List<FoodBevarageList>> call, Response<List<FoodBevarageList>> response) {
+        if (response.body() != null) {
+          foodNDrinks.addAll(response.body());
+        }
+
+        incrementProgressBar();
+        loadingTextView.setText(R.string.fetched_food_bevarage_list);
+      }
+
+      @Override
+      public void onFailure(Call<List<FoodBevarageList>> call, Throwable t) {
+      }
+    });
   }
 
   private void fetchFoodBevarageGroupList() {

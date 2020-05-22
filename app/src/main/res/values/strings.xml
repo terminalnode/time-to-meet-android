@@ -36,4 +36,6 @@
   <string name="city_place_holder">Fetching city...</string>
   <string name="fetching_food_bevarage_group_list">Fetching meal groups...</string>
   <string name="fetched_food_bevarage_group_list">Got meal groups!</string>
+  <string name="fetching_food_bevarage_list">Fetching food and bevarages...</string>
+  <string name="fetched_food_bevarage_list">Got food and bevarages!</string>
 </resources>
