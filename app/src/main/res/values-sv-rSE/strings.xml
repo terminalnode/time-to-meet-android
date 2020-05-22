@@ -33,4 +33,6 @@
   <string name="fetched_food_bevarage_group_list">Hämtat måltider!</string>
   <string name="fetching_food_bevarage_list">Hämtar mat och dryck...</string>
   <string name="fetched_food_bevarage_list">Hämtat måltider!</string>
+  <string name="fetching_technology_availability_text">Hämtar teknologier...</string>
+  <string name="fetched_technology_availability_text">Hämtat teknologier!</string>
 </resources>

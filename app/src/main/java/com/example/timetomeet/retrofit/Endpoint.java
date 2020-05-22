@@ -4,6 +4,7 @@ import com.example.timetomeet.retrofit.entity.AvailableRoomsContainer;
 import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
+import com.example.timetomeet.retrofit.entity.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
 import com.example.timetomeet.retrofit.entity.FoodBevarageList;
@@ -44,12 +45,15 @@ public interface Endpoint {
   @GET("citieswithvenues/")
   Call<List<CitySimplified>> getCitiesWithVenues();
 
-  @GET("technologyavailability/confereceroom/{id}/")
-  Call<List<TechnologyAvailability>> getTechnologyAvailability(@Path("id") long roomId);
+  @GET("technologyavailability/")
+  Call<List<TechnologyAvailability>> getTechnologyAvailability();
 
   @GET("foodbeveragegroup/")
   Call<List<FoodBevarageGroupList>> getFoodBevarageGroupList();
 
   @GET("foodbeverage/")
   Call<List<FoodBevarageList>> getFoodBevarageList();
+
+  @GET("conferenceroomtechnology/conferenceroom/{id}/")
+  Call<List<ConferenceRoomTechnology>> getConferenceRoomTechnology(@Path("id") long roomId);
 }

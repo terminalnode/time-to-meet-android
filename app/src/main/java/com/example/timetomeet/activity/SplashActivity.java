@@ -18,6 +18,7 @@ import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
 import com.example.timetomeet.retrofit.entity.FoodBevarageList;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Technology;
+import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,14 +55,37 @@ public class SplashActivity extends AppCompatActivity {
    */
   private void loadContent() {
     // Set max value on progress bar to the number of items we're fetching.
-    progressBar.setMax(5);
+    progressBar.setMax(6);
 
     // Fetch items
     fetchCities();
     fetchFoodBevarageGroupList();
     fetchFoodBevarageList();
     fetchTechnology();
+    fetchTechnologyAvailabilityList();
     fetchPaymentAlternatives();
+  }
+
+  private void fetchTechnologyAvailabilityList() {
+    loadingTextView.setText(R.string.fetching_technology_availability_text);
+    ArrayList<TechnologyAvailability> technologyAvailabilityTexts = new ArrayList<>();
+    apiData.putParcelableArrayList(Helper.BUNDLE_AVAILABLE_TECHNOLOGY_LIST, technologyAvailabilityTexts);
+
+    RetrofitHelper.getTechonolyAvailability().enqueue(new Callback<List<TechnologyAvailability>>() {
+      @Override
+      public void onResponse(Call<List<TechnologyAvailability>> call, Response<List<TechnologyAvailability>> response) {
+        if (response.body() != null) {
+          technologyAvailabilityTexts.addAll(response.body());
+        }
+
+        incrementProgressBar();
+        loadingTextView.setText(R.string.fetched_technology_availability_text);
+      }
+
+      @Override
+      public void onFailure(Call<List<TechnologyAvailability>> call, Throwable t) {
+      }
+    });
   }
 
   private void fetchFoodBevarageList() {

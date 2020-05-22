@@ -38,4 +38,6 @@
   <string name="fetched_food_bevarage_group_list">Got meal groups!</string>
   <string name="fetching_food_bevarage_list">Fetching food and bevarages...</string>
   <string name="fetched_food_bevarage_list">Got food and bevarages!</string>
+  <string name="fetching_technology_availability_text">Fetching technologies...</string>
+  <string name="fetched_technology_availability_text">Got technologies!</string>
 </resources>
