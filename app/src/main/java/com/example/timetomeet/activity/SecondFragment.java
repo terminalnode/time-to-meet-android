@@ -12,11 +12,14 @@ import androidx.fragment.app.Fragment;
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
 import com.example.timetomeet.customview.AvailableRoomListAdapter;
+import com.example.timetomeet.retrofit.entity.AvailableRoom;
+import com.example.timetomeet.retrofit.entity.CitySimplified;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class SecondFragment extends Fragment {
-
-  Bundle bookingBundle;
-
   @Override
   public View onCreateView(
       LayoutInflater inflater, ViewGroup container,
@@ -30,24 +33,24 @@ public class SecondFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
 
     //Get bundle from first fragment
-    bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
+    Bundle bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
+    Bundle apiData = getActivity().getIntent().getExtras();
+    List<AvailableRoom> availableRooms = bookingBundle.getParcelableArrayList(Helper.BUNDLE_AVAILABLE_ROOMS_LIST);
+    List<CitySimplified> cities = apiData.getParcelableArrayList(Helper.BUNDLE_CITIES);
+
+    Map<Long, CitySimplified> citiesMap = cities.stream()
+        .collect(Collectors.toMap(
+            CitySimplified::getId, // Key
+            citySimplified -> citySimplified // Value
+        ));
 
     ListView availableRoomsList = view.findViewById(R.id.availableRoomsList);
-
     availableRoomsList.setAdapter(
         new AvailableRoomListAdapter(
             getContext(),
-            R.layout.single_available_room,
-            bookingBundle.getParcelableArrayList(Helper.BUNDLE_AVAILABLE_ROOMS_LIST)));
-
-    /*
-    view.findViewById(R.id.button_second).setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        NavHostFragment.findNavController(SecondFragment.this)
-            .navigate(R.id.action_SecondFragment_to_FirstFragment);
-      }
-    });
-    */
+            availableRooms,
+            citiesMap
+        )
+    );
   }
 }

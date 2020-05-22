@@ -9,10 +9,7 @@ import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 
 public class CreateBookingActivity extends AppCompatActivity {
-
   private Bundle bookingBundle;
-
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +17,6 @@ public class CreateBookingActivity extends AppCompatActivity {
     setContentView(R.layout.activity_create_booking);
     Log.i(Logging.CreateBookingActivity, "Activity started");
     bookingBundle = new Bundle();
-
   }
 
   public Bundle getBookingBundle() {
