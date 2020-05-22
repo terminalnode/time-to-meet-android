@@ -41,6 +41,7 @@ public class SecondFragment extends Fragment {
             R.layout.single_city_simplified,
             bookingBundle.getParcelableArrayList(Helper.BUNDLE_AVAILABLE_ROOMS_LIST)));
 
+    /*
     view.findViewById(R.id.button_second).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -48,5 +49,6 @@ public class SecondFragment extends Fragment {
             .navigate(R.id.action_SecondFragment_to_FirstFragment);
       }
     });
+    */
   }
 }
