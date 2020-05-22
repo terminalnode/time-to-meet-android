@@ -14,6 +14,7 @@ import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
+import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Technology;
 
@@ -52,12 +53,35 @@ public class SplashActivity extends AppCompatActivity {
    */
   private void loadContent() {
     // Set max value on progress bar to the number of items we're fetching.
-    progressBar.setMax(3);
+    progressBar.setMax(4);
 
     // Fetch items
     fetchCities();
+    fetchFoodBevarageGroupList();
     fetchTechnology();
     fetchPaymentAlternatives();
+  }
+
+  private void fetchFoodBevarageGroupList() {
+    loadingTextView.setText(R.string.fetched_food_bevarage_group_list);
+    ArrayList<FoodBevarageGroupList> mealGroups = new ArrayList<>();
+    apiData.putParcelableArrayList(Helper.BUNDLE_FOOD_BEVARAGE_GROUP_LIST, mealGroups);
+
+    RetrofitHelper.getFoodBevarageGroupList().enqueue(new Callback<List<FoodBevarageGroupList>>() {
+      @Override
+      public void onResponse(Call<List<FoodBevarageGroupList>> call, Response<List<FoodBevarageGroupList>> response) {
+        if (response.body() != null) {
+          mealGroups.addAll(response.body());
+        }
+
+        incrementProgressBar();
+        loadingTextView.setText(R.string.fetched_food_bevarage_group_list);
+      }
+
+      @Override
+      public void onFailure(Call<List<FoodBevarageGroupList>> call, Throwable t) {
+      }
+    });
   }
 
   private void fetchCities() {
@@ -159,7 +183,7 @@ public class SplashActivity extends AppCompatActivity {
     activityStarter = () -> {
       long startIn = startTime - System.currentTimeMillis();
       boolean startTimeHasPassed = startIn < 1;
-      boolean allTasksFinished = progressBar.getMax() >= progressBar.getProgress();
+      boolean allTasksFinished = progressBar.getMax() <= progressBar.getProgress();
 
       Log.i(Logging.SplashActivity, String.format("Starting activity in: %s", startIn));
       if (startTimeHasPassed && allTasksFinished) {

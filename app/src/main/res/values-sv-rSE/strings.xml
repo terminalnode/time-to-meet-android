@@ -29,4 +29,6 @@
   <string name="full_day_price_label">Heldag:</string>
   <string name="venue_place_holder">Hämtar anläggning...</string>
   <string name="city_place_holder">Hämtar stad...</string>
+  <string name="fetching_food_bevarage_group_list">Hämtar måltider...</string>
+  <string name="fetched_food_bevarage_group_list">Hämtat måltider!</string>
 </resources>

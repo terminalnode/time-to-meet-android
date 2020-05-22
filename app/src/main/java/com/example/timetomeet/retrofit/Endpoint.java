@@ -5,11 +5,13 @@ import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.Credentials;
+import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -43,4 +45,7 @@ public interface Endpoint {
 
   @GET("technologyavailability/confereceroom/{id}/")
   Call<List<TechnologyAvailability>> getTechnologyAvailability(@Path("id") long roomId);
+
+  @GET("foodbeveragegroup/")
+  Call<List<FoodBevarageGroupList>> getFoodBevarageGroupList();
 }

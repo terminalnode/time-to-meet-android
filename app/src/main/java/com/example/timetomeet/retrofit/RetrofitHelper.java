@@ -5,6 +5,7 @@ import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.Credentials;
+import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
@@ -77,5 +78,9 @@ public class RetrofitHelper {
 
   public static Call<List<TechnologyAvailability>> getTechonolyAvailability(long roomId) {
     return getBase().getTechnologyAvailability(roomId);
+  }
+
+  public static Call<List<FoodBevarageGroupList>> getFoodBevarageGroupList() {
+    return getBase().getFoodBevarageGroupList();
   }
 }
