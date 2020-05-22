@@ -28,4 +28,10 @@
   <string name="search_available_rooms_title">Search Available Rooms</string>
   <string name="search_button_text">Search</string>
   <string name="no_search_results">Query returned no results!</string>
+  <string name="am_price_label">Before noon:</string>
+  <string name="pm_price_label">Afternoon:</string>
+  <string name="full_day_price_label">Full day:</string>
+  <string name="price_placholder" translatable="false">0.00</string>
+  <string name="venue_place_holder">Fetching venue...</string>
+  <string name="city_place_holder">Fetching city...</string>
 </resources>

@@ -8,7 +8,6 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
@@ -38,7 +37,7 @@ public class SecondFragment extends Fragment {
     availableRoomsList.setAdapter(
         new AvailableRoomListAdapter(
             getContext(),
-            R.layout.single_city_simplified,
+            R.layout.single_available_room,
             bookingBundle.getParcelableArrayList(Helper.BUNDLE_AVAILABLE_ROOMS_LIST)));
 
     /*

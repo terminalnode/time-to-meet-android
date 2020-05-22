@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/singleCitySimplifiedConstraintLayout"
+  android:layout_width="match_parent"
+  android:layout_height="75dp">
+
+  <TextView
+    android:id="@+id/venueName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:text="@string/venue_place_holder"
+    android:textSize="@dimen/available_rooms_venue_text_size"
+    android:textStyle="bold"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+    android:id="@+id/cityName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="3dp"
+    android:text="@string/city_place_holder"
+    android:textSize="@dimen/available_rooms_city_text_size"
+    app:layout_constraintStart_toStartOf="@+id/venueName"
+    app:layout_constraintTop_toBottomOf="@+id/venueName" />
+
+  <TextView
+    android:id="@+id/fullDayPriceLabel"
+    android:layout_width="@dimen/price_label_width"
+    android:layout_height="@dimen/price_label_height"
+    android:gravity="center_vertical"
+    android:text="@string/full_day_price_label"
+    android:textStyle="bold"
+    app:layout_constraintStart_toStartOf="@+id/amPriceLabel"
+    app:layout_constraintTop_toBottomOf="@+id/pmPriceLabel" />
+
+  <TextView
+    android:id="@+id/fullDayPrice"
+    android:layout_width="@dimen/price_number_width"
+    android:layout_height="@dimen/price_label_height"
+    android:gravity="center_vertical"
+    android:text="@string/price_placholder"
+    app:layout_constraintBottom_toBottomOf="@+id/fullDayPriceLabel"
+    app:layout_constraintStart_toEndOf="@+id/fullDayPriceLabel" />
+
+  <TextView
+    android:id="@+id/amPriceLabel"
+    android:layout_width="@dimen/price_label_width"
+    android:layout_height="@dimen/price_label_height"
+    android:gravity="center_vertical"
+    android:text="@string/am_price_label"
+    android:textStyle="bold"
+    app:layout_constraintStart_toStartOf="@+id/guideline"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+    android:id="@+id/amPrice"
+    android:layout_width="@dimen/price_number_width"
+    android:layout_height="@dimen/price_label_height"
+    android:gravity="center_vertical"
+    android:text="@string/price_placholder"
+    app:layout_constraintBottom_toBottomOf="@+id/amPriceLabel"
+    app:layout_constraintStart_toEndOf="@+id/amPriceLabel" />
+
+  <TextView
+    android:id="@+id/pmPriceLabel"
+    android:layout_width="@dimen/price_label_width"
+    android:layout_height="@dimen/price_label_height"
+    android:gravity="center_vertical"
+    android:text="@string/pm_price_label"
+    android:textStyle="bold"
+    app:layout_constraintStart_toStartOf="@+id/amPriceLabel"
+    app:layout_constraintTop_toBottomOf="@+id/amPriceLabel" />
+
+  <TextView
+    android:id="@+id/pmPrice"
+    android:layout_width="@dimen/price_number_width"
+    android:layout_height="@dimen/price_label_height"
+    android:gravity="center_vertical"
+    android:text="@string/price_placholder"
+    app:layout_constraintBottom_toTopOf="@+id/fullDayPriceLabel"
+    app:layout_constraintStart_toEndOf="@+id/pmPriceLabel" />
+
+  <androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_begin="205dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

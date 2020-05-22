@@ -7,4 +7,10 @@
   <dimen name="date_label_right_hand_width">150dp</dimen>
   <dimen name="date_label_font_size">20sp</dimen>
   <dimen name="username_text_width">200dp</dimen>
+  <dimen name="price_label_width">100dp</dimen>
+  <dimen name="price_number_width">75dp</dimen>
+  <dimen name="price_label_height">25dp</dimen>
+
+  <dimen name="available_rooms_venue_text_size">18sp</dimen>
+  <dimen name="available_rooms_city_text_size">12sp</dimen>
 </resources>

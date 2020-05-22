@@ -24,4 +24,9 @@
   <string name="search_available_rooms_title">Hitta Lediga Rum</string>
   <string name="search_button_text">Sök</string>
   <string name="no_search_results">Sökningen var fruktlös!</string>
+  <string name="am_price_label">Förmiddag:</string>
+  <string name="pm_price_label">Eftermiddag:</string>
+  <string name="full_day_price_label">Heldag:</string>
+  <string name="venue_place_holder">Hämtar anläggning...</string>
+  <string name="city_place_holder">Hämtar stad...</string>
 </resources>
