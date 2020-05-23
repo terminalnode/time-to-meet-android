@@ -17,6 +17,7 @@ import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
 import com.example.timetomeet.retrofit.entity.FoodBevarageList;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
+import com.example.timetomeet.retrofit.entity.Seating;
 import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
 
@@ -32,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
   private TextView loadingTextView;
   private Runnable activityStarter;
   private Bundle apiData;
+  private long startTime;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +45,10 @@ public class SplashActivity extends AppCompatActivity {
     loadingTextView = findViewById(R.id.loadingTextView);
 
     apiData = new Bundle();
-    loadContent();
+    startTime = System.currentTimeMillis() + 3000;
 
-    long startTime = System.currentTimeMillis() + 4000;
-    startLoginScreen(startTime);
+    loadContent();
+    startLoginScreen();
   }
 
   /**
@@ -55,9 +57,10 @@ public class SplashActivity extends AppCompatActivity {
    */
   private void loadContent() {
     // Set max value on progress bar to the number of items we're fetching.
-    progressBar.setMax(6);
+    progressBar.setMax(7);
 
     // Fetch items
+    fetchStandardSeating();
     fetchCities();
     fetchFoodBevarageGroupList();
     fetchFoodBevarageList();
@@ -66,8 +69,28 @@ public class SplashActivity extends AppCompatActivity {
     fetchPaymentAlternatives();
   }
 
+  private void fetchStandardSeating() {
+    ArrayList<Seating> standardSeating = new ArrayList<>();
+    apiData.putParcelableArrayList(Helper.BUNDLE_STANDARD_SEATING, standardSeating);
+
+    RetrofitHelper.getStandardSeating().enqueue(new Callback<List<Seating>>() {
+      @Override
+      public void onResponse(Call<List<Seating>> call, Response<List<Seating>> response) {
+        if (response.body() != null) {
+          standardSeating.addAll(response.body());
+        }
+
+        loadingTextView.setText(R.string.fetched_standard_seating);
+        incrementProgressBar();
+      }
+
+      @Override
+      public void onFailure(Call<List<Seating>> call, Throwable t) {
+      }
+    });
+  }
+
   private void fetchTechnologyAvailabilityList() {
-    loadingTextView.setText(R.string.fetching_technology_availability_text);
     ArrayList<TechnologyAvailability> technologyAvailabilityTexts = new ArrayList<>();
     apiData.putParcelableArrayList(Helper.BUNDLE_AVAILABLE_TECHNOLOGY_LIST, technologyAvailabilityTexts);
 
@@ -78,8 +101,8 @@ public class SplashActivity extends AppCompatActivity {
           technologyAvailabilityTexts.addAll(response.body());
         }
 
-        incrementProgressBar();
         loadingTextView.setText(R.string.fetched_technology_availability_text);
+        incrementProgressBar();
       }
 
       @Override
@@ -89,7 +112,6 @@ public class SplashActivity extends AppCompatActivity {
   }
 
   private void fetchFoodBevarageList() {
-    loadingTextView.setText(R.string.fetching_food_bevarage_list);
     ArrayList<FoodBevarageList> foodNDrinks = new ArrayList<>();
     apiData.putParcelableArrayList(Helper.BUNDLE_FOOD_BEVARAGE_LIST, foodNDrinks);
 
@@ -100,8 +122,8 @@ public class SplashActivity extends AppCompatActivity {
           foodNDrinks.addAll(response.body());
         }
 
-        incrementProgressBar();
         loadingTextView.setText(R.string.fetched_food_bevarage_list);
+        incrementProgressBar();
       }
 
       @Override
@@ -111,7 +133,6 @@ public class SplashActivity extends AppCompatActivity {
   }
 
   private void fetchFoodBevarageGroupList() {
-    loadingTextView.setText(R.string.fetched_food_bevarage_group_list);
     ArrayList<FoodBevarageGroupList> mealGroups = new ArrayList<>();
     apiData.putParcelableArrayList(Helper.BUNDLE_FOOD_BEVARAGE_GROUP_LIST, mealGroups);
 
@@ -122,8 +143,8 @@ public class SplashActivity extends AppCompatActivity {
           mealGroups.addAll(response.body());
         }
 
-        incrementProgressBar();
         loadingTextView.setText(R.string.fetched_food_bevarage_group_list);
+        incrementProgressBar();
       }
 
       @Override
@@ -133,7 +154,6 @@ public class SplashActivity extends AppCompatActivity {
   }
 
   private void fetchCities() {
-    loadingTextView.setText(R.string.fetching_cities);
     ArrayList<CitySimplified> cities = new ArrayList<>();
     apiData.putParcelableArrayList(Helper.BUNDLE_CITIES, cities);
 
@@ -144,8 +164,8 @@ public class SplashActivity extends AppCompatActivity {
           cities.addAll(response.body());
         }
 
-        incrementProgressBar();
         loadingTextView.setText(R.string.fetched_cities);
+        incrementProgressBar();
       }
 
       @Override
@@ -155,7 +175,6 @@ public class SplashActivity extends AppCompatActivity {
   }
 
   private void fetchTechnology() {
-    loadingTextView.setText(R.string.fetching_technology);
     ArrayList<Technology> technologies = new ArrayList<>();
     apiData.putParcelableArrayList(Helper.BUNDLE_TECHNOLOGIES, technologies);
 
@@ -166,8 +185,8 @@ public class SplashActivity extends AppCompatActivity {
           technologies.addAll(response.body());
         }
 
-        incrementProgressBar();
         loadingTextView.setText(R.string.fetched_technology);
+        incrementProgressBar();
       }
 
       @Override
@@ -178,7 +197,6 @@ public class SplashActivity extends AppCompatActivity {
   }
 
   private void fetchPaymentAlternatives() {
-    loadingTextView.setText(R.string.fetching_payment_alternatives);
     ArrayList<PaymentAlternative> paymentAlternatives = new ArrayList<>();
     apiData.putParcelableArrayList(Helper.BUNDLE_PAYMENT_ALTERNATIVES, paymentAlternatives);
 
@@ -189,8 +207,8 @@ public class SplashActivity extends AppCompatActivity {
           paymentAlternatives.addAll(response.body());
         }
 
-        incrementProgressBar();
         loadingTextView.setText(R.string.fetched_payment_alternatives);
+        incrementProgressBar();
       }
 
       @Override
@@ -200,31 +218,38 @@ public class SplashActivity extends AppCompatActivity {
   }
 
   private void incrementProgressBar() {
-    progressBar.incrementProgressBy(1);
-    if (progressBar.getProgress() == progressBar.getMax()) {
+    // Set the everything loaded text, and increase the startTime
+    // if necessary to give the message time to show.
+    if (progressBar.getProgress() == progressBar.getMax() - 1) {
       loadingTextView.setText(R.string.everything_loaded);
+      Log.i(Logging.SplashActivity, "Load text is: " + loadingTextView.getText());
+
+      long minimumStartTime = System.currentTimeMillis() + 250;
+      startTime = Math.max(startTime, minimumStartTime);
     }
+
+    // Increment the progress bar
+    progressBar.incrementProgressBy(1);
   }
 
   /**
    * Create intent for login activity and start it at the specified time.
-   * @param startTime Time to start the activity.
    */
-  private void startLoginScreen(long startTime) {
+  private void startLoginScreen() {
     Log.i(Logging.SplashActivity, "Creating intent to start LoginActivity.");
     Intent intent = new Intent(this, LoginActivity.class);
-    startActivityAtTime(intent, startTime);
+    startActivityFromIntent(intent);
   }
 
   /**
-   * Starts the specified intent at a given time.
+   * Starts the specified intent at the time specified by startTime.
    * The reason for this is that if we want to go to a screen other than the
    * login activity we're free to do so.
    * @param intent The intent to be started.
-   * @param startTime The time at which it should start.
    */
-  private void startActivityAtTime(final Intent intent, long startTime) {
+  private void startActivityFromIntent(final Intent intent) {
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    long retryDelay = 100;
 
     Handler activityStartHandler = new Handler();
 
@@ -239,9 +264,9 @@ public class SplashActivity extends AppCompatActivity {
         startActivity(intent);
 
       } else {
-        activityStartHandler.postDelayed(activityStarter, 250);
+        activityStartHandler.postDelayed(activityStarter, retryDelay);
       }
     };
-    activityStartHandler.postDelayed(activityStarter, 250);
+    activityStartHandler.postDelayed(activityStarter, retryDelay);
   }
 }

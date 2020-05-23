@@ -12,11 +12,8 @@
   <string name="create_booking_button_label">Skapa Bokning</string>
   <string name="loading_label">Laddar...</string>
   <string name="fetched_cities">Hämtat städer!</string>
-  <string name="fetching_cities">Hämtar städer...</string>
   <string name="fetched_technology">Hämtat teknologier!</string>
-  <string name="fetching_technology">Hämtar teknologier...</string>
   <string name="fetched_payment_alternatives">Hämtat betalningsalternativ!</string>
-  <string name="fetching_payment_alternatives">Hämtar betalningsalternativ...</string>
   <string name="everything_loaded">Allt laddat!</string>
   <string name="start_date_label">Startdatum:</string>
   <string name="end_date_label">Slutdatum:</string>
@@ -27,12 +24,10 @@
   <string name="am_price_label">Förmiddag:</string>
   <string name="pm_price_label">Eftermiddag:</string>
   <string name="full_day_price_label">Heldag:</string>
-  <string name="venue_place_holder">Hämtar anläggning...</string>
-  <string name="city_place_holder">Hämtar stad...</string>
-  <string name="fetching_food_bevarage_group_list">Hämtar måltider...</string>
+  <string name="venue_place_holder">[ Anläggningsnamn ]</string>
   <string name="fetched_food_bevarage_group_list">Hämtat måltider!</string>
-  <string name="fetching_food_bevarage_list">Hämtar mat och dryck...</string>
   <string name="fetched_food_bevarage_list">Hämtat måltider!</string>
-  <string name="fetching_technology_availability_text">Hämtar teknologier...</string>
   <string name="fetched_technology_availability_text">Hämtat teknologier!</string>
+  <string name="fetched_standard_seating">Hämtat sittplatsmodeller!</string>
+  <string name="city_place_holder">[ Stadsnamn ]</string>
 </resources>

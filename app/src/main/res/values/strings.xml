@@ -10,17 +10,12 @@
   <string name="pick_start_date">Pick a start date</string>
   <string name="pick_end_date">Pick an end date</string>
   <!-- Strings used for fragments for navigation -->
-  <string name="previous">Previous</string>
 
-  <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
   <string name="create_booking_button_label">Create Booking</string>
   <string name="loading_label">Loading...</string>
   <string name="fetched_cities">Got cities!</string>
-  <string name="fetching_cities">Fetching cities...</string>
   <string name="fetched_technology">Got technology!</string>
-  <string name="fetching_technology">Fetching technology...</string>
   <string name="fetched_payment_alternatives">Got payment alternatives!</string>
-  <string name="fetching_payment_alternatives">Fetching payment alternatives...</string>
   <string name="everything_loaded">Everything loaded!</string>
   <string name="start_date_label">Start date:</string>
   <string name="end_date_label">End date:</string>
@@ -32,12 +27,10 @@
   <string name="pm_price_label">Afternoon:</string>
   <string name="full_day_price_label">Full day:</string>
   <string name="price_placholder" translatable="false">0.00</string>
-  <string name="venue_place_holder">Fetching venue...</string>
-  <string name="city_place_holder">Fetching city...</string>
-  <string name="fetching_food_bevarage_group_list">Fetching meal groups...</string>
-  <string name="fetched_food_bevarage_group_list">Got meal groups!</string>
-  <string name="fetching_food_bevarage_list">Fetching food and bevarages...</string>
-  <string name="fetched_food_bevarage_list">Got food and bevarages!</string>
-  <string name="fetching_technology_availability_text">Fetching technologies...</string>
-  <string name="fetched_technology_availability_text">Got technologies!</string>
+  <string name="venue_place_holder">[ Venue name ]</string>
+  <string name="fetched_food_bevarage_group_list">Fetched meal groups!</string>
+  <string name="fetched_food_bevarage_list">Fetched food and bevarages!</string>
+  <string name="fetched_technology_availability_text">Fetched technologies!</string>
+  <string name="fetched_standard_seating">Fetched standard seating!</string>
+  <string name="city_place_holder">[ City name ]</string>
 </resources>
