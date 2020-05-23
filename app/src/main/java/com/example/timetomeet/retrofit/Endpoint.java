@@ -9,11 +9,11 @@ import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
 import com.example.timetomeet.retrofit.entity.FoodBevarageList;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
+import com.example.timetomeet.retrofit.entity.Seating;
 import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -56,4 +56,7 @@ public interface Endpoint {
 
   @GET("conferenceroomtechnology/conferenceroom/{id}/")
   Call<List<ConferenceRoomTechnology>> getConferenceRoomTechnology(@Path("id") long roomId);
+
+  @GET("standardseating")
+  Call<List<Seating>> getStandardSeating();
 }

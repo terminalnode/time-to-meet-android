@@ -9,6 +9,7 @@ import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
 import com.example.timetomeet.retrofit.entity.FoodBevarageList;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
+import com.example.timetomeet.retrofit.entity.Seating;
 import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
 import com.example.timetomeet.retrofit.entity.Token;
@@ -92,5 +93,9 @@ public class RetrofitHelper {
 
   public static Call<List<ConferenceRoomTechnology>> getConferenceRoomTechnology(long roomId) {
     return getBase().getConferenceRoomTechnology(roomId);
+  }
+
+  public static Call<List<Seating>> getStandardSeating() {
+    return getBase().getStandardSeating();
   }
 }
