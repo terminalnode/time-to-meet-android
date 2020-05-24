@@ -45,9 +45,7 @@ public class AvailableRoomListAdapter extends ArrayAdapter<AvailableRoom> {
 
     if (availableRoom != null) {
       CitySimplified city = cityMap.get(availableRoom.getCityId());
-      String cityName = city == null ?
-          "Unknown city" :
-          city.getLocalizedName(Helper.getLocale());
+      String cityName = Helper.getLocalizedName(city);
 
       venueNameTextView.setText("Venue #" + availableRoom.getPlantId());
       cityNameTextView.setText(cityName);

@@ -1,10 +1,12 @@
 package com.example.timetomeet.retrofit.entity;
 
+import com.example.timetomeet.retrofit.LocalizableDescription;
+import com.example.timetomeet.retrofit.LocalizableName;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ConferenceRoom {
+public class ConferenceRoom implements LocalizableName, LocalizableDescription {
   @SerializedName("id")
   private Long id;
 

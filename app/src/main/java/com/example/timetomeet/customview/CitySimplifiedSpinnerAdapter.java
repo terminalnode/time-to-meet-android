@@ -32,7 +32,7 @@ public class CitySimplifiedSpinnerAdapter extends ArrayAdapter<CitySimplified> {
 
     CitySimplified currentCity = getItem(position);
     TextView cityNameTextView = convertView.findViewById(R.id.cityNameTextView);
-    cityNameTextView.setText(currentCity.getLocalizedName(Helper.getLocale()));
+    cityNameTextView.setText(Helper.getLocalizedName(currentCity));
 
     return convertView;
   }

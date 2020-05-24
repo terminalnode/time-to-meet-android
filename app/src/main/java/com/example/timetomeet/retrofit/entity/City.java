@@ -1,8 +1,9 @@
 package com.example.timetomeet.retrofit.entity;
 
+import com.example.timetomeet.retrofit.LocalizableName;
 import com.google.gson.annotations.SerializedName;
 
-public class City {
+public class City implements LocalizableName {
   @SerializedName("id")
   private Long id;
 
@@ -52,14 +53,6 @@ public class City {
         ", h1='" + h1 + '\'' +
         ", seoText='" + seoText + '\'' +
         '}';
-  }
-
-  public String getLocalizedName(String locale) {
-    switch (locale) {
-      case "en": return nameEn;
-      case "sv": return nameSv;
-      default: return nameSv;
-    }
   }
 
   //----- Setters -----//

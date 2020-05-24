@@ -5,9 +5,10 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import com.example.timetomeet.retrofit.LocalizableName;
 import com.google.gson.annotations.SerializedName;
 
-public class FoodBevarageGroupList implements Parcelable {
+public class FoodBevarageGroupList implements Parcelable, LocalizableName {
   @SerializedName("id")
   private Long id;
 
@@ -28,14 +29,6 @@ public class FoodBevarageGroupList implements Parcelable {
   }
 
   //----- Methods -----//
-  public String getLocalizedName(String locale) {
-    switch (locale) {
-      case "en": return nameEn;
-      case "sv": return nameSv;
-      default: return nameSv;
-    }
-  }
-
   @Override
   public String toString() {
     return String.format("FoodBevarageGroupList{id=%s, nameSv='%s', nameEn='%s'}", id, nameSv, nameEn);

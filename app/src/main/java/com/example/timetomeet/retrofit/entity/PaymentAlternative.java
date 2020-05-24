@@ -3,9 +3,10 @@ package com.example.timetomeet.retrofit.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.timetomeet.retrofit.LocalizableName;
 import com.google.gson.annotations.SerializedName;
 
-public class PaymentAlternative implements Parcelable {
+public class PaymentAlternative implements Parcelable, LocalizableName {
   @SerializedName("id")
   private Long id;
 
@@ -29,14 +30,6 @@ public class PaymentAlternative implements Parcelable {
   @Override
   public String toString() {
     return String.format("PaymentAlternative{id=%s, nameSv=%s, nameEn=%s}", id, nameSv, nameEn);
-  }
-
-  public String getLocalizedName(String locale) {
-    switch (locale) {
-      case "en": return nameEn;
-      case "sv": return nameSv;
-      default: return nameSv;
-    }
   }
 
   @Override

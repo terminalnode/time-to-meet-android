@@ -2,6 +2,9 @@ package com.example.timetomeet;
 
 import android.content.res.Resources;
 
+import com.example.timetomeet.retrofit.LocalizableDescription;
+import com.example.timetomeet.retrofit.LocalizableName;
+
 /**
  * This class contains various helper methods that can be
  * used in multiple parts of the application.
@@ -52,5 +55,57 @@ public class Helper {
     }
 
     return localeIsSupported ? currentLocale : "sv";
+  }
+
+  public static String getLocalizedDescription(LocalizableDescription localizableDescription) {
+    return getLocalizedDescription(localizableDescription, getLocale());
+  }
+
+  public static String getLocalizedDescription(LocalizableDescription localizableDescription, String locale) {
+    String descriptionSv = localizableDescription.getDescriptionSv();
+    String descriptionEn = localizableDescription.getDescriptionEn();
+
+    if (descriptionSv == null && descriptionEn == null) {
+      return  "en".equals(locale) ?
+          "No description." :
+          "Beskrivning saknas.";
+
+    } else if (descriptionSv == null) {
+      return  descriptionEn;
+
+    } else if (descriptionEn == null) {
+      return  descriptionSv;
+
+    } else {
+      return  "en".equals(locale) ?
+          descriptionEn :
+          descriptionSv;
+    }
+  }
+
+  public static String getLocalizedName(LocalizableName localizableName) {
+    return getLocalizedName(localizableName, getLocale());
+  }
+
+  public static String getLocalizedName(LocalizableName localizableName, String locale) {
+    String nameSv = localizableName.getNameSv();
+    String nameEn = localizableName.getNameEn();
+
+    if (nameSv == null && nameEn == null) {
+      return  "en".equals(locale) ?
+          "No name" :
+          "Namnlös";
+
+    } else if (nameSv == null) {
+      return  nameEn;
+
+    } else if (nameEn == null) {
+      return  nameSv;
+
+    } else {
+      return  "en".equals(locale) ?
+          nameEn :
+          nameSv;
+    }
   }
 }

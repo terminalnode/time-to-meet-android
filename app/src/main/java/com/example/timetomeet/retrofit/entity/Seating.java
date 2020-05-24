@@ -3,9 +3,10 @@ package com.example.timetomeet.retrofit.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.timetomeet.retrofit.LocalizableName;
 import com.google.gson.annotations.SerializedName;
 
-public class Seating implements Parcelable {
+public class Seating implements Parcelable, LocalizableName {
   @SerializedName("id")
   private Long id;
 
