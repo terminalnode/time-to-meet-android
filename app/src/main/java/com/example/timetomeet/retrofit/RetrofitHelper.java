@@ -4,6 +4,7 @@ import com.example.timetomeet.retrofit.entity.AvailableRoomsContainer;
 import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
+import com.example.timetomeet.retrofit.entity.ConferenceRoom;
 import com.example.timetomeet.retrofit.entity.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
@@ -43,8 +44,12 @@ public class RetrofitHelper {
     return getBase().signUp(user);
   }
 
-  public static Call<City> getCityById(long cityId) {
-    return getBase().getCityById(cityId);
+  public static Call<City> getCityById(long id) {
+    return getBase().getCityById(id);
+  }
+
+  public static Call<ConferenceRoom> getConferenceRoomById(long id) {
+    return getBase().getConferenceRoomById(id);
   }
 
   public static Call<List<PaymentAlternative>> getPaymentAlternatives() {

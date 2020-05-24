@@ -39,9 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     // Unpack intents
     apiData = getIntent().getExtras();
 
-    Log.i("YOLO", "YOLO DITT LILLA ROMPETROLL");
-    Log.i("YOLO", "" + apiData.getParcelableArrayList(Helper.BUNDLE_STANDARD_SEATING));
-
     // Find views in activity
     signInButton = findViewById(R.id.signInButton);
     signUpButton = findViewById(R.id.signUpButton);

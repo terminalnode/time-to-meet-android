@@ -19,6 +19,17 @@ public class ConferenceRoomSeating {
   public ConferenceRoomSeating() {
   }
 
+  //----- Methods -----//
+  @Override
+  public String toString() {
+    return "ConferenceRoomSeating{" +
+        "id=" + id +
+        ", conferenceRoomId=" + conferenceRoomId +
+        ", seatingId=" + seatingId +
+        ", numberOfSeats=" + numberOfSeats +
+        '}';
+  }
+
   //----- Setters -----//
   public void setId(Long id) {
     this.id = id;

@@ -4,6 +4,7 @@ import com.example.timetomeet.retrofit.entity.AvailableRoomsContainer;
 import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
+import com.example.timetomeet.retrofit.entity.ConferenceRoom;
 import com.example.timetomeet.retrofit.entity.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
@@ -30,8 +31,11 @@ public interface Endpoint {
   @POST("user/add/")
   Call<User> signUp(@Body User user);
 
-  @GET("city/{cityId}/")
-  Call<City> getCityById(@Path("cityId") long cityId);
+  @GET("city/{id}/")
+  Call<City> getCityById(@Path("id") long cityId);
+
+  @GET("conferenceroom/{id}/")
+  Call<ConferenceRoom> getConferenceRoomById(@Path("id") long id);
 
   @GET("paymentalternative/")
   Call<List<PaymentAlternative>> getPaymentAlternatives();
