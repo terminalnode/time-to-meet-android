@@ -15,6 +15,7 @@ import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
+import com.example.timetomeet.retrofit.entity.Venue;
 
 import java.util.List;
 
@@ -36,6 +37,9 @@ public interface Endpoint {
 
   @GET("conferenceroom/{id}/")
   Call<ConferenceRoom> getConferenceRoomById(@Path("id") long id);
+
+  @GET("venue/")
+  Call<List<Venue>> getVenueById(@Path("id") long id);
 
   @GET("paymentalternative/")
   Call<List<PaymentAlternative>> getPaymentAlternatives();
@@ -61,6 +65,6 @@ public interface Endpoint {
   @GET("conferenceroomtechnology/conferenceroom/{id}/")
   Call<List<ConferenceRoomTechnology>> getConferenceRoomTechnology(@Path("id") long roomId);
 
-  @GET("standardseating")
+  @GET("standardseating/")
   Call<List<Seating>> getStandardSeating();
 }

@@ -15,6 +15,7 @@ import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
+import com.example.timetomeet.retrofit.entity.Venue;
 
 import java.util.List;
 
@@ -51,6 +52,8 @@ public class RetrofitHelper {
   public static Call<ConferenceRoom> getConferenceRoomById(long id) {
     return getBase().getConferenceRoomById(id);
   }
+
+  public static Call<List<Venue>> getVenueById(long id) { return getBase().getVenueById(id); }
 
   public static Call<List<PaymentAlternative>> getPaymentAlternatives() {
     return getBase().getPaymentAlternatives();
