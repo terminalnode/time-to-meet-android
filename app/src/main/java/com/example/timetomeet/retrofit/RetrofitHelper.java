@@ -53,7 +53,7 @@ public class RetrofitHelper {
     return getBase().getConferenceRoomById(id);
   }
 
-  public static Call<List<Venue>> getVenueById(long id) {
+  public static Call<Venue> getVenueById(long id) {
     return getBase().getVenueById(id);
   }
 

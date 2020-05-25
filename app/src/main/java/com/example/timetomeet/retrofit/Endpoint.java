@@ -38,8 +38,8 @@ public interface Endpoint {
   @GET("conferenceroom/{id}/")
   Call<ConferenceRoom> getConferenceRoomById(@Path("id") long id);
 
-  @GET("venue/")
-  Call<List<Venue>> getVenueById(@Path("id") long id);
+  @GET("venue/{id}/")
+  Call<Venue> getVenueById(@Path("id") long id);
 
   @GET("paymentalternative/")
   Call<List<PaymentAlternative>> getPaymentAlternatives();
