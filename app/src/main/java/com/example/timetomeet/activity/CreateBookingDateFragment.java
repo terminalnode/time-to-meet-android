@@ -160,17 +160,6 @@ public class CreateBookingDateFragment extends Fragment {
 
               //Activity handler
               fetchVenuesAndStartActivity(venueIds, availableRooms);
-/*
-              // Bundle the parcelable rooms
-              ((CreateBookingActivity) getActivity())
-                  .getBookingBundle()
-                  .putParcelableArrayList(Helper.BUNDLE_AVAILABLE_ROOMS_LIST, availableRooms);
-              Log.i(Logging.CreateBookingActivity, "All bundled up");
-
-              NavHostFragment
-                  .findNavController(CreateBookingDateFragment.this)
-                  .navigate(R.id.action_DateFragment_to_SelectRoomFragment);
- */
             }
           }
 
@@ -179,20 +168,6 @@ public class CreateBookingDateFragment extends Fragment {
             somethingWentWrongSnackbar(view);
           }
         });
-  }
-
-  /**
-   * Fetch a venue from the API by it's ID.
-   * @param id The ID of the venue to fetch.
-   * @return The venue with the given ID.
-   */
-  private Venue fetchVenue(Long id) {
-    // Just return some mock data for the time being.
-    Venue venue = new Venue();
-    venue.setId(id);
-    venue.setNameSv("Testanläggning");
-    venue.setNameEn("Test plant");
-    return venue;
   }
 
   /**
@@ -218,37 +193,32 @@ public class CreateBookingDateFragment extends Fragment {
   private void fetchVenuesAndStartActivity(List<Long> venueIds, ArrayList<AvailableRoom> availableRooms) {
     long retryDelay = 100;
     int totalNumberOfVenues = venueIds.size();
-
     Map<Long, Venue> mapFetchedVenues = new ConcurrentHashMap<>();
-
-    Log.i("YOLO", "venueIds" + venueIds);
 
     for (Long id : venueIds) {
       RetrofitHelper.getVenueById(id).enqueue(new Callback<Venue>() {
         @Override
         public void onResponse(Call<Venue> call, Response<Venue> response) {
-          Log.i("YOLO", "onResponse triggered" + response.body());
           mapFetchedVenues.put(id, response.body());
         }
 
         @Override
         public void onFailure(Call<Venue> call, Throwable t) {
-          Log.i("YOLO", "onFailure triggered");
           mapFetchedVenues.put(id, null);
         }
       });
     }
 
     Handler activityStartHandler = new Handler();
-
     activityStarter = () -> {
       Log.i(
           Logging.CreateBookingActivity,
           String.format("Fetched venues %s / %s", mapFetchedVenues.size(), totalNumberOfVenues));
+
       if (mapFetchedVenues.size() == totalNumberOfVenues) {
-        Log.i("YOLO","All venues fetched");
-        Log.i("YOLO", "in hashmap " + mapFetchedVenues);
-        Log.i("YOLO", "size of hashmap " + mapFetchedVenues.size());
+
+        // Associate Venues with AvailableRooms
+        availableRooms.forEach(x -> x.setAssociatedVenue(mapFetchedVenues.get(x.getPlantId())));
 
         // Bundle the parcelable rooms
         ((CreateBookingActivity) getActivity())
@@ -263,6 +233,7 @@ public class CreateBookingDateFragment extends Fragment {
         activityStartHandler.postDelayed(activityStarter, retryDelay);
       }
     };
+
     activityStartHandler.postDelayed(activityStarter, retryDelay);
   }
 }

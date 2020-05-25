@@ -93,6 +93,7 @@ public class Helper {
           "Missing object" :
           "Objekt saknas";
     }
+
     String nameSv = localizableName.getNameSv();
     String nameEn = localizableName.getNameEn();
 
