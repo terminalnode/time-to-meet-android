@@ -88,11 +88,16 @@ public class Helper {
   }
 
   public static String getLocalizedName(LocalizableName localizableName, String locale) {
+    if (localizableName == null) {
+      return "en".equals(locale) ?
+          "Missing object" :
+          "Objekt saknas";
+    }
     String nameSv = localizableName.getNameSv();
     String nameEn = localizableName.getNameEn();
 
     if (nameSv == null && nameEn == null) {
-      return  "en".equals(locale) ?
+      return "en".equals(locale) ?
           "No name" :
           "Namnlös";
 
@@ -103,7 +108,7 @@ public class Helper {
       return  nameSv;
 
     } else {
-      return  "en".equals(locale) ?
+      return "en".equals(locale) ?
           nameEn :
           nameSv;
     }

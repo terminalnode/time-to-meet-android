@@ -3,6 +3,7 @@ package com.example.timetomeet.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,10 +31,12 @@ import com.example.timetomeet.retrofit.entity.Venue;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import retrofit2.Call;
@@ -50,6 +53,7 @@ public class CreateBookingDateFragment extends Fragment {
   private CitySimplifiedSpinnerAdapter citySpinnerAdapter;
   private Spinner spinCity;
   private List<CitySimplified> citiesWithVenues;
+  private Runnable activityStarter;
 
   @Override
   public View onCreateView(
@@ -146,21 +150,17 @@ public class CreateBookingDateFragment extends Fragment {
                   Logging.CreateBookingActivity,
                   "Number of query results: " + availableRooms.size());
 
-              // Get map of all venue ids to venues
-              Map<Long, Venue> venues = availableRooms
+              // Get list of all venue ids to venues
+              List<Long> venueIds = availableRooms
                   .stream()
                   .map(AvailableRoom::getPlantId)
                   .distinct()
                   .filter(Objects::nonNull)
-                  .collect(Collectors.toMap(
-                      id -> id, // key
-                      id -> fetchVenue(id)// value
-                  ));
+                  .collect(Collectors.toList());
 
-              // Add the venues to the available rooms
-              availableRooms.forEach(x ->
-                  x.setAssociatedVenue(venues.get(x.getPlantId())));
-
+              //Activity handler
+              fetchVenuesAndStartActivity(venueIds, availableRooms);
+/*
               // Bundle the parcelable rooms
               ((CreateBookingActivity) getActivity())
                   .getBookingBundle()
@@ -170,6 +170,7 @@ public class CreateBookingDateFragment extends Fragment {
               NavHostFragment
                   .findNavController(CreateBookingDateFragment.this)
                   .navigate(R.id.action_DateFragment_to_SelectRoomFragment);
+ */
             }
           }
 
@@ -212,5 +213,56 @@ public class CreateBookingDateFragment extends Fragment {
     Snackbar.make(
         view, R.string.no_search_results, Snackbar.LENGTH_LONG
     ).show();
+  }
+
+  private void fetchVenuesAndStartActivity(List<Long> venueIds, ArrayList<AvailableRoom> availableRooms) {
+    long retryDelay = 100;
+    int totalNumberOfVenues = venueIds.size();
+
+    Map<Long, Venue> mapFetchedVenues = new ConcurrentHashMap<>();
+
+    Log.i("YOLO", "venueIds" + venueIds);
+
+    for (Long id : venueIds) {
+      RetrofitHelper.getVenueById(id).enqueue(new Callback<Venue>() {
+        @Override
+        public void onResponse(Call<Venue> call, Response<Venue> response) {
+          Log.i("YOLO", "onResponse triggered" + response.body());
+          mapFetchedVenues.put(id, response.body());
+        }
+
+        @Override
+        public void onFailure(Call<Venue> call, Throwable t) {
+          Log.i("YOLO", "onFailure triggered");
+          mapFetchedVenues.put(id, null);
+        }
+      });
+    }
+
+    Handler activityStartHandler = new Handler();
+
+    activityStarter = () -> {
+      Log.i(
+          Logging.CreateBookingActivity,
+          String.format("Fetched venues %s / %s", mapFetchedVenues.size(), totalNumberOfVenues));
+      if (mapFetchedVenues.size() == totalNumberOfVenues) {
+        Log.i("YOLO","All venues fetched");
+        Log.i("YOLO", "in hashmap " + mapFetchedVenues);
+        Log.i("YOLO", "size of hashmap " + mapFetchedVenues.size());
+
+        // Bundle the parcelable rooms
+        ((CreateBookingActivity) getActivity())
+            .getBookingBundle()
+            .putParcelableArrayList(Helper.BUNDLE_AVAILABLE_ROOMS_LIST, availableRooms);
+        Log.i(Logging.CreateBookingActivity, "All bundled up");
+
+        NavHostFragment
+            .findNavController(CreateBookingDateFragment.this)
+            .navigate(R.id.action_DateFragment_to_SelectRoomFragment);
+      } else {
+        activityStartHandler.postDelayed(activityStarter, retryDelay);
+      }
+    };
+    activityStartHandler.postDelayed(activityStarter, retryDelay);
   }
 }
