@@ -14,6 +14,7 @@ import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
+import com.example.timetomeet.retrofit.entity.Venue;
 
 import java.util.List;
 import java.util.Map;
@@ -45,9 +46,13 @@ public class AvailableRoomListAdapter extends ArrayAdapter<AvailableRoom> {
 
     if (availableRoom != null) {
       CitySimplified city = cityMap.get(availableRoom.getCityId());
-      String cityName = Helper.getLocalizedName(city);
+      Venue venue = availableRoom.getAssociatedVenue();
 
-      venueNameTextView.setText("Venue #" + availableRoom.getPlantId());
+      String locale = Helper.getLocale();
+      String cityName = Helper.getLocalizedName(city, locale);
+      String venueName = Helper.getLocalizedName(venue, locale);
+
+      venueNameTextView.setText(venueName);
       cityNameTextView.setText(cityName);
       amPriceTextView.setText(String.format("%.02f kr", availableRoom.getPreNoonPrice()));
       pmPriceTextView.setText(String.format("%.02f kr", availableRoom.getAfterNoonPrice()));

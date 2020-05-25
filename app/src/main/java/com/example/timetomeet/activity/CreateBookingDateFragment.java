@@ -26,11 +26,15 @@ import com.example.timetomeet.retrofit.entity.AvailableRoom;
 import com.example.timetomeet.retrofit.entity.AvailableRoomsContainer;
 import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
+import com.example.timetomeet.retrofit.entity.Venue;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -91,16 +95,12 @@ public class CreateBookingDateFragment extends Fragment {
     // Set up button listener
     view.findViewById(R.id.searchButton)
         .setOnClickListener(this::onSearchClick);
-
-    /*
-    view.findViewById(R.id.searchButton)
-        .setOnClickListener(view1 -> NavHostFragment
-            .findNavController(CreateBookingDateFragment.this)
-            .navigate(R.id.action_FirstFragment_to_SecondFragment)
-        );
-     */
   }
 
+  /**
+   * Gathers the data from the search form and executes a search.
+   * @param view The view in which the button was clicked.
+   */
   private void onSearchClick(View view) {
     Log.i(Logging.CreateBookingActivity, "We be searching baby");
 
@@ -142,11 +142,30 @@ public class CreateBookingDateFragment extends Fragment {
 
             } else {
               ArrayList<AvailableRoom> availableRooms = new ArrayList<>(response.body().getResult());
-              Log.i(Logging.CreateBookingActivity, "Query result: " + availableRooms);
+              Log.i(
+                  Logging.CreateBookingActivity,
+                  "Number of query results: " + availableRooms.size());
+
+              // Get map of all venue ids to venues
+              Map<Long, Venue> venues = availableRooms
+                  .stream()
+                  .map(AvailableRoom::getPlantId)
+                  .distinct()
+                  .filter(Objects::nonNull)
+                  .collect(Collectors.toMap(
+                      id -> id, // key
+                      id -> fetchVenue(id)// value
+                  ));
+
+              // Add the venues to the available rooms
+              availableRooms.forEach(x ->
+                  x.setAssociatedVenue(venues.get(x.getPlantId())));
+
+              // Bundle the parcelable rooms
               ((CreateBookingActivity) getActivity())
                   .getBookingBundle()
                   .putParcelableArrayList(Helper.BUNDLE_AVAILABLE_ROOMS_LIST, availableRooms);
-              Log.i("YOLO", "All bundled up");
+              Log.i(Logging.CreateBookingActivity, "All bundled up");
 
               NavHostFragment
                   .findNavController(CreateBookingDateFragment.this)
@@ -161,12 +180,34 @@ public class CreateBookingDateFragment extends Fragment {
         });
   }
 
+  /**
+   * Fetch a venue from the API by it's ID.
+   * @param id The ID of the venue to fetch.
+   * @return The venue with the given ID.
+   */
+  private Venue fetchVenue(Long id) {
+    // Just return some mock data for the time being.
+    Venue venue = new Venue();
+    venue.setId(id);
+    venue.setNameSv("Testanläggning");
+    venue.setNameEn("Test plant");
+    return venue;
+  }
+
+  /**
+   * Show a snackbar saying something went wrong.
+   * @param view The view in which to display the snackbar.
+   */
   private void somethingWentWrongSnackbar(View view) {
     Snackbar.make(
         view, R.string.something_went_wrong, Snackbar.LENGTH_LONG
     ).show();
   }
 
+  /**
+   * Show a snackbar saying the result list was empty.
+   * @param view The view in which to display the snackbar.
+   */
   private void emptyResultSnackbar(View view) {
     Snackbar.make(
         view, R.string.no_search_results, Snackbar.LENGTH_LONG

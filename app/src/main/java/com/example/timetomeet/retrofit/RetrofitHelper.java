@@ -53,7 +53,9 @@ public class RetrofitHelper {
     return getBase().getConferenceRoomById(id);
   }
 
-  public static Call<List<Venue>> getVenueById(long id) { return getBase().getVenueById(id); }
+  public static Call<List<Venue>> getVenueById(long id) {
+    return getBase().getVenueById(id);
+  }
 
   public static Call<List<PaymentAlternative>> getPaymentAlternatives() {
     return getBase().getPaymentAlternatives();
