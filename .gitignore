@@ -12,3 +12,8 @@
 /captures
 .externalNativeBuild
 .cxx
+.idea/render.experimental.xml
+
+# Eclipse stuff
+.project
+.settings/

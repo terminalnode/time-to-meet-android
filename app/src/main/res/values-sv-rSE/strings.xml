@@ -30,4 +30,7 @@
   <string name="fetched_technology_availability_text">Hämtat teknologier!</string>
   <string name="fetched_standard_seating">Hämtat sittplatsmodeller!</string>
   <string name="city_place_holder">[ Stadsnamn ]</string>
+  <string name="hours_header">Öppettider</string>
+  <string name="am_opening_hours_label">Förmiddag:</string>
+  <string name="pm_opening_hours_label">Eftermiddag:</string>
 </resources>

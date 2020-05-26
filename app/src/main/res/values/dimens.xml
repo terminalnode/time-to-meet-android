@@ -13,4 +13,12 @@
 
   <dimen name="available_rooms_venue_text_size">18sp</dimen>
   <dimen name="available_rooms_city_text_size">12sp</dimen>
+
+  <dimen name="available_rooms_fragment_venue_text_size">24sp</dimen>
+  <dimen name="available_rooms_fragment_city_text_size">22sp</dimen>
+  <dimen name="available_room_fragment_price_label_text_size">20sp</dimen>
+  <dimen name="available_room_fragment_price_label_width">150dp</dimen>
+  <dimen name="available_room_fragment_price_label_height">25dp</dimen>
+  <dimen name="available_room_fragment_create_button_width">120dp</dimen>
+  <dimen name="available_room_fragment_create_button_height">75dp</dimen>
 </resources>

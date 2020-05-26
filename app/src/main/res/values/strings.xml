@@ -26,11 +26,15 @@
   <string name="am_price_label">Before noon:</string>
   <string name="pm_price_label">Afternoon:</string>
   <string name="full_day_price_label">Full day:</string>
-  <string name="price_placholder" translatable="false">0.00</string>
+  <string name="price_placholder" translatable="false">0.00 kr</string>
   <string name="venue_place_holder">[ Venue name ]</string>
   <string name="fetched_food_bevarage_group_list">Fetched meal groups!</string>
   <string name="fetched_food_bevarage_list">Fetched food and bevarages!</string>
   <string name="fetched_technology_availability_text">Fetched technologies!</string>
   <string name="fetched_standard_seating">Fetched standard seating!</string>
   <string name="city_place_holder">[ City name ]</string>
+  <string name="hours_header">Opening hours</string>
+  <string name="am_opening_hours_label">Before noon:</string>
+  <string name="pm_opening_hours_label">After noon:</string>
+  <string name="opening_hours_place_holder" translatable="false">00:00 - 00:00</string>
 </resources>
