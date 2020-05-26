@@ -36,6 +36,7 @@ public class AvailableRoom implements Parcelable {
   @SerializedName("city_id")
   private Long cityId;
 
+  private CitySimplified associatedCity;
   private Venue associatedVenue;
 
   //----- Constructors -----//
@@ -144,6 +145,10 @@ public class AvailableRoom implements Parcelable {
     this.cityId = cityId;
   }
 
+  public void setAssociatedCity(CitySimplified associatedCity) {
+    this.associatedCity = associatedCity;
+  }
+
   public void setAssociatedVenue(Venue associatedVenue) {
     this.associatedVenue = associatedVenue;
   }
@@ -187,6 +192,10 @@ public class AvailableRoom implements Parcelable {
 
   public Long getCityId() {
     return cityId;
+  }
+
+  public CitySimplified getAssociatedCity() {
+    return associatedCity;
   }
 
   public Venue getAssociatedVenue() {

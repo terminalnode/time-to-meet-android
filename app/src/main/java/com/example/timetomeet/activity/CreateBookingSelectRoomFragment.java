@@ -43,14 +43,15 @@ public class CreateBookingSelectRoomFragment extends Fragment {
             CitySimplified::getId, // Key
             citySimplified -> citySimplified // Value
         ));
+    availableRooms.forEach(room -> room.setAssociatedCity(citiesMap.get(room.getCityId())));
 
     ListView availableRoomsList = view.findViewById(R.id.availableRoomsList);
     availableRoomsList.setAdapter(
         new AvailableRoomListAdapter(
             getContext(),
             availableRooms,
-            citiesMap,
-            this
+            this,
+            bookingBundle
         )
     );
   }

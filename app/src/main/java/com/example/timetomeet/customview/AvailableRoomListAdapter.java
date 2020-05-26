@@ -1,6 +1,7 @@
 package com.example.timetomeet.customview;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,18 +22,18 @@ import java.util.List;
 import java.util.Map;
 
 public class AvailableRoomListAdapter extends ArrayAdapter<AvailableRoom> {
-  Map<Long, CitySimplified> cityMap;
   Fragment parentFragment;
+  Bundle bookingBundle;
 
   public AvailableRoomListAdapter(
       @NonNull Context context,
       @NonNull List<AvailableRoom> objects,
-      @NonNull Map<Long, CitySimplified> cityMap,
-      Fragment parentFragment
+      Fragment parentFragment,
+      Bundle bookingBundle
   ) {
     super(context, R.layout.single_available_room, objects);
-    this.cityMap = cityMap;
     this.parentFragment = parentFragment;
+    this.bookingBundle = bookingBundle;
   }
 
   @NonNull
@@ -41,7 +42,13 @@ public class AvailableRoomListAdapter extends ArrayAdapter<AvailableRoom> {
     LayoutInflater inflater = LayoutInflater.from(getContext());
     convertView = inflater.inflate(R.layout.single_available_room, parent, false);
 
-    SelectAvailableRoomListener listener = new SelectAvailableRoomListener(getContext(), parentFragment);
+    SelectAvailableRoomListener listener =
+        new SelectAvailableRoomListener(
+            getContext(),
+            parentFragment,
+            bookingBundle,
+            getItem(position)
+        );
     convertView.setOnClickListener(listener);
 
     AvailableRoom availableRoom = getItem(position);
@@ -52,12 +59,9 @@ public class AvailableRoomListAdapter extends ArrayAdapter<AvailableRoom> {
     TextView fullDayPriceView = convertView.findViewById(R.id.fullDayPrice);
 
     if (availableRoom != null) {
-      CitySimplified city = cityMap.get(availableRoom.getCityId());
-      Venue venue = availableRoom.getAssociatedVenue();
-
       String locale = Helper.getLocale();
-      String cityName = Helper.getLocalizedName(city, locale);
-      String venueName = Helper.getLocalizedName(venue, locale);
+      String cityName = Helper.getLocalizedName(availableRoom.getAssociatedCity(), locale);
+      String venueName = Helper.getLocalizedName(availableRoom.getAssociatedVenue(), locale);
 
       venueNameTextView.setText(venueName);
       cityNameTextView.setText(cityName);
