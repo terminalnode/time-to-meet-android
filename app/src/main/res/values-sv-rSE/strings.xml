@@ -33,4 +33,8 @@
   <string name="hours_header">Öppettider</string>
   <string name="am_opening_hours_label">Förmiddag:</string>
   <string name="pm_opening_hours_label">Eftermiddag:</string>
+  <string name="prices_header">Priser</string>
+  <string name="seatings_header">Möblering</string>
+  <string name="technology_header">Tillgängliga teknologier</string>
+  <string name="description_header">Beskrivning</string>
 </resources>

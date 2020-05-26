@@ -55,6 +55,7 @@
     android:id="@+id/cityNameTextView"
     android:layout_width="230dp"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
     android:text="@string/city_place_holder"
     android:textSize="@dimen/available_rooms_fragment_city_text_size"
     app:layout_constraintStart_toStartOf="@+id/venueNameTextView"
@@ -64,13 +65,12 @@
     android:id="@+id/beforeNoonTextView"
     android:layout_width="@dimen/available_room_fragment_price_label_width"
     android:layout_height="@dimen/available_room_fragment_price_label_height"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="40dp"
+    android:layout_marginTop="10dp"
     android:text="@string/am_price_label"
     android:textSize="@dimen/available_room_fragment_price_label_text_size"
     android:textStyle="bold"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/cityNameTextView" />
+    app:layout_constraintStart_toStartOf="@+id/priceHeaderTextView"
+    app:layout_constraintTop_toBottomOf="@+id/priceHeaderTextView" />
 
   <TextView
     android:id="@+id/afterNoonTextView"
@@ -159,5 +159,80 @@
     android:textStyle="bold"
     app:layout_constraintStart_toStartOf="@+id/amOpeningHoursTextView"
     app:layout_constraintTop_toBottomOf="@+id/amOpeningHoursTextView" />
+
+  <TextView
+    android:id="@+id/priceHeaderTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:text="@string/prices_header"
+    android:textSize="20sp"
+    app:layout_constraintStart_toStartOf="@+id/dateTextView"
+    app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
+
+  <TextView
+    android:id="@+id/dateTextView"
+    android:layout_width="230dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:text="@string/date_place_holder"
+    android:textSize="@dimen/available_rooms_fragment_city_text_size"
+    app:layout_constraintStart_toStartOf="@+id/cityNameTextView"
+    app:layout_constraintTop_toBottomOf="@+id/cityNameTextView" />
+
+  <TextView
+    android:id="@+id/seatingHeaderTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:text="@string/seatings_header"
+    android:textSize="20sp"
+    app:layout_constraintStart_toStartOf="@+id/pmOpeningHoursTextView"
+    app:layout_constraintTop_toBottomOf="@+id/pmOpeningHoursTextView" />
+
+  <ListView
+    android:id="@+id/seatingAlternativesListView"
+    android:layout_width="300dp"
+    android:layout_height="20dp"
+    android:layout_marginTop="10dp"
+    app:layout_constraintStart_toStartOf="@+id/seatingHeaderTextView"
+    app:layout_constraintTop_toBottomOf="@+id/seatingHeaderTextView" />
+
+  <TextView
+    android:id="@+id/technologyHeaderTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:text="@string/technology_header"
+    android:textSize="20sp"
+    app:layout_constraintStart_toStartOf="@+id/seatingAlternativesListView"
+    app:layout_constraintTop_toBottomOf="@+id/seatingAlternativesListView" />
+
+  <ListView
+    android:id="@+id/technologyAvailabilityListView"
+    android:layout_width="300dp"
+    android:layout_height="20dp"
+    android:layout_marginTop="10dp"
+    app:layout_constraintStart_toStartOf="@+id/technologyHeaderTextView"
+    app:layout_constraintTop_toBottomOf="@+id/technologyHeaderTextView" />
+
+  <TextView
+    android:id="@+id/descriptionHeaderTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:text="@string/description_header"
+    android:textSize="20sp"
+    app:layout_constraintStart_toStartOf="@+id/technologyAvailabilityListView"
+    app:layout_constraintTop_toBottomOf="@+id/technologyAvailabilityListView" />
+
+  <TextView
+    android:id="@+id/descriptionTextView"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:text="@string/description_place_holder"
+    app:layout_constraintStart_toStartOf="@+id/descriptionHeaderTextView"
+    app:layout_constraintTop_toBottomOf="@+id/descriptionHeaderTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
