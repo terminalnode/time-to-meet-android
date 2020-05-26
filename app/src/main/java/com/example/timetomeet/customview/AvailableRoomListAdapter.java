@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
@@ -21,14 +22,17 @@ import java.util.Map;
 
 public class AvailableRoomListAdapter extends ArrayAdapter<AvailableRoom> {
   Map<Long, CitySimplified> cityMap;
+  Fragment parentFragment;
 
   public AvailableRoomListAdapter(
       @NonNull Context context,
       @NonNull List<AvailableRoom> objects,
-      @NonNull Map<Long, CitySimplified> cityMap
+      @NonNull Map<Long, CitySimplified> cityMap,
+      Fragment parentFragment
   ) {
     super(context, R.layout.single_available_room, objects);
     this.cityMap = cityMap;
+    this.parentFragment = parentFragment;
   }
 
   @NonNull
@@ -36,6 +40,9 @@ public class AvailableRoomListAdapter extends ArrayAdapter<AvailableRoom> {
   public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
     LayoutInflater inflater = LayoutInflater.from(getContext());
     convertView = inflater.inflate(R.layout.single_available_room, parent, false);
+
+    SelectAvailableRoomListener listener = new SelectAvailableRoomListener(getContext(), parentFragment);
+    convertView.setOnClickListener(listener);
 
     AvailableRoom availableRoom = getItem(position);
     TextView venueNameTextView = convertView.findViewById(R.id.venueName);

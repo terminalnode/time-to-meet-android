@@ -49,7 +49,8 @@ public class CreateBookingSelectRoomFragment extends Fragment {
         new AvailableRoomListAdapter(
             getContext(),
             availableRooms,
-            citiesMap
+            citiesMap,
+            this
         )
     );
   }
