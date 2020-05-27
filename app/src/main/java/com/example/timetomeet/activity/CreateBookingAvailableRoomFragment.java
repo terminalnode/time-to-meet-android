@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
+import com.example.timetomeet.customview.adapters.AvailableTechnologiesRecyclerAdapter;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
 import com.example.timetomeet.retrofit.entity.ConferenceRoom;
@@ -24,6 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CreateBookingAvailableRoomFragment extends Fragment {
+  private RecyclerView technologyAvailabilityListView;
 
   @Override
   public View onCreateView(
@@ -42,6 +46,7 @@ public class CreateBookingAvailableRoomFragment extends Fragment {
     TextView fullDayPriceTextView = view.findViewById(R.id.fullDayPriceTextView);
     TextView amOpeningHoursTimeTextView = view.findViewById(R.id.amOpeningHoursTimeTextView);
     TextView pmOpeningHoursTimeTextView = view.findViewById(R.id.pmOpeningHoursTimeTextView);
+    technologyAvailabilityListView = view.findViewById(R.id.technologyAvailabilityListView);
 
     Bundle bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
     AvailableRoom selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
@@ -71,6 +76,10 @@ public class CreateBookingAvailableRoomFragment extends Fragment {
         Log.i(Logging.CreateBookingActivity, "Fetched " + response.body());
 
         setOpeningHours(selectedRoom, am, pm);
+        technologyAvailabilityListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        technologyAvailabilityListView.setAdapter(
+            new AvailableTechnologiesRecyclerAdapter(getContext(), response.body().getTechnologies())
+        );
       }
 
       @Override
