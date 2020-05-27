@@ -1,238 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/createBookingAvailableRoomScrollView"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context=".activity.CreateBookingAvailableRoomFragment">
 
-  <TextView
-    android:id="@+id/pmOpeningHoursTimeTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:text="@string/opening_hours_place_holder"
-    android:textSize="@dimen/available_room_fragment_price_label_text_size"
-    app:layout_constraintBottom_toBottomOf="@+id/pmOpeningHoursTextView"
-    app:layout_constraintStart_toEndOf="@+id/pmOpeningHoursTextView"
-    app:layout_constraintTop_toTopOf="@+id/pmOpeningHoursTextView" />
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-  <TextView
-    android:id="@+id/amOpeningHoursTimeTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:text="@string/opening_hours_place_holder"
-    android:textSize="@dimen/available_room_fragment_price_label_text_size"
-    app:layout_constraintBottom_toBottomOf="@id/amOpeningHoursTextView"
-    app:layout_constraintStart_toEndOf="@+id/amOpeningHoursTextView"
-    app:layout_constraintTop_toTopOf="@+id/amOpeningHoursTextView" />
+    <TextView
+      android:id="@+id/pmOpeningHoursTimeTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:text="@string/opening_hours_place_holder"
+      android:textSize="@dimen/available_room_fragment_price_label_text_size"
+      app:layout_constraintBottom_toBottomOf="@+id/pmOpeningHoursTextView"
+      app:layout_constraintStart_toEndOf="@+id/pmOpeningHoursTextView"
+      app:layout_constraintTop_toTopOf="@+id/pmOpeningHoursTextView" />
 
-  <TextView
-    android:id="@+id/fullDayPriceTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:text="@string/price_placholder"
-    android:textSize="@dimen/available_room_fragment_price_label_text_size"
-    app:layout_constraintBottom_toBottomOf="@+id/fullDayTextView"
-    app:layout_constraintStart_toEndOf="@+id/fullDayTextView"
-    app:layout_constraintTop_toTopOf="@+id/fullDayTextView" />
+    <TextView
+      android:id="@+id/amOpeningHoursTimeTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:text="@string/opening_hours_place_holder"
+      android:textSize="@dimen/available_room_fragment_price_label_text_size"
+      app:layout_constraintBottom_toBottomOf="@id/amOpeningHoursTextView"
+      app:layout_constraintStart_toEndOf="@+id/amOpeningHoursTextView"
+      app:layout_constraintTop_toTopOf="@+id/amOpeningHoursTextView" />
 
-  <TextView
-    android:id="@+id/venueNameTextView"
-    android:layout_width="230dp"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="10dp"
-    android:text="@string/venue_place_holder"
-    android:textSize="@dimen/available_rooms_fragment_venue_text_size"
-    android:textStyle="bold"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+      android:id="@+id/fullDayPriceTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:text="@string/price_placholder"
+      android:textSize="@dimen/available_room_fragment_price_label_text_size"
+      app:layout_constraintBottom_toBottomOf="@+id/fullDayTextView"
+      app:layout_constraintStart_toEndOf="@+id/fullDayTextView"
+      app:layout_constraintTop_toTopOf="@+id/fullDayTextView" />
 
-  <TextView
-    android:id="@+id/cityNameTextView"
-    android:layout_width="230dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:text="@string/city_place_holder"
-    android:textSize="@dimen/available_rooms_fragment_city_text_size"
-    app:layout_constraintStart_toStartOf="@+id/venueNameTextView"
-    app:layout_constraintTop_toBottomOf="@+id/venueNameTextView" />
+    <TextView
+      android:id="@+id/venueNameTextView"
+      android:layout_width="230dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:layout_marginTop="10dp"
+      android:text="@string/venue_place_holder"
+      android:textSize="@dimen/available_rooms_fragment_venue_text_size"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
-  <TextView
-    android:id="@+id/beforeNoonTextView"
-    android:layout_width="@dimen/available_room_fragment_price_label_width"
-    android:layout_height="@dimen/available_room_fragment_price_label_height"
-    android:layout_marginTop="10dp"
-    android:text="@string/am_price_label"
-    android:textSize="@dimen/available_room_fragment_price_label_text_size"
-    android:textStyle="bold"
-    app:layout_constraintStart_toStartOf="@+id/priceHeaderTextView"
-    app:layout_constraintTop_toBottomOf="@+id/priceHeaderTextView" />
+    <TextView
+      android:id="@+id/cityNameTextView"
+      android:layout_width="230dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:text="@string/city_place_holder"
+      android:textSize="@dimen/available_rooms_fragment_city_text_size"
+      app:layout_constraintStart_toStartOf="@+id/venueNameTextView"
+      app:layout_constraintTop_toBottomOf="@+id/venueNameTextView" />
 
-  <TextView
-    android:id="@+id/afterNoonTextView"
-    android:layout_width="@dimen/available_room_fragment_price_label_width"
-    android:layout_height="@dimen/available_room_fragment_price_label_height"
-    android:layout_marginTop="5dp"
-    android:text="@string/pm_price_label"
-    android:textSize="@dimen/available_room_fragment_price_label_text_size"
-    android:textStyle="bold"
-    app:layout_constraintStart_toStartOf="@+id/beforeNoonTextView"
-    app:layout_constraintTop_toBottomOf="@+id/beforeNoonTextView" />
+    <TextView
+      android:id="@+id/beforeNoonTextView"
+      android:layout_width="@dimen/available_room_fragment_price_label_width"
+      android:layout_height="@dimen/available_room_fragment_price_label_height"
+      android:layout_marginTop="10dp"
+      android:text="@string/am_price_label"
+      android:textSize="@dimen/available_room_fragment_price_label_text_size"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="@+id/priceHeaderTextView"
+      app:layout_constraintTop_toBottomOf="@+id/priceHeaderTextView" />
 
-  <TextView
-    android:id="@+id/fullDayTextView"
-    android:layout_width="@dimen/available_room_fragment_price_label_width"
-    android:layout_height="@dimen/available_room_fragment_price_label_height"
-    android:layout_marginTop="5dp"
-    android:text="@string/full_day_price_label"
-    android:textSize="@dimen/available_room_fragment_price_label_text_size"
-    android:textStyle="bold"
-    app:layout_constraintStart_toStartOf="@+id/afterNoonTextView"
-    app:layout_constraintTop_toBottomOf="@+id/afterNoonTextView" />
+    <TextView
+      android:id="@+id/afterNoonTextView"
+      android:layout_width="@dimen/available_room_fragment_price_label_width"
+      android:layout_height="@dimen/available_room_fragment_price_label_height"
+      android:layout_marginTop="5dp"
+      android:text="@string/pm_price_label"
+      android:textSize="@dimen/available_room_fragment_price_label_text_size"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="@+id/beforeNoonTextView"
+      app:layout_constraintTop_toBottomOf="@+id/beforeNoonTextView" />
 
-  <TextView
-    android:id="@+id/beforeNoonPriceTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:text="@string/price_placholder"
-    android:textSize="@dimen/available_room_fragment_price_label_text_size"
-    app:layout_constraintBottom_toBottomOf="@+id/beforeNoonTextView"
-    app:layout_constraintStart_toEndOf="@+id/beforeNoonTextView"
-    app:layout_constraintTop_toTopOf="@+id/beforeNoonTextView" />
+    <TextView
+      android:id="@+id/fullDayTextView"
+      android:layout_width="@dimen/available_room_fragment_price_label_width"
+      android:layout_height="@dimen/available_room_fragment_price_label_height"
+      android:layout_marginTop="5dp"
+      android:text="@string/full_day_price_label"
+      android:textSize="@dimen/available_room_fragment_price_label_text_size"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="@+id/afterNoonTextView"
+      app:layout_constraintTop_toBottomOf="@+id/afterNoonTextView" />
 
-  <TextView
-    android:id="@+id/afterNoonPriceTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:text="@string/price_placholder"
-    android:textSize="@dimen/available_room_fragment_price_label_text_size"
-    app:layout_constraintBottom_toBottomOf="@+id/afterNoonTextView"
-    app:layout_constraintStart_toEndOf="@+id/afterNoonTextView"
-    app:layout_constraintTop_toTopOf="@+id/afterNoonTextView" />
+    <TextView
+      android:id="@+id/beforeNoonPriceTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:text="@string/price_placholder"
+      android:textSize="@dimen/available_room_fragment_price_label_text_size"
+      app:layout_constraintBottom_toBottomOf="@+id/beforeNoonTextView"
+      app:layout_constraintStart_toEndOf="@+id/beforeNoonTextView"
+      app:layout_constraintTop_toTopOf="@+id/beforeNoonTextView" />
 
-  <Button
-    android:id="@+id/createBookingButton"
-    android:layout_width="@dimen/available_room_fragment_create_button_width"
-    android:layout_height="@dimen/available_room_fragment_create_button_height"
-    android:layout_marginTop="10dp"
-    android:layout_marginEnd="10dp"
-    android:text="@string/create_booking_button_label"
-    android:textSize="18sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+      android:id="@+id/afterNoonPriceTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:text="@string/price_placholder"
+      android:textSize="@dimen/available_room_fragment_price_label_text_size"
+      app:layout_constraintBottom_toBottomOf="@+id/afterNoonTextView"
+      app:layout_constraintStart_toEndOf="@+id/afterNoonTextView"
+      app:layout_constraintTop_toTopOf="@+id/afterNoonTextView" />
 
-  <TextView
-    android:id="@+id/hoursHeaderTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="30dp"
-    android:text="@string/hours_header"
-    android:textSize="20sp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/fullDayTextView" />
+    <Button
+      android:id="@+id/createBookingButton"
+      android:layout_width="@dimen/available_room_fragment_create_button_width"
+      android:layout_height="@dimen/available_room_fragment_create_button_height"
+      android:layout_marginTop="10dp"
+      android:layout_marginEnd="10dp"
+      android:text="@string/create_booking_button_label"
+      android:textSize="18sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
-  <TextView
-    android:id="@+id/amOpeningHoursTextView"
-    android:layout_width="@dimen/available_room_fragment_price_label_width"
-    android:layout_height="@dimen/available_room_fragment_price_label_height"
-    android:layout_marginTop="10dp"
-    android:text="@string/am_opening_hours_label"
-    android:textSize="@dimen/available_room_fragment_price_label_text_size"
-    android:textStyle="bold"
-    app:layout_constraintStart_toStartOf="@+id/hoursHeaderTextView"
-    app:layout_constraintTop_toBottomOf="@+id/hoursHeaderTextView" />
+    <TextView
+      android:id="@+id/hoursHeaderTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:layout_marginTop="30dp"
+      android:text="@string/hours_header"
+      android:textSize="20sp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/fullDayTextView" />
 
-  <TextView
-    android:id="@+id/pmOpeningHoursTextView"
-    android:layout_width="@dimen/available_room_fragment_price_label_width"
-    android:layout_height="@dimen/available_room_fragment_price_label_height"
-    android:layout_marginTop="10dp"
-    android:text="@string/pm_opening_hours_label"
-    android:textSize="@dimen/available_room_fragment_price_label_text_size"
-    android:textStyle="bold"
-    app:layout_constraintStart_toStartOf="@+id/amOpeningHoursTextView"
-    app:layout_constraintTop_toBottomOf="@+id/amOpeningHoursTextView" />
+    <TextView
+      android:id="@+id/amOpeningHoursTextView"
+      android:layout_width="@dimen/available_room_fragment_price_label_width"
+      android:layout_height="@dimen/available_room_fragment_price_label_height"
+      android:layout_marginTop="10dp"
+      android:text="@string/am_opening_hours_label"
+      android:textSize="@dimen/available_room_fragment_price_label_text_size"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="@+id/hoursHeaderTextView"
+      app:layout_constraintTop_toBottomOf="@+id/hoursHeaderTextView" />
 
-  <TextView
-    android:id="@+id/priceHeaderTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="30dp"
-    android:text="@string/prices_header"
-    android:textSize="20sp"
-    app:layout_constraintStart_toStartOf="@+id/dateTextView"
-    app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
+    <TextView
+      android:id="@+id/pmOpeningHoursTextView"
+      android:layout_width="@dimen/available_room_fragment_price_label_width"
+      android:layout_height="@dimen/available_room_fragment_price_label_height"
+      android:layout_marginTop="10dp"
+      android:text="@string/pm_opening_hours_label"
+      android:textSize="@dimen/available_room_fragment_price_label_text_size"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="@+id/amOpeningHoursTextView"
+      app:layout_constraintTop_toBottomOf="@+id/amOpeningHoursTextView" />
 
-  <TextView
-    android:id="@+id/dateTextView"
-    android:layout_width="230dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:text="@string/date_place_holder"
-    android:textSize="@dimen/available_rooms_fragment_city_text_size"
-    app:layout_constraintStart_toStartOf="@+id/cityNameTextView"
-    app:layout_constraintTop_toBottomOf="@+id/cityNameTextView" />
+    <TextView
+      android:id="@+id/priceHeaderTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="30dp"
+      android:text="@string/prices_header"
+      android:textSize="20sp"
+      app:layout_constraintStart_toStartOf="@+id/dateTextView"
+      app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
 
-  <TextView
-    android:id="@+id/seatingHeaderTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="30dp"
-    android:text="@string/seatings_header"
-    android:textSize="20sp"
-    app:layout_constraintStart_toStartOf="@+id/pmOpeningHoursTextView"
-    app:layout_constraintTop_toBottomOf="@+id/pmOpeningHoursTextView" />
+    <TextView
+      android:id="@+id/dateTextView"
+      android:layout_width="230dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:text="@string/date_place_holder"
+      android:textSize="@dimen/available_rooms_fragment_city_text_size"
+      app:layout_constraintStart_toStartOf="@+id/cityNameTextView"
+      app:layout_constraintTop_toBottomOf="@+id/cityNameTextView" />
 
-  <ListView
-    android:id="@+id/seatingAlternativesListView"
-    android:layout_width="300dp"
-    android:layout_height="20dp"
-    android:layout_marginTop="10dp"
-    app:layout_constraintStart_toStartOf="@+id/seatingHeaderTextView"
-    app:layout_constraintTop_toBottomOf="@+id/seatingHeaderTextView" />
+    <TextView
+      android:id="@+id/seatingHeaderTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="30dp"
+      android:text="@string/seatings_header"
+      android:textSize="20sp"
+      app:layout_constraintStart_toStartOf="@+id/pmOpeningHoursTextView"
+      app:layout_constraintTop_toBottomOf="@+id/pmOpeningHoursTextView" />
 
-  <TextView
-    android:id="@+id/technologyHeaderTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="30dp"
-    android:text="@string/technology_header"
-    android:textSize="20sp"
-    app:layout_constraintStart_toStartOf="@+id/seatingAlternativesListView"
-    app:layout_constraintTop_toBottomOf="@+id/seatingAlternativesListView" />
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/seatingAlternativesListView"
+      android:layout_width="300dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      app:layout_constraintStart_toStartOf="@+id/seatingHeaderTextView"
+      app:layout_constraintTop_toBottomOf="@+id/seatingHeaderTextView" />
 
-  <ListView
-    android:id="@+id/technologyAvailabilityListView"
-    android:layout_width="300dp"
-    android:layout_height="20dp"
-    android:layout_marginTop="10dp"
-    app:layout_constraintStart_toStartOf="@+id/technologyHeaderTextView"
-    app:layout_constraintTop_toBottomOf="@+id/technologyHeaderTextView" />
+    <TextView
+      android:id="@+id/technologyHeaderTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="30dp"
+      android:text="@string/technology_header"
+      android:textSize="20sp"
+      app:layout_constraintStart_toStartOf="@+id/seatingAlternativesListView"
+      app:layout_constraintTop_toBottomOf="@+id/seatingAlternativesListView" />
 
-  <TextView
-    android:id="@+id/descriptionHeaderTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="30dp"
-    android:text="@string/description_header"
-    android:textSize="20sp"
-    app:layout_constraintStart_toStartOf="@+id/technologyAvailabilityListView"
-    app:layout_constraintTop_toBottomOf="@+id/technologyAvailabilityListView" />
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/technologyAvailabilityListView"
+      android:layout_width="300dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      app:layout_constraintStart_toStartOf="@+id/technologyHeaderTextView"
+      app:layout_constraintTop_toBottomOf="@+id/technologyHeaderTextView" />
 
-  <TextView
-    android:id="@+id/descriptionTextView"
-    android:layout_width="350dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:text="@string/description_place_holder"
-    app:layout_constraintStart_toStartOf="@+id/descriptionHeaderTextView"
-    app:layout_constraintTop_toBottomOf="@+id/descriptionHeaderTextView" />
+    <TextView
+      android:id="@+id/descriptionHeaderTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="30dp"
+      android:text="@string/description_header"
+      android:textSize="20sp"
+      app:layout_constraintStart_toStartOf="@+id/technologyAvailabilityListView"
+      app:layout_constraintTop_toBottomOf="@+id/technologyAvailabilityListView" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+      android:id="@+id/descriptionTextView"
+      android:layout_width="350dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:text="@string/description_place_holder"
+      app:layout_constraintStart_toStartOf="@+id/descriptionHeaderTextView"
+      app:layout_constraintTop_toBottomOf="@+id/descriptionHeaderTextView" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
