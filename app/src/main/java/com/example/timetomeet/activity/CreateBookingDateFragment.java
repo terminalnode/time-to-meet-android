@@ -20,7 +20,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
-import com.example.timetomeet.customview.CitySimplifiedSpinnerAdapter;
+import com.example.timetomeet.customview.adapters.CitySimplifiedSpinnerAdapter;
 import com.example.timetomeet.customview.DateDisplayListener;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
@@ -31,11 +31,9 @@ import com.example.timetomeet.retrofit.entity.Venue;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 

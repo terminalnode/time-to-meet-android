@@ -4,14 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
-import com.example.timetomeet.customview.AvailableRoomListAdapter;
+import com.example.timetomeet.customview.adapters.AvailableRoomsRecyclerAdapter;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
 
@@ -45,14 +46,12 @@ public class CreateBookingSelectRoomFragment extends Fragment {
         ));
     availableRooms.forEach(room -> room.setAssociatedCity(citiesMap.get(room.getCityId())));
 
-    ListView availableRoomsList = view.findViewById(R.id.availableRoomsList);
-    availableRoomsList.setAdapter(
-        new AvailableRoomListAdapter(
-            getContext(),
-            availableRooms,
-            this,
-            bookingBundle
-        )
+    // Add the result list to the recycler view
+    RecyclerView recyclerView = view.findViewById(R.id.availableRoomsList);
+    AvailableRoomsRecyclerAdapter adapter = new AvailableRoomsRecyclerAdapter(
+        getContext(), availableRooms, this, bookingBundle
     );
+    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    recyclerView.setAdapter(adapter);
   }
 }
