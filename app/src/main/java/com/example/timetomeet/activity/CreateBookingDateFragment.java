@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -52,6 +54,8 @@ public class CreateBookingDateFragment extends Fragment {
   private Spinner spinCity;
   private List<CitySimplified> citiesWithVenues;
   private Runnable activityStarter;
+  private ProgressBar progressBar;
+  private Button searchButton;
 
   @Override
   public View onCreateView(
@@ -71,6 +75,9 @@ public class CreateBookingDateFragment extends Fragment {
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    // Find progress bar
+    progressBar = view.findViewById(R.id.searchProgressBar);
+
     // Set up date labels
     startDateDisplay = view.findViewById(R.id.startDateDisplay);
     endDateDisplay = view.findViewById(R.id.endDateDisplay);
@@ -95,8 +102,8 @@ public class CreateBookingDateFragment extends Fragment {
     spinCity.setAdapter(citySpinnerAdapter);
 
     // Set up button listener
-    view.findViewById(R.id.searchButton)
-        .setOnClickListener(this::onSearchClick);
+    searchButton = view.findViewById(R.id.searchButton);
+    searchButton.setOnClickListener(this::onSearchClick);
   }
 
   /**
@@ -105,6 +112,7 @@ public class CreateBookingDateFragment extends Fragment {
    */
   private void onSearchClick(View view) {
     Log.i(Logging.CreateBookingActivity, "We be searching baby");
+    setSearchInProgress();
 
     // Get start date
     DatePicker startDP = startDateDisplayListener.getDatePickerDialog().getDatePicker();
@@ -164,30 +172,17 @@ public class CreateBookingDateFragment extends Fragment {
           @Override
           public void onFailure(Call<AvailableRoomsContainer> call, Throwable t) {
             somethingWentWrongSnackbar(view);
+            setSearchFinished();
           }
         });
   }
 
   /**
-   * Show a snackbar saying something went wrong.
-   * @param view The view in which to display the snackbar.
+   * Fetch all the venues from the list of available rooms, and associate them with the rooms.
+   * Then start the next activity, showing a list of all available rooms.
+   * @param venueIds The list of (unique) venue IDs.
+   * @param availableRooms The list of available rooms.
    */
-  private void somethingWentWrongSnackbar(View view) {
-    Snackbar.make(
-        view, R.string.something_went_wrong, Snackbar.LENGTH_LONG
-    ).show();
-  }
-
-  /**
-   * Show a snackbar saying the result list was empty.
-   * @param view The view in which to display the snackbar.
-   */
-  private void emptyResultSnackbar(View view) {
-    Snackbar.make(
-        view, R.string.no_search_results, Snackbar.LENGTH_LONG
-    ).show();
-  }
-
   private void fetchVenuesAndStartActivity(List<Long> venueIds, ArrayList<AvailableRoom> availableRooms) {
     long retryDelay = 100;
     int totalNumberOfVenues = venueIds.size();
@@ -227,11 +222,52 @@ public class CreateBookingDateFragment extends Fragment {
         NavHostFragment
             .findNavController(CreateBookingDateFragment.this)
             .navigate(R.id.action_DateFragment_to_SelectRoomFragment);
+        setSearchFinished();
       } else {
         activityStartHandler.postDelayed(activityStarter, retryDelay);
       }
     };
 
     activityStartHandler.postDelayed(activityStarter, retryDelay);
+  }
+
+  /**
+   * Indicate that the search is active by deactivating the search button
+   * and showing the progress bar.
+   */
+  private void setSearchInProgress() {
+    progressBar.setVisibility(View.VISIBLE);
+    searchButton.setClickable(false);
+    searchButton.setAlpha(0.5F);
+  }
+
+  /**
+   * Indicate that the search is finished by reactiving the search button
+   * and hiding the progress bar.
+   */
+  private void setSearchFinished() {
+    progressBar.setVisibility(View.GONE);
+    searchButton.setClickable(true);
+    searchButton.setAlpha(1F);
+  }
+
+  /**
+   * Show a snackbar saying something went wrong.
+   * @param view The view in which to display the snackbar.
+   */
+  private void somethingWentWrongSnackbar(View view) {
+    Snackbar.make(
+        view, R.string.something_went_wrong, Snackbar.LENGTH_LONG
+    ).show();
+  }
+
+  /**
+   * Show a snackbar saying the result list was empty.
+   * @param view The view in which to display the snackbar.
+   */
+  private void emptyResultSnackbar(View view) {
+    Snackbar.make(
+        view, R.string.no_search_results, Snackbar.LENGTH_LONG
+    ).show();
   }
 }
