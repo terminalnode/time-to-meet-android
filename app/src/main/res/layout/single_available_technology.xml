@@ -9,7 +9,7 @@
     android:id="@+id/availableTechnologyTextView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="TextView"
+    android:text="@string/technology_name_place_holder"
     android:textSize="@dimen/date_label_font_size"
     android:textStyle="bold"
     app:layout_constraintBottom_toBottomOf="parent"

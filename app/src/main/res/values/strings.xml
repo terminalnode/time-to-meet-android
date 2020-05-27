@@ -43,4 +43,11 @@
   <string name="technology_header">Available Technology</string>
   <string name="description_header">Description</string>
   <string name="description_place_holder" translatable="false">[ Lorem FUCK YOU ]</string>
+  <string name="number_place_holder" translatable="false">0</string>
+  <string name="seat_type_place_holder">[ Seating type ]</string>
+  <string name="seat_list_people_icon_description">Image of two people indicating that the number is showing highest possible number of participants.</string>
+  <string name="technology_name_place_holder">[ Technology name ]</string>
+  <string name="empty_description_place_holder">Missing description.</string>
+  <string name="missing_name_place_holder">No name</string>
+  <string name="object_missing_place_holder">Object missing</string>
 </resources>

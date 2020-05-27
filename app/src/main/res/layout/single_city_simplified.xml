@@ -3,13 +3,13 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/singleCitySimplifiedConstraintLayout"
   android:layout_width="match_parent"
-  android:layout_height="75dp">
+  android:layout_height="50dp">
 
   <TextView
     android:id="@+id/cityNameTextView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="TextView"
+    android:text="@string/city_place_holder"
     android:textSize="@dimen/date_label_font_size"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
