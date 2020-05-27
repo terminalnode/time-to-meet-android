@@ -21,13 +21,15 @@ import com.example.timetomeet.customview.adapters.AvailableTechnologiesRecyclerA
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
 import com.example.timetomeet.retrofit.entity.ConferenceRoom;
-import com.example.timetomeet.retrofit.entity.Venue;
+import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CreateBookingAvailableRoomFragment extends Fragment {
+  private TextView amOpeningHoursTimeTextView;
+  private TextView pmOpeningHoursTimeTextView;
   private RecyclerView technologyAvailabilityListView;
   private RecyclerView seatingAlternativesListView;
 
@@ -35,70 +37,100 @@ public class CreateBookingAvailableRoomFragment extends Fragment {
   public View onCreateView(
       LayoutInflater inflater,
       ViewGroup container,
-      Bundle savedInstanceState) {
+      Bundle savedInstanceState
+  ) {
     // Inflate the layout for this fragment
     return inflater.inflate(R.layout.fragment_create_booking_available_room, container, false);
   }
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-    TextView venueNameTextView = view.findViewById(R.id.venueNameTextView);
-    TextView cityNameTextView = view.findViewById(R.id.cityNameTextView);
-    TextView beforeNoonPriceTextView = view.findViewById(R.id.beforeNoonPriceTextView);
-    TextView afterNoonPriceTextView = view.findViewById(R.id.afterNoonPriceTextView);
-    TextView fullDayPriceTextView = view.findViewById(R.id.fullDayPriceTextView);
-    TextView amOpeningHoursTimeTextView = view.findViewById(R.id.amOpeningHoursTimeTextView);
-    TextView pmOpeningHoursTimeTextView = view.findViewById(R.id.pmOpeningHoursTimeTextView);
+    amOpeningHoursTimeTextView = view.findViewById(R.id.amOpeningHoursTimeTextView);
+    pmOpeningHoursTimeTextView = view.findViewById(R.id.pmOpeningHoursTimeTextView);
     technologyAvailabilityListView = view.findViewById(R.id.technologyAvailabilityListView);
     seatingAlternativesListView = view.findViewById(R.id.seatingAlternativesListView);
 
+    // Get the selected room from booking bundle
     Bundle bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
     AvailableRoom selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
 
+    // Set starting date
+    TextView dateTextView = view.findViewById(R.id.dateTextView);
+    dateTextView.setText(selectedRoom.getStartDate());
+
+    // Set venue and city name using the correct locale
+    TextView venueNameTextView = view.findViewById(R.id.venueNameTextView);
+    TextView cityNameTextView = view.findViewById(R.id.cityNameTextView);
     String locale = Helper.getLocale();
-    venueNameTextView.setText(Helper.getLocalizedName(selectedRoom.getAssociatedVenue(), locale, getContext()));
-    cityNameTextView.setText(Helper.getLocalizedName(selectedRoom.getAssociatedCity(), locale, getContext()));
+    String venueName = Helper.getLocalizedName(selectedRoom.getAssociatedVenue(),locale, getContext());
+    String cityName = Helper.getLocalizedName(selectedRoom.getAssociatedCity(), locale, getContext());
+    venueNameTextView.setText(venueName);
+    cityNameTextView.setText(cityName);
+
+    // Set prices in text view
+    TextView beforeNoonPriceTextView = view.findViewById(R.id.beforeNoonPriceTextView);
+    TextView afterNoonPriceTextView = view.findViewById(R.id.afterNoonPriceTextView);
+    TextView fullDayPriceTextView = view.findViewById(R.id.fullDayPriceTextView);
     beforeNoonPriceTextView.setText(String.format("%.02f kr", selectedRoom.getPreNoonPrice()));
     afterNoonPriceTextView.setText(String.format("%.02f kr", selectedRoom.getAfterNoonPrice()));
     fullDayPriceTextView.setText(String.format("%.02f kr", selectedRoom.getFullDayPrice()));
 
+    // Fetch information from the associated conference room,
+    // fetching the conference room if necessary.
     if (selectedRoom.getAssociatedConferenceRoom() == null) {
-      fetchConferenceRoom(selectedRoom, amOpeningHoursTimeTextView, pmOpeningHoursTimeTextView);
+      fetchConferenceRoom(selectedRoom);
     } else {
-      setOpeningHours(selectedRoom, amOpeningHoursTimeTextView, pmOpeningHoursTimeTextView);
+      setAfterRoomFetch(selectedRoom);
     }
   }
 
-  private void fetchConferenceRoom(AvailableRoom selectedRoom, TextView am, TextView pm) {
+  private void fetchConferenceRoom(AvailableRoom selectedRoom) {
     RetrofitHelper
-        .getConferenceRoomById(
-            selectedRoom.getRoomId()
-        ).enqueue(new Callback<ConferenceRoom>() {
-      @Override
-      public void onResponse(Call<ConferenceRoom> call, Response<ConferenceRoom> response) {
-        selectedRoom.setAssociatedConferenceRoom(response.body());
-        Log.i(Logging.CreateBookingActivity, "Fetched " + response.body());
+        .getConferenceRoomById(selectedRoom.getRoomId())
+        .enqueue(new Callback<ConferenceRoom>() {
+          @Override
+          public void onResponse(Call<ConferenceRoom> call, Response<ConferenceRoom> response) {
+            Log.i(Logging.CreateBookingActivity, "Fetched " + response.body());
 
-        setOpeningHours(selectedRoom, am, pm);
-        technologyAvailabilityListView.setLayoutManager(new LinearLayoutManager(getContext()));
-        technologyAvailabilityListView.setAdapter(
-            new AvailableTechnologiesRecyclerAdapter(getContext(), response.body().getTechnologies())
-        );
-        seatingAlternativesListView.setLayoutManager(new LinearLayoutManager(getContext()));
-        seatingAlternativesListView.setAdapter(
-            new AvailableSeatingsRecyclerAdapter(getContext(), response.body())
-        );
-      }
+            selectedRoom.setAssociatedConferenceRoom(response.body());
+            setAfterRoomFetch(selectedRoom);
+          }
 
-      @Override
-      public void onFailure(Call<ConferenceRoom> call, Throwable t) {
-      }
-    });
+          @Override
+          public void onFailure(Call<ConferenceRoom> call, Throwable t) {
+            Snackbar.make(
+                getView(),
+                R.string.something_went_wrong,
+                Snackbar.LENGTH_LONG
+            ).show();
+          }
+        });
   }
 
-  private void setOpeningHours(AvailableRoom selectedRoom, TextView am, TextView pm) {
-    ConferenceRoom cr = selectedRoom.getAssociatedConferenceRoom();
+  private void setAfterRoomFetch(AvailableRoom selectedRoom) {
+    ConferenceRoom room = selectedRoom.getAssociatedConferenceRoom();
 
-    am.setText(String.format("%s - %s", cr.getBeforeNoonHourStart(), cr.getBeforeNoonHourEnd()));
-    pm.setText(String.format("%s - %s", cr.getAfterNoonHourStart(), cr.getAfterNoonHourEnd()));
+    // Set opening/closing hours for before noon
+    amOpeningHoursTimeTextView.setText(String.format(
+        "%s - %s",
+        room.getBeforeNoonHourStart(),
+        room.getBeforeNoonHourEnd()));
+
+    // Set opening/closing hours for afternoon
+    pmOpeningHoursTimeTextView.setText(String.format(
+        "%s - %s",
+        room.getAfterNoonHourStart(),
+        room.getAfterNoonHourEnd()));
+
+    // List available technologies
+    technologyAvailabilityListView.setLayoutManager(new LinearLayoutManager(getContext()));
+    technologyAvailabilityListView.setAdapter(
+        new AvailableTechnologiesRecyclerAdapter(getContext(), room.getTechnologies())
+    );
+
+    // List available seating options
+    seatingAlternativesListView.setLayoutManager(new LinearLayoutManager(getContext()));
+    seatingAlternativesListView.setAdapter(
+        new AvailableSeatingsRecyclerAdapter(getContext(), room)
+    );
   }
 }
