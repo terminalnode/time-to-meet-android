@@ -196,7 +196,7 @@
       app:layout_constraintTop_toBottomOf="@+id/pmOpeningHoursTextView" />
 
     <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/seatingAlternativesListView"
+      android:id="@+id/seatingAlternativesRecyclerView"
       android:layout_width="300dp"
       android:layout_height="wrap_content"
       android:layout_marginStart="10dp"
@@ -212,10 +212,10 @@
       android:text="@string/technology_header"
       android:textSize="20sp"
       app:layout_constraintStart_toStartOf="@+id/seatingHeaderTextView"
-      app:layout_constraintTop_toBottomOf="@+id/seatingAlternativesListView" />
+      app:layout_constraintTop_toBottomOf="@+id/seatingAlternativesRecyclerView" />
 
     <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/technologyAvailabilityListView"
+      android:id="@+id/technologyAvailabilityRecyclerView"
       android:layout_width="300dp"
       android:layout_height="wrap_content"
       android:layout_marginStart="10dp"
@@ -231,7 +231,7 @@
       android:text="@string/description_header"
       android:textSize="20sp"
       app:layout_constraintStart_toStartOf="@+id/technologyHeaderTextView"
-      app:layout_constraintTop_toBottomOf="@+id/technologyAvailabilityListView" />
+      app:layout_constraintTop_toBottomOf="@+id/technologyAvailabilityRecyclerView" />
 
     <TextView
       android:id="@+id/descriptionTextView"
@@ -239,6 +239,7 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="10dp"
       android:text="@string/description_place_holder"
+      android:textSize="18sp"
       app:layout_constraintStart_toStartOf="@+id/descriptionHeaderTextView"
       app:layout_constraintTop_toBottomOf="@+id/descriptionHeaderTextView" />
 

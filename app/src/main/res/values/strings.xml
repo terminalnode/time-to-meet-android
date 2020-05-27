@@ -42,7 +42,7 @@
   <string name="seatings_header">Seating Options</string>
   <string name="technology_header">Available Technology</string>
   <string name="description_header">Description</string>
-  <string name="description_place_holder" translatable="false">[ Lorem FUCK YOU ]</string>
+  <string name="description_place_holder">Loading description...</string>
   <string name="number_place_holder" translatable="false">0</string>
   <string name="seat_type_place_holder">[ Seating type ]</string>
   <string name="seat_list_people_icon_description">Image of two people indicating that the number is showing highest possible number of participants.</string>

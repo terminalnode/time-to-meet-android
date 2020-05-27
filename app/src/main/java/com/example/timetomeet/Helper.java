@@ -2,6 +2,7 @@ package com.example.timetomeet;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 
 import com.example.timetomeet.retrofit.LocalizableDescription;
 import com.example.timetomeet.retrofit.LocalizableName;
@@ -95,11 +96,12 @@ public class Helper {
 
     if (descriptionSvEmpty && descriptionEnEmpty) {
       return Resources.getSystem().getString(R.string.empty_description_place_holder);
+
     } else if (descriptionSvEmpty) {
       return descriptionEn;
-    } else if (descriptionEn == null) {
-      return descriptionSv;
 
+    } else if (descriptionEnEmpty) {
+      return descriptionSv;
     }
 
     return "en".equals(locale) ? descriptionEn : descriptionSv;
@@ -138,8 +140,10 @@ public class Helper {
 
     if (nameSvEmpty && nameEnEmpty) {
       return context.getResources().getString(R.string.missing_name_place_holder);
+
     } else if (nameSvEmpty) {
       return nameEn;
+
     } else if (nameEnEmpty) {
       return nameSv;
     }

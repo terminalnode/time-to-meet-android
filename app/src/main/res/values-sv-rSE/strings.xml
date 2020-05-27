@@ -43,4 +43,5 @@
   <string name="empty_description_place_holder">Beskrivning saknas.</string>
   <string name="missing_name_place_holder">Namnlös</string>
   <string name="object_missing_place_holder">Objekt saknas</string>
+  <string name="description_place_holder">Laddar beskrivning...</string>
 </resources>

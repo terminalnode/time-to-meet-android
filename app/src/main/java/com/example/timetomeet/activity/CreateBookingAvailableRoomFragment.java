@@ -28,11 +28,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CreateBookingAvailableRoomFragment extends Fragment {
-  private TextView amOpeningHoursTimeTextView;
-  private TextView pmOpeningHoursTimeTextView;
-  private RecyclerView technologyAvailabilityListView;
-  private RecyclerView seatingAlternativesListView;
-
   @Override
   public View onCreateView(
       LayoutInflater inflater,
@@ -44,11 +39,6 @@ public class CreateBookingAvailableRoomFragment extends Fragment {
   }
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-    amOpeningHoursTimeTextView = view.findViewById(R.id.amOpeningHoursTimeTextView);
-    pmOpeningHoursTimeTextView = view.findViewById(R.id.pmOpeningHoursTimeTextView);
-    technologyAvailabilityListView = view.findViewById(R.id.technologyAvailabilityListView);
-    seatingAlternativesListView = view.findViewById(R.id.seatingAlternativesListView);
-
     // Get the selected room from booking bundle
     Bundle bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
     AvailableRoom selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
@@ -108,29 +98,39 @@ public class CreateBookingAvailableRoomFragment extends Fragment {
 
   private void setAfterRoomFetch(AvailableRoom selectedRoom) {
     ConferenceRoom room = selectedRoom.getAssociatedConferenceRoom();
+    View view = getView();
 
     // Set opening/closing hours for before noon
-    amOpeningHoursTimeTextView.setText(String.format(
+    TextView am = view.findViewById(R.id.amOpeningHoursTimeTextView);
+    am.setText(String.format(
         "%s - %s",
         room.getBeforeNoonHourStart(),
         room.getBeforeNoonHourEnd()));
 
     // Set opening/closing hours for afternoon
-    pmOpeningHoursTimeTextView.setText(String.format(
+    TextView pm = view.findViewById(R.id.pmOpeningHoursTimeTextView);
+    pm.setText(String.format(
         "%s - %s",
         room.getAfterNoonHourStart(),
         room.getAfterNoonHourEnd()));
 
     // List available technologies
-    technologyAvailabilityListView.setLayoutManager(new LinearLayoutManager(getContext()));
-    technologyAvailabilityListView.setAdapter(
+    RecyclerView technologyRecyclerView = view.findViewById(R.id.technologyAvailabilityRecyclerView);
+    technologyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    technologyRecyclerView.setAdapter(
         new AvailableTechnologiesRecyclerAdapter(getContext(), room.getTechnologies())
     );
 
     // List available seating options
-    seatingAlternativesListView.setLayoutManager(new LinearLayoutManager(getContext()));
-    seatingAlternativesListView.setAdapter(
+    RecyclerView seatingRecyclerView = view.findViewById(R.id.seatingAlternativesRecyclerView);
+    seatingRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    seatingRecyclerView.setAdapter(
         new AvailableSeatingsRecyclerAdapter(getContext(), room)
     );
+
+    // Set the description
+    TextView descriptionTextView = view.findViewById(R.id.descriptionTextView);
+    String descriptionText = Helper.getLocalizedDescription(room, getContext());
+    descriptionTextView.setText(descriptionText);
   }
 }
