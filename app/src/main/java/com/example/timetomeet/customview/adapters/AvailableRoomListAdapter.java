@@ -1,4 +1,4 @@
-package com.example.timetomeet.customview;
+package com.example.timetomeet.customview.adapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,12 +14,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
+import com.example.timetomeet.customview.SelectAvailableRoomListener;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
-import com.example.timetomeet.retrofit.entity.CitySimplified;
-import com.example.timetomeet.retrofit.entity.Venue;
 
 import java.util.List;
-import java.util.Map;
 
 public class AvailableRoomListAdapter extends ArrayAdapter<AvailableRoom> {
   Fragment parentFragment;

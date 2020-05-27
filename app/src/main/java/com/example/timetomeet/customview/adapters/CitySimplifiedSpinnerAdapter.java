@@ -1,4 +1,4 @@
-package com.example.timetomeet.customview;
+package com.example.timetomeet.customview.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,7 +19,12 @@ import java.util.List;
 public class CitySimplifiedSpinnerAdapter extends ArrayAdapter<CitySimplified> {
   private int listLayout;
 
-  public CitySimplifiedSpinnerAdapter(@NonNull Context context, int listView, int textView, @NonNull List<CitySimplified> objects) {
+  public CitySimplifiedSpinnerAdapter(
+      @NonNull Context context,
+      int listView,
+      int textView,
+      @NonNull List<CitySimplified> objects
+  ) {
     super(context, listView, textView, objects);
     this.listLayout = listView;
   }
