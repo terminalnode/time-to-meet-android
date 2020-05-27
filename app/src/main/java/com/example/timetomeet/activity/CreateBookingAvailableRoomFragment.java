@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
+import com.example.timetomeet.customview.adapters.AvailableSeatingsRecyclerAdapter;
 import com.example.timetomeet.customview.adapters.AvailableTechnologiesRecyclerAdapter;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
@@ -28,6 +29,7 @@ import retrofit2.Response;
 
 public class CreateBookingAvailableRoomFragment extends Fragment {
   private RecyclerView technologyAvailabilityListView;
+  private RecyclerView seatingAlternativesListView;
 
   @Override
   public View onCreateView(
@@ -47,6 +49,7 @@ public class CreateBookingAvailableRoomFragment extends Fragment {
     TextView amOpeningHoursTimeTextView = view.findViewById(R.id.amOpeningHoursTimeTextView);
     TextView pmOpeningHoursTimeTextView = view.findViewById(R.id.pmOpeningHoursTimeTextView);
     technologyAvailabilityListView = view.findViewById(R.id.technologyAvailabilityListView);
+    seatingAlternativesListView = view.findViewById(R.id.seatingAlternativesListView);
 
     Bundle bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
     AvailableRoom selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
@@ -79,6 +82,10 @@ public class CreateBookingAvailableRoomFragment extends Fragment {
         technologyAvailabilityListView.setLayoutManager(new LinearLayoutManager(getContext()));
         technologyAvailabilityListView.setAdapter(
             new AvailableTechnologiesRecyclerAdapter(getContext(), response.body().getTechnologies())
+        );
+        seatingAlternativesListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        seatingAlternativesListView.setAdapter(
+            new AvailableSeatingsRecyclerAdapter(getContext(), response.body())
         );
       }
 

@@ -199,6 +199,7 @@
       android:id="@+id/seatingAlternativesListView"
       android:layout_width="300dp"
       android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
       android:layout_marginTop="10dp"
       app:layout_constraintStart_toStartOf="@+id/seatingHeaderTextView"
       app:layout_constraintTop_toBottomOf="@+id/seatingHeaderTextView" />
@@ -210,13 +211,14 @@
       android:layout_marginTop="30dp"
       android:text="@string/technology_header"
       android:textSize="20sp"
-      app:layout_constraintStart_toStartOf="@+id/seatingAlternativesListView"
+      app:layout_constraintStart_toStartOf="@+id/seatingHeaderTextView"
       app:layout_constraintTop_toBottomOf="@+id/seatingAlternativesListView" />
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/technologyAvailabilityListView"
       android:layout_width="300dp"
       android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
       android:layout_marginTop="10dp"
       app:layout_constraintStart_toStartOf="@+id/technologyHeaderTextView"
       app:layout_constraintTop_toBottomOf="@+id/technologyHeaderTextView" />
@@ -228,7 +230,7 @@
       android:layout_marginTop="30dp"
       android:text="@string/description_header"
       android:textSize="20sp"
-      app:layout_constraintStart_toStartOf="@+id/technologyAvailabilityListView"
+      app:layout_constraintStart_toStartOf="@+id/technologyHeaderTextView"
       app:layout_constraintTop_toBottomOf="@+id/technologyAvailabilityListView" />
 
     <TextView
