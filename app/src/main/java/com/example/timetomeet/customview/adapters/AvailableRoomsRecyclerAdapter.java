@@ -23,12 +23,14 @@ public class AvailableRoomsRecyclerAdapter extends RecyclerView.Adapter<Availabl
   private List<AvailableRoom> availableRooms;
   private Fragment parentFragment;
   private Bundle bookingBundle;
+  private Context context;
 
   public AvailableRoomsRecyclerAdapter(
       Context context,
       List<AvailableRoom> availableRooms,
       Fragment parentFragment,
       Bundle bookingBundle) {
+    this.context = context;
     this.inflater = LayoutInflater.from(context);
     this.availableRooms = availableRooms;
     this.parentFragment = parentFragment;
@@ -46,8 +48,8 @@ public class AvailableRoomsRecyclerAdapter extends RecyclerView.Adapter<Availabl
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     AvailableRoom availableRoom = availableRooms.get(position);
     String locale = Helper.getLocale();
-    String cityName = Helper.getLocalizedName(availableRoom.getAssociatedCity(), locale);
-    String venueName = Helper.getLocalizedName(availableRoom.getAssociatedVenue(), locale);
+    String cityName = Helper.getLocalizedName(availableRoom.getAssociatedCity(), locale, context);
+    String venueName = Helper.getLocalizedName(availableRoom.getAssociatedVenue(), locale, context);
 
     holder.setAvailableRoom(availableRoom);
     holder.venueNameTextView.setText(venueName);

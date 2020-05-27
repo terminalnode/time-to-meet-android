@@ -55,8 +55,8 @@ public class CreateBookingAvailableRoomFragment extends Fragment {
     AvailableRoom selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
 
     String locale = Helper.getLocale();
-    venueNameTextView.setText(Helper.getLocalizedName(selectedRoom.getAssociatedVenue(), locale));
-    cityNameTextView.setText(Helper.getLocalizedName(selectedRoom.getAssociatedCity(), locale));
+    venueNameTextView.setText(Helper.getLocalizedName(selectedRoom.getAssociatedVenue(), locale, getContext()));
+    cityNameTextView.setText(Helper.getLocalizedName(selectedRoom.getAssociatedCity(), locale, getContext()));
     beforeNoonPriceTextView.setText(String.format("%.02f kr", selectedRoom.getPreNoonPrice()));
     afterNoonPriceTextView.setText(String.format("%.02f kr", selectedRoom.getAfterNoonPrice()));
     fullDayPriceTextView.setText(String.format("%.02f kr", selectedRoom.getFullDayPrice()));

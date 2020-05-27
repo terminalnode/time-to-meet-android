@@ -1,5 +1,6 @@
 package com.example.timetomeet;
 
+import android.content.Context;
 import android.content.res.Resources;
 
 import com.example.timetomeet.retrofit.LocalizableDescription;
@@ -31,7 +32,7 @@ public class Helper {
 
   /**
    * Determine if we should use Swedish or English names.
-   * @return
+   * @return The locale being used in String format, e.g. "en" or "sv".
    */
   public static String getLocale() {
     String currentLocale = "en";
@@ -57,61 +58,92 @@ public class Helper {
     return localeIsSupported ? currentLocale : "sv";
   }
 
-  public static String getLocalizedDescription(LocalizableDescription localizableDescription) {
-    return getLocalizedDescription(localizableDescription, getLocale());
+  /**
+   * Get the description of an object implementing the LocalizableDescription interface.
+   * The method looks up the locale automatically.
+   * @param localizableDescription The object implementing LocalizableDescription.
+   * @param context The context in which the description is being fetched.
+   * @return A String containing the localized description.
+   */
+  public static String getLocalizedDescription(
+      LocalizableDescription localizableDescription,
+      Context context
+  ) {
+    return getLocalizedDescription(localizableDescription, getLocale(), context);
   }
 
-  public static String getLocalizedDescription(LocalizableDescription localizableDescription, String locale) {
+  /**
+   * Get the description of an object implementing the LocalizableDescription interface.
+   * @param localizableDescription The object implementing LocalizableDescription.
+   * @param locale The locale we're fetching the description for.
+   * @param context The context in which the description is being fetched.
+   * @return A String containing the localized description.
+   */
+  public static String getLocalizedDescription(
+      LocalizableDescription localizableDescription,
+      String locale,
+      Context context
+  ) {
+    if (localizableDescription == null) {
+      return context.getResources().getString(R.string.object_missing_place_holder);
+    }
+
     String descriptionSv = localizableDescription.getDescriptionSv();
     String descriptionEn = localizableDescription.getDescriptionEn();
+    boolean descriptionSvEmpty = descriptionSv == null || descriptionSv.trim().isEmpty();
+    boolean descriptionEnEmpty = descriptionEn == null || descriptionEn.trim().isEmpty();
 
-    if (descriptionSv == null && descriptionEn == null) {
-      return  "en".equals(locale) ?
-          "No description." :
-          "Beskrivning saknas.";
-
-    } else if (descriptionSv == null) {
-      return  descriptionEn;
-
+    if (descriptionSvEmpty && descriptionEnEmpty) {
+      return Resources.getSystem().getString(R.string.empty_description_place_holder);
+    } else if (descriptionSvEmpty) {
+      return descriptionEn;
     } else if (descriptionEn == null) {
-      return  descriptionSv;
+      return descriptionSv;
 
-    } else {
-      return  "en".equals(locale) ?
-          descriptionEn :
-          descriptionSv;
     }
+
+    return "en".equals(locale) ? descriptionEn : descriptionSv;
   }
 
-  public static String getLocalizedName(LocalizableName localizableName) {
-    return getLocalizedName(localizableName, getLocale());
+  /**
+   * Get the name of an object implementing the LocalizableName interface.
+   * The method looks up the locale automatically.
+   * @param localizableName The object implementing LocalizableName.
+   * @param context The context in which the name is being fetched.
+   * @return A String containing the localized name.
+   */
+  public static String getLocalizedName(
+      LocalizableName localizableName,
+      Context context
+  ) {
+    return getLocalizedName(localizableName, getLocale(), context);
   }
 
-  public static String getLocalizedName(LocalizableName localizableName, String locale) {
+  /**
+   * Get the name of an object implementing the LocalizableName interface.
+   * @param localizableName The object implementing LocalizableName.
+   * @param locale The locale we're fetching the name for.
+   * @param context The context in which the name is being fetched.
+   * @return A String containing the localized name.
+   */
+  public static String getLocalizedName(LocalizableName localizableName, String locale, Context context) {
     if (localizableName == null) {
-      return "en".equals(locale) ?
-          "Missing object" :
-          "Objekt saknas";
+      return context.getResources().getString(R.string.object_missing_place_holder);
     }
 
     String nameSv = localizableName.getNameSv();
     String nameEn = localizableName.getNameEn();
+    boolean nameSvEmpty = nameSv == null || nameSv.trim().isEmpty();
+    boolean nameEnEmpty = nameEn == null || nameEn.trim().isEmpty();
 
-    if (nameSv == null && nameEn == null) {
-      return "en".equals(locale) ?
-          "No name" :
-          "Namnlös";
-
-    } else if (nameSv == null) {
-      return  nameEn;
-
-    } else if (nameEn == null) {
-      return  nameSv;
-
-    } else {
-      return "en".equals(locale) ?
-          nameEn :
-          nameSv;
+    if (nameSvEmpty && nameEnEmpty) {
+      return context.getResources().getString(R.string.missing_name_place_holder);
+    } else if (nameSvEmpty) {
+      return nameEn;
+    } else if (nameEnEmpty) {
+      return nameSv;
     }
+
+    return "en".equals(locale) ? nameEn : nameSv;
   }
 }

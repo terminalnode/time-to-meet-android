@@ -20,8 +20,10 @@ public class AvailableTechnologiesRecyclerAdapter
     extends RecyclerView.Adapter<AvailableTechnologiesRecyclerAdapter.ViewHolder> {
   private LayoutInflater inflater;
   private List<Technology> availableTechnologies;
+  private Context context;
 
   public AvailableTechnologiesRecyclerAdapter(Context context, List<Technology> availableTechnologies) {
+    this.context = context;
     this.inflater = LayoutInflater.from(context);
     this.availableTechnologies = availableTechnologies;
   }
@@ -36,7 +38,7 @@ public class AvailableTechnologiesRecyclerAdapter
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     Technology technology = availableTechnologies.get(position);
-    holder.availableTechnologyTextView.setText(Helper.getLocalizedName(technology));
+    holder.availableTechnologyTextView.setText(Helper.getLocalizedName(technology, context));
   }
 
   @Override

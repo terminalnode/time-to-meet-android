@@ -21,10 +21,12 @@ public class AvailableSeatingsRecyclerAdapter
     extends RecyclerView.Adapter<AvailableSeatingsRecyclerAdapter.ViewHolder> {
   private LayoutInflater inflater;
   private ConferenceRoom chosenConferenceRoom;
+  private Context context;
 
   public AvailableSeatingsRecyclerAdapter(
       Context context,
       ConferenceRoom conferenceRoom) {
+    this.context = context;
     this.inflater = LayoutInflater.from(context);
     this.chosenConferenceRoom = conferenceRoom;
   }
@@ -41,7 +43,7 @@ public class AvailableSeatingsRecyclerAdapter
     ConferenceRoomSeating numberOfSeats = chosenConferenceRoom.getDefaultSeating().get(position);
     Seating seatingName = chosenConferenceRoom.getSeats().get(position);
     holder.numberOfSeatsTextView.setText(String.format("%s", numberOfSeats.getNumberOfSeats()));
-    holder.seatingNameTextView.setText(Helper.getLocalizedName(seatingName));
+    holder.seatingNameTextView.setText(Helper.getLocalizedName(seatingName, context));
   }
 
   @Override

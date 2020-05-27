@@ -18,6 +18,7 @@ import java.util.List;
 
 public class CitySimplifiedSpinnerAdapter extends ArrayAdapter<CitySimplified> {
   private int listLayout;
+  private Context context;
 
   public CitySimplifiedSpinnerAdapter(
       @NonNull Context context,
@@ -26,6 +27,7 @@ public class CitySimplifiedSpinnerAdapter extends ArrayAdapter<CitySimplified> {
       @NonNull List<CitySimplified> objects
   ) {
     super(context, listView, textView, objects);
+    this.context = context;
     this.listLayout = listView;
   }
 
@@ -37,7 +39,7 @@ public class CitySimplifiedSpinnerAdapter extends ArrayAdapter<CitySimplified> {
 
     CitySimplified currentCity = getItem(position);
     TextView cityNameTextView = convertView.findViewById(R.id.cityNameTextView);
-    cityNameTextView.setText(Helper.getLocalizedName(currentCity));
+    cityNameTextView.setText(Helper.getLocalizedName(currentCity,context));
 
     return convertView;
   }
