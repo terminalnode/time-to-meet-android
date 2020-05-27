@@ -221,7 +221,7 @@ public class CreateBookingDateFragment extends Fragment {
 
         NavHostFragment
             .findNavController(CreateBookingDateFragment.this)
-            .navigate(R.id.action_DateFragment_to_SelectRoomFragment);
+            .navigate(R.id.action_DateFragment_to_SearchResultFragment);
         setSearchFinished();
       } else {
         activityStartHandler.postDelayed(activityStarter, retryDelay);

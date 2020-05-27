@@ -11,27 +11,27 @@
     tools:layout="@layout/fragment_create_booking_date">
 
     <action
-      android:id="@+id/action_DateFragment_to_SelectRoomFragment"
-      app:destination="@id/CreateBookingSelectRoomFragment" />
+      android:id="@+id/action_DateFragment_to_SearchResultFragment"
+      app:destination="@id/CreateBookingSearchResultFragment" />
   </fragment>
 
   <fragment
-    android:id="@+id/CreateBookingSelectRoomFragment"
-    android:name="com.example.timetomeet.activity.CreateBookingSelectRoomFragment"
-    tools:layout="@layout/fragment_create_booking_select_room">
+    android:id="@+id/CreateBookingSearchResultFragment"
+    android:name="com.example.timetomeet.activity.CreateBookingSearchResultFragment"
+    tools:layout="@layout/fragment_create_booking_search_result">
 
     <action
-      android:id="@+id/action_SelectRoomFragment_to_DateFragment"
+      android:id="@+id/action_SearchResultFragment_to_DateFragment"
       app:destination="@id/CreateBookingDateFragment" />
 
     <action
-      android:id="@+id/action_SelectRoomFragment_to_AvailableRoomFragment"
-      app:destination="@id/CreateBookingAvailableRoomFragment" />
+      android:id="@+id/action_SearchResultFragment_to_RoomDetailsFragment"
+      app:destination="@id/CreateBookingRoomDetailsFragment" />
   </fragment>
 
   <fragment
-    android:id="@+id/CreateBookingAvailableRoomFragment"
-    android:name="com.example.timetomeet.activity.CreateBookingAvailableRoomFragment"
-    tools:layout="@layout/fragment_create_booking_available_room">
+    android:id="@+id/CreateBookingRoomDetailsFragment"
+    android:name="com.example.timetomeet.activity.CreateBookingRoomDetailsFragment"
+    tools:layout="@layout/fragment_create_booking_room_details">
   </fragment>
 </navigation>

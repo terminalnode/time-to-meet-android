@@ -20,14 +20,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class CreateBookingSelectRoomFragment extends Fragment {
+public class CreateBookingSearchResultFragment extends Fragment {
   @Override
   public View onCreateView(
       LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState
   ) {
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_create_booking_select_room, container, false);
+    return inflater.inflate(R.layout.fragment_create_booking_search_result, container, false);
   }
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

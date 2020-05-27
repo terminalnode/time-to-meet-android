@@ -92,7 +92,7 @@ public class AvailableRoomsRecyclerAdapter extends RecyclerView.Adapter<Availabl
       bookingBundle.putParcelable(Helper.BUNDLE_SELECTED_ROOM, availableRoom);
       NavHostFragment
           .findNavController(parentFragment)
-          .navigate(R.id.action_SelectRoomFragment_to_AvailableRoomFragment);
+          .navigate(R.id.action_SearchResultFragment_to_RoomDetailsFragment);
     }
   }
 }

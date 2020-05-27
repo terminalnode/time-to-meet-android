@@ -27,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CreateBookingAvailableRoomFragment extends Fragment {
+public class CreateBookingRoomDetailsFragment extends Fragment {
   @Override
   public View onCreateView(
       LayoutInflater inflater,
@@ -35,7 +35,7 @@ public class CreateBookingAvailableRoomFragment extends Fragment {
       Bundle savedInstanceState
   ) {
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_create_booking_available_room, container, false);
+    return inflater.inflate(R.layout.fragment_create_booking_room_details, container, false);
   }
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
