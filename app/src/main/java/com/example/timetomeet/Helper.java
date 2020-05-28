@@ -2,7 +2,6 @@ package com.example.timetomeet;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 
 import com.example.timetomeet.retrofit.LocalizableDescription;
 import com.example.timetomeet.retrofit.LocalizableName;
@@ -13,8 +12,9 @@ import com.example.timetomeet.retrofit.LocalizableName;
  */
 public class Helper {
   // Preferences
-  public static final String PREF_USERNAME = "username";
-  public static final String PREF_PASSWORD = "password";
+  public static final String PREF_USER_DETAILS = "pref-user-details";
+  public static final String PREF_EMAIL = "pref-email";
+  public static final String PREF_PASSWORD = "pref-password";
 
   // Bundle keys
   public static final String BUNDLE_CITIES = "bundle-cities-list";

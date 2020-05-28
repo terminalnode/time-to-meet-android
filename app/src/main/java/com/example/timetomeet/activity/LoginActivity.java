@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +26,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
   private Button signInButton, signUpButton;
   private EditText usernameText, passwordText;
-  private SharedPreferences sharedPreferences;
+  private SharedPreferences userDetailPreferences;
   private Bundle apiData;
 
   @Override
@@ -46,9 +45,10 @@ public class LoginActivity extends AppCompatActivity {
     passwordText = findViewById(R.id.editPassword);
 
     // Retrieve saved username from shared preferences
-    sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-    usernameText.setText(sharedPreferences.getString(Helper.PREF_USERNAME, ""));
-    passwordText.setText(sharedPreferences.getString(Helper.PREF_PASSWORD, ""));
+    //userDetailPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    userDetailPreferences = getSharedPreferences(Helper.PREF_USER_DETAILS, MODE_PRIVATE);
+    usernameText.setText(userDetailPreferences.getString(Helper.PREF_EMAIL, ""));
+    passwordText.setText(userDetailPreferences.getString(Helper.PREF_PASSWORD, ""));
 
     // Bind buttons to methods
     signInButton.setOnClickListener(this::signInButtonClick);
@@ -56,7 +56,8 @@ public class LoginActivity extends AppCompatActivity {
   }
 
   private void signInButtonClick(View view) {
-    String username = usernameText.getText().toString();
+    String email = usernameText.getText().toString();
+    String username = "z_" + email;
     String password = passwordText.getText().toString();
 
     RetrofitHelper.signIn(username, password).enqueue(new Callback<Token>() {
@@ -64,8 +65,8 @@ public class LoginActivity extends AppCompatActivity {
       public void onResponse(Call<Token> call, Response<Token> response) {
         Token token = response.body();
         if (token != null) {
-          SharedPreferences.Editor spe = sharedPreferences.edit();
-          spe.putString(Helper.PREF_USERNAME, username);
+          SharedPreferences.Editor spe = userDetailPreferences.edit();
+          spe.putString(Helper.PREF_EMAIL, email);
           spe.putString(Helper.PREF_PASSWORD, password);
           spe.apply();
           apiData.putString(Helper.BUNDLE_TOKEN, String.format("Token %s", token.getToken()));

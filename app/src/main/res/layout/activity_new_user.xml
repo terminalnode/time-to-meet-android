@@ -75,31 +75,6 @@
     app:layout_constraintTop_toTopOf="@+id/lastNameTextView" />
 
   <TextView
-    android:id="@+id/usernameTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/new_user_field_label_horizontal_margin"
-    android:layout_marginTop="@dimen/new_user_field_label_vertical_margin"
-    android:text="@string/username"
-    android:textSize="@dimen/new_user_field_label_text_size"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/lastNameTextView" />
-
-  <EditText
-    android:id="@+id/usernameEditText"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/new_user_field_input_horizontal_margin"
-    android:autofillHints="username,userName,user"
-    android:ems="10"
-    android:hint="@string/username"
-    android:inputType="none"
-    android:textSize="@dimen/new_user_field_input_text_size"
-    app:layout_constraintBottom_toBottomOf="@+id/usernameTextView"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/usernameTextView" />
-
-  <TextView
     android:id="@+id/passwordTextView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -108,7 +83,7 @@
     android:text="@string/password"
     android:textSize="@dimen/new_user_field_label_text_size"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/usernameTextView" />
+    app:layout_constraintTop_toBottomOf="@+id/lastNameTextView" />
 
   <EditText
     android:id="@+id/passwordEditText"
@@ -308,5 +283,17 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent" />
+
+  <ProgressBar
+    android:id="@+id/progressBar"
+    style="?android:attr/progressBarStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:indeterminate="true"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="@+id/registerUserButton"
+    app:layout_constraintStart_toEndOf="@+id/registerUserButton"
+    app:layout_constraintTop_toTopOf="@+id/registerUserButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
