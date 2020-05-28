@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".activity.NewUserActivity">
+
+  <TextView
+    android:id="@+id/createNewUserHeader"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/create_new_user"
+    android:textSize="24sp"
+    app:layout_constraintBottom_toTopOf="@+id/guideline"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_begin="85dp" />
+
+  <TextView
+    android:id="@+id/firstNameTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/new_user_field_label_horizontal_margin"
+    android:layout_marginTop="@dimen/new_user_field_label_vertical_margin"
+    android:text="@string/first_name"
+    android:textSize="@dimen/new_user_field_label_text_size"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+  <EditText
+    android:id="@+id/firstNameEditText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/new_user_field_input_horizontal_margin"
+    android:autofillHints="@string/first_name"
+    android:ems="10"
+    android:hint="@string/first_name"
+    android:inputType="textPersonName"
+    android:textSize="@dimen/new_user_field_input_text_size"
+    app:layout_constraintBottom_toBottomOf="@+id/firstNameTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/firstNameTextView" />
+
+  <TextView
+    android:id="@+id/lastNameTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/new_user_field_label_horizontal_margin"
+    android:layout_marginTop="@dimen/new_user_field_label_vertical_margin"
+    android:text="@string/last_name"
+    android:textSize="@dimen/new_user_field_label_text_size"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/firstNameTextView" />
+
+  <EditText
+    android:id="@+id/lastNameEditText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/new_user_field_input_horizontal_margin"
+    android:autofillHints="lastName,familyName"
+    android:ems="10"
+    android:hint="@string/last_name"
+    android:inputType="textPersonName"
+    android:textSize="@dimen/new_user_field_input_text_size"
+    app:layout_constraintBottom_toBottomOf="@+id/lastNameTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/lastNameTextView" />
+
+  <TextView
+    android:id="@+id/usernameTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/new_user_field_label_horizontal_margin"
+    android:layout_marginTop="@dimen/new_user_field_label_vertical_margin"
+    android:text="@string/username"
+    android:textSize="@dimen/new_user_field_label_text_size"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/lastNameTextView" />
+
+  <EditText
+    android:id="@+id/usernameEditText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/new_user_field_input_horizontal_margin"
+    android:autofillHints="username,userName,user"
+    android:ems="10"
+    android:hint="@string/username"
+    android:inputType="none"
+    android:textSize="@dimen/new_user_field_input_text_size"
+    app:layout_constraintBottom_toBottomOf="@+id/usernameTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/usernameTextView" />
+
+  <TextView
+    android:id="@+id/passwordTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/new_user_field_label_horizontal_margin"
+    android:layout_marginTop="@dimen/new_user_field_label_vertical_margin"
+    android:text="@string/password"
+    android:textSize="@dimen/new_user_field_label_text_size"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/usernameTextView" />
+
+  <EditText
+    android:id="@+id/passwordEditText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/new_user_field_input_horizontal_margin"
+    android:autofillHints="password"
+    android:ems="10"
+    android:hint="@string/password"
+    android:inputType="textPassword"
+    android:textSize="@dimen/new_user_field_input_text_size"
+    app:layout_constraintBottom_toBottomOf="@+id/passwordTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/passwordTextView" />
+
+  <TextView
+    android:id="@+id/emailTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/new_user_field_label_horizontal_margin"
+    android:layout_marginTop="@dimen/new_user_field_label_vertical_margin"
+    android:text="@string/email"
+    android:textSize="@dimen/new_user_field_label_text_size"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/passwordTextView" />
+
+  <EditText
+    android:id="@+id/emailEditText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/new_user_field_input_horizontal_margin"
+    android:autofillHints="email"
+    android:ems="10"
+    android:hint="@string/email"
+    android:inputType="textWebEmailAddress"
+    android:textSize="@dimen/new_user_field_input_text_size"
+    app:layout_constraintBottom_toBottomOf="@+id/emailTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/emailTextView" />
+
+  <TextView
+    android:id="@+id/phoneNumberTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/new_user_field_label_horizontal_margin"
+    android:layout_marginTop="@dimen/new_user_field_label_vertical_margin"
+    android:text="@string/phone_number"
+    android:textSize="@dimen/new_user_field_label_text_size"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
+
+  <EditText
+    android:id="@+id/phoneNumberEditText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/new_user_field_input_horizontal_margin"
+    android:autofillHints="phone,phoneNumber"
+    android:ems="10"
+    android:hint="@string/phone_number"
+    android:inputType="phone"
+    android:textSize="@dimen/new_user_field_input_text_size"
+    app:layout_constraintBottom_toBottomOf="@+id/phoneNumberTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/phoneNumberTextView" />
+
+  <TextView
+    android:id="@+id/organizationNameTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/new_user_field_label_horizontal_margin"
+    android:layout_marginTop="@dimen/new_user_field_label_vertical_margin"
+    android:text="@string/organization_name"
+    android:textSize="@dimen/new_user_field_label_text_size"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/phoneNumberTextView" />
+
+  <EditText
+    android:id="@+id/organizationNameEditText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/new_user_field_input_horizontal_margin"
+    android:autofillHints="organization,organizationName"
+    android:ems="10"
+    android:hint="@string/organization_name"
+    android:inputType="text"
+    android:textSize="@dimen/new_user_field_input_text_size"
+    app:layout_constraintBottom_toBottomOf="@+id/organizationNameTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/organizationNameTextView" />
+
+  <TextView
+    android:id="@+id/organizationNumberTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/new_user_field_label_horizontal_margin"
+    android:layout_marginTop="@dimen/new_user_field_label_vertical_margin"
+    android:text="@string/organization_number"
+    android:textSize="@dimen/new_user_field_label_text_size"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/organizationNameTextView" />
+
+  <EditText
+    android:id="@+id/organizationNumberEditText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/new_user_field_input_horizontal_margin"
+    android:autofillHints="organizationNumber"
+    android:ems="10"
+    android:hint="@string/organization_number"
+    android:inputType="number"
+    android:textSize="@dimen/new_user_field_input_text_size"
+    app:layout_constraintBottom_toBottomOf="@+id/organizationNumberTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/organizationNumberTextView" />
+
+  <TextView
+    android:id="@+id/streetAddressTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/new_user_field_label_horizontal_margin"
+    android:layout_marginTop="@dimen/new_user_field_label_vertical_margin"
+    android:text="@string/street_address"
+    android:textSize="@dimen/new_user_field_label_text_size"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/organizationNumberTextView" />
+
+  <EditText
+    android:id="@+id/streetAddressEditText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/new_user_field_input_horizontal_margin"
+    android:autofillHints="street,streetAddress,address"
+    android:ems="10"
+    android:hint="@string/street_address"
+    android:inputType="text"
+    android:textSize="@dimen/new_user_field_input_text_size"
+    app:layout_constraintBottom_toBottomOf="@+id/streetAddressTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/streetAddressTextView" />
+
+  <TextView
+    android:id="@+id/cityNameTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/new_user_field_label_horizontal_margin"
+    android:layout_marginTop="@dimen/new_user_field_label_vertical_margin"
+    android:text="@string/city_name"
+    android:textSize="@dimen/new_user_field_label_text_size"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/streetAddressTextView" />
+
+  <EditText
+    android:id="@+id/cityNameEditText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/new_user_field_input_horizontal_margin"
+    android:autofillHints="city,cityName"
+    android:ems="10"
+    android:hint="@string/city_name"
+    android:inputType="text"
+    android:textSize="@dimen/new_user_field_input_text_size"
+    app:layout_constraintBottom_toBottomOf="@+id/cityNameTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/cityNameTextView" />
+
+  <TextView
+    android:id="@+id/zipCodeTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/new_user_field_label_horizontal_margin"
+    android:layout_marginTop="@dimen/new_user_field_label_vertical_margin"
+    android:text="@string/zip_code"
+    android:textSize="@dimen/new_user_field_label_text_size"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/cityNameTextView" />
+
+  <EditText
+    android:id="@+id/zipCodeEditText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/new_user_field_input_horizontal_margin"
+    android:autofillHints="zip,zipCode,postalCode"
+    android:ems="10"
+    android:hint="@string/zip_code"
+    android:inputType="number"
+    android:textSize="@dimen/new_user_field_input_text_size"
+    app:layout_constraintBottom_toBottomOf="@+id/zipCodeTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/zipCodeTextView" />
+
+  <Button
+    android:id="@+id/registerUserButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:text="@string/register"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

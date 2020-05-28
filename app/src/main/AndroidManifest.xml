@@ -11,6 +11,7 @@
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
+    <activity android:name=".activity.NewUserActivity"></activity>
     <activity android:name=".activity.CreateBookingActivity" />
     <activity android:name=".activity.MainMenuActivity" />
     <activity android:name=".activity.LoginActivity" />

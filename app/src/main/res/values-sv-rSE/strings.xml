@@ -44,4 +44,15 @@
   <string name="missing_name_place_holder">Namnlös</string>
   <string name="object_missing_place_holder">Objekt saknas</string>
   <string name="description_place_holder">Laddar beskrivning...</string>
+  <string name="first_name">Förnamn</string>
+  <string name="last_name">Efternamn</string>
+  <string name="email">Epost</string>
+  <string name="phone_number">Telefonnummer</string>
+  <string name="organization_name">Organisationsnamn</string>
+  <string name="organization_number">Organisationsnummer</string>
+  <string name="street_address">Gatuadress</string>
+  <string name="city_name">Stad</string>
+  <string name="zip_code">Postnummer</string>
+  <string name="register">Registrera</string>
+  <string name="create_new_user">Skapa Ny Användare</string>
 </resources>

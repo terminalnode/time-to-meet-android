@@ -21,4 +21,10 @@
   <dimen name="available_room_fragment_price_label_height">25dp</dimen>
   <dimen name="available_room_fragment_create_button_width">120dp</dimen>
   <dimen name="available_room_fragment_create_button_height">75dp</dimen>
+
+  <dimen name="new_user_field_label_horizontal_margin">10dp</dimen>
+  <dimen name="new_user_field_label_vertical_margin">20dp</dimen>
+  <dimen name="new_user_field_input_horizontal_margin">20dp</dimen>
+  <dimen name="new_user_field_label_text_size">18sp</dimen>
+  <dimen name="new_user_field_input_text_size">14sp</dimen>
 </resources>

@@ -32,10 +32,12 @@ import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.Venue;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 

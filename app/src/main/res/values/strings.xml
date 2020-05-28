@@ -50,4 +50,15 @@
   <string name="empty_description_place_holder">Missing description.</string>
   <string name="missing_name_place_holder">No name</string>
   <string name="object_missing_place_holder">Object missing</string>
+  <string name="first_name">First name</string>
+  <string name="last_name">Last name</string>
+  <string name="email">E-mail</string>
+  <string name="phone_number">Phone number</string>
+  <string name="organization_name">Organization name</string>
+  <string name="organization_number">Organization number</string>
+  <string name="street_address">Street address</string>
+  <string name="city_name">City</string>
+  <string name="zip_code">Zip code</string>
+  <string name="register">Register</string>
+  <string name="create_new_user">Create New User</string>
 </resources>

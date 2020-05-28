@@ -97,6 +97,10 @@ public class LoginActivity extends AppCompatActivity {
   }
 
   private void signUpButtonClick(View view) {
-    Snackbar.make(view, "Signing up!", Snackbar.LENGTH_LONG).show();
+    Log.i(Logging.LoginActivity, "Creating intent to start NewUserActivity.");
+    Intent intent = new Intent(this, NewUserActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    intent.putExtras(apiData);
+    startActivity(intent);
   }
 }
