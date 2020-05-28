@@ -61,4 +61,19 @@
   <string name="zip_code">Zip code</string>
   <string name="register">Register</string>
   <string name="create_new_user">Create New User</string>
+
+  <string name="confirm_room_header">Reserve Conference Room</string>
+  <string name="radio_button_yes">Yes</string>
+  <string name="radio_button_no">No</string>
+  <string name="payment_alternative_header">Choose payment method</string>
+  <string name="want_room_info_header">Include room information?</string>
+  <string name="want_activity_info_header">Include activity information?</string>
+  <string name="special_request_header">Special requests</string>
+  <string name="seating_choice_header">Choose seating</string>
+  <string name="number_of_participants_header">Number of participants</string>
+  <string name="agreement_number_header">Agreement number</string>
+  <string name="time_slot_header">Choose time slot</string>
+  <string name="am_radio_button_label">Before noon</string>
+  <string name="pm_radio_button_label">Afternoon</string>
+  <string name="full_day_radio_button_label">Full day</string>
 </resources>

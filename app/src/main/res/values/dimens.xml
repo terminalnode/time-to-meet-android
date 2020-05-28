@@ -27,4 +27,6 @@
   <dimen name="new_user_field_input_horizontal_margin">20dp</dimen>
   <dimen name="new_user_field_label_text_size">18sp</dimen>
   <dimen name="new_user_field_input_text_size">14sp</dimen>
+
+  <dimen name="initialize_booking_radio_button_width">80dp</dimen>
 </resources>

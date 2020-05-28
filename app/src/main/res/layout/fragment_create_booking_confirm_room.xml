@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".activity.CreateBookingConfirmRoomFragment">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/reserveConferenceRoomConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+      android:id="@+id/confirmRoomHeader"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/confirm_room_header"
+      android:textSize="24sp"
+      app:layout_constraintBottom_toTopOf="@+id/guideline2"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/guideline2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      app:layout_constraintGuide_begin="85dp" />
+
+    <TextView
+      android:id="@+id/paymentAlternativeTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:layout_marginTop="20dp"
+      android:text="@string/payment_alternative_header"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <Spinner
+      android:id="@+id/paymentAlternativeSpinner"
+      android:layout_width="300dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:orientation="horizontal"
+      app:layout_constraintStart_toStartOf="@+id/paymentAlternativeTextView"
+      app:layout_constraintTop_toBottomOf="@+id/paymentAlternativeTextView" />
+
+    <TextView
+      android:id="@+id/wantRoomInfoTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/want_room_info_header"
+      app:layout_constraintStart_toStartOf="@+id/paymentAlternativeTextView"
+      app:layout_constraintTop_toBottomOf="@+id/paymentAlternativeSpinner" />
+
+    <RadioGroup
+      android:id="@+id/wantRoomInfoRadioGroup"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:orientation="horizontal"
+      app:layout_constraintStart_toStartOf="@+id/wantRoomInfoTextView"
+      app:layout_constraintTop_toBottomOf="@+id/wantRoomInfoTextView">
+
+      <RadioButton
+        android:id="@+id/wantRoomInfoRadioButton"
+        android:layout_width="@dimen/initialize_booking_radio_button_width"
+        android:layout_height="wrap_content"
+        android:text="@string/radio_button_yes" />
+
+      <RadioButton
+        android:id="@+id/doesntWantRoomInfoRadioButton"
+        android:layout_width="@dimen/initialize_booking_radio_button_width"
+        android:layout_height="wrap_content"
+        android:text="@string/radio_button_no" />
+
+    </RadioGroup>
+
+    <TextView
+      android:id="@+id/wantActivityInfoTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/want_activity_info_header"
+      app:layout_constraintStart_toStartOf="@+id/wantRoomInfoTextView"
+      app:layout_constraintTop_toBottomOf="@+id/wantRoomInfoRadioGroup" />
+
+    <RadioGroup
+      android:id="@+id/wantActivityInfoRadioGroup"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:orientation="horizontal"
+      app:layout_constraintStart_toStartOf="@+id/wantActivityInfoTextView"
+      app:layout_constraintTop_toBottomOf="@+id/wantActivityInfoTextView">
+
+      <RadioButton
+        android:id="@+id/yesActivityInfoRadioButton"
+        android:layout_width="@dimen/initialize_booking_radio_button_width"
+        android:layout_height="wrap_content"
+        android:text="@string/radio_button_yes" />
+
+      <RadioButton
+        android:id="@+id/noActivityInfoRadioButton"
+        android:layout_width="@dimen/initialize_booking_radio_button_width"
+        android:layout_height="wrap_content"
+        android:text="@string/radio_button_no" />
+
+    </RadioGroup>
+
+    <TextView
+      android:id="@+id/specialRequestTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/special_request_header"
+      app:layout_constraintStart_toStartOf="@+id/wantActivityInfoTextView"
+      app:layout_constraintTop_toBottomOf="@+id/wantActivityInfoRadioGroup" />
+
+    <EditText
+      android:id="@+id/specialRequestMultilineText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:ems="10"
+      android:gravity="start|top"
+      android:inputType="textMultiLine"
+      android:paddingLeft="10dp"
+      android:paddingRight="10dp"
+      app:layout_constraintStart_toStartOf="@+id/specialRequestTextView"
+      app:layout_constraintTop_toBottomOf="@+id/specialRequestTextView" />
+
+    <TextView
+      android:id="@+id/seatingChoiceTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/seating_choice_header"
+      app:layout_constraintStart_toStartOf="@+id/specialRequestTextView"
+      app:layout_constraintTop_toBottomOf="@+id/specialRequestMultilineText" />
+
+    <Spinner
+      android:id="@+id/seatingChoiceSpinner"
+      android:layout_width="300dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      app:layout_constraintStart_toStartOf="@+id/seatingChoiceTextView"
+      app:layout_constraintTop_toBottomOf="@+id/seatingChoiceTextView" />
+
+    <TextView
+      android:id="@+id/numberOfParticipantsTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/number_of_participants_header"
+      app:layout_constraintStart_toStartOf="@+id/seatingChoiceTextView"
+      app:layout_constraintTop_toBottomOf="@+id/seatingChoiceSpinner" />
+
+    <EditText
+      android:id="@+id/numberOfParticipantsEditText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:ems="10"
+      android:inputType="number"
+      android:paddingLeft="10dp"
+      android:paddingRight="10dp"
+      app:layout_constraintStart_toStartOf="@+id/numberOfParticipantsTextView"
+      app:layout_constraintTop_toBottomOf="@+id/numberOfParticipantsTextView" />
+
+    <TextView
+      android:id="@+id/agreementNumberTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/agreement_number_header"
+      app:layout_constraintStart_toStartOf="@+id/numberOfParticipantsTextView"
+      app:layout_constraintTop_toBottomOf="@+id/numberOfParticipantsEditText" />
+
+    <EditText
+      android:id="@+id/agreementNumberPlainText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:ems="10"
+      android:inputType="textPersonName"
+      app:layout_constraintStart_toStartOf="@+id/agreementNumberTextView"
+      app:layout_constraintTop_toBottomOf="@+id/agreementNumberTextView" />
+
+    <TextView
+      android:id="@+id/timeSlotTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/time_slot_header"
+      app:layout_constraintStart_toStartOf="@+id/agreementNumberTextView"
+      app:layout_constraintTop_toBottomOf="@+id/agreementNumberPlainText" />
+
+    <RadioGroup
+      android:id="@+id/timeSlotRadioGroup"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      app:layout_constraintStart_toStartOf="@+id/timeSlotTextView"
+      app:layout_constraintTop_toBottomOf="@+id/timeSlotTextView">
+
+      <RadioButton
+        android:id="@+id/amRadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/am_radio_button_label" />
+
+      <RadioButton
+        android:id="@+id/pmRadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pm_radio_button_label" />
+
+      <RadioButton
+        android:id="@+id/fullDayRadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/full_day_radio_button_label" />
+    </RadioGroup>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

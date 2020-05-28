@@ -55,4 +55,18 @@
   <string name="zip_code">Postnummer</string>
   <string name="register">Registrera</string>
   <string name="create_new_user">Skapa Ny Användare</string>
+  <string name="confirm_room_header">Reservera Konferensrum</string>
+  <string name="radio_button_yes">Ja</string>
+  <string name="radio_button_no">Nej</string>
+  <string name="payment_alternative_header">Betalningsalternativ</string>
+  <string name="want_room_info_header">Inkludera rumsinformation?</string>
+  <string name="want_activity_info_header">Inkludera aktivitetsinformation?</string>
+  <string name="special_request_header">Särskilda önskemål</string>
+  <string name="seating_choice_header">Välj sittningstyp</string>
+  <string name="number_of_participants_header">Antal deltagare</string>
+  <string name="agreement_number_header">Kundnummer</string>
+  <string name="time_slot_header">Välj tid</string>
+  <string name="am_radio_button_label">Förmiddag</string>
+  <string name="pm_radio_button_label">Eftermiddag</string>
+  <string name="full_day_radio_button_label">Heldag</string>
 </resources>
