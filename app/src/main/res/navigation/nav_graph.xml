@@ -5,6 +5,7 @@
   android:id="@+id/nav_graph"
   app:startDestination="@id/CreateBookingDateFragment">
 
+  <!-- Date Fragment -->
   <fragment
     android:id="@+id/CreateBookingDateFragment"
     android:name="com.example.timetomeet.activity.CreateBookingDateFragment"
@@ -15,6 +16,7 @@
       app:destination="@id/CreateBookingSearchResultFragment" />
   </fragment>
 
+  <!-- Search Result Fragment -->
   <fragment
     android:id="@+id/CreateBookingSearchResultFragment"
     android:name="com.example.timetomeet.activity.CreateBookingSearchResultFragment"
@@ -29,9 +31,22 @@
       app:destination="@id/CreateBookingRoomDetailsFragment" />
   </fragment>
 
+  <!-- Room Details Fragment -->
   <fragment
     android:id="@+id/CreateBookingRoomDetailsFragment"
     android:name="com.example.timetomeet.activity.CreateBookingRoomDetailsFragment"
     tools:layout="@layout/fragment_create_booking_room_details">
+
+    <action
+      android:id="@+id/action_RoomDetailsFragment_to_ConfirmRoomFragment"
+      app:destination="@id/CreateBookingConfirmRoomFragment" />
+  </fragment>
+
+
+  <!-- Confirm Room Fragment -->
+  <fragment
+    android:id="@+id/CreateBookingConfirmRoomFragment"
+    android:name="com.example.timetomeet.activity.CreateBookingConfirmRoomFragment"
+    tools:layout="@layout/fragment_create_booking_confirm_room">
   </fragment>
 </navigation>

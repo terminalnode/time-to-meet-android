@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.timetomeet.Helper;
@@ -28,6 +30,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CreateBookingRoomDetailsFragment extends Fragment {
+  private Button createBookingButton;
+
   @Override
   public View onCreateView(
       LayoutInflater inflater,
@@ -64,6 +68,12 @@ public class CreateBookingRoomDetailsFragment extends Fragment {
     afterNoonPriceTextView.setText(String.format("%.02f kr", selectedRoom.getAfterNoonPrice()));
     fullDayPriceTextView.setText(String.format("%.02f kr", selectedRoom.getFullDayPrice()));
 
+    // Disable the create booking button until information is fetched.
+    createBookingButton = view.findViewById(R.id.createBookingButton);
+    createBookingButton.setClickable(false);
+    createBookingButton.setAlpha(0.5F);
+    createBookingButton.setOnClickListener(this::createBookingButtonClicked);
+
     // Fetch information from the associated conference room,
     // fetching the conference room if necessary.
     if (selectedRoom.getAssociatedConferenceRoom() == null) {
@@ -73,6 +83,24 @@ public class CreateBookingRoomDetailsFragment extends Fragment {
     }
   }
 
+  /**
+   * Open the next fragment when the button is clicked,
+   * which is the CreateBookingConfirmRoomFragment.
+   * @param view The view in which the button is clicked.
+   */
+  private void createBookingButtonClicked(View view) {
+    // TODO Make sure to send the information to the next fragment.
+    // TODO Make sure all the necessary API calls are being made.
+    Log.i(Logging.CreateBookingActivity, "Moving over to confirm room fragment");
+    NavHostFragment
+        .findNavController(CreateBookingRoomDetailsFragment.this)
+        .navigate(R.id.action_RoomDetailsFragment_to_ConfirmRoomFragment);
+  }
+
+  /**
+   * Fetch the selected room's associated conference room.
+   * @param selectedRoom The selected room we're fetching the conference room for.
+   */
   private void fetchConferenceRoom(AvailableRoom selectedRoom) {
     RetrofitHelper
         .getConferenceRoomById(selectedRoom.getRoomId())
@@ -96,6 +124,10 @@ public class CreateBookingRoomDetailsFragment extends Fragment {
         });
   }
 
+  /**
+   * Set all the fields for which we need the information from the conference room.
+   * @param selectedRoom The selected room we use to get the conference room.
+   */
   private void setAfterRoomFetch(AvailableRoom selectedRoom) {
     ConferenceRoom room = selectedRoom.getAssociatedConferenceRoom();
     View view = getView();
@@ -132,5 +164,9 @@ public class CreateBookingRoomDetailsFragment extends Fragment {
     TextView descriptionTextView = view.findViewById(R.id.descriptionTextView);
     String descriptionText = Helper.getLocalizedDescription(room, getContext());
     descriptionTextView.setText(descriptionText);
+
+    // Reenable the createBookingButton
+    createBookingButton.setClickable(true);
+    createBookingButton.setAlpha(1F);
   }
 }

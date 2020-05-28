@@ -18,13 +18,13 @@
       android:layout_height="wrap_content"
       android:text="@string/confirm_room_header"
       android:textSize="24sp"
-      app:layout_constraintBottom_toTopOf="@+id/guideline2"
+      app:layout_constraintBottom_toTopOf="@+id/guideline"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/guideline2"
+      android:id="@+id/guideline"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
@@ -38,7 +38,7 @@
       android:layout_marginTop="20dp"
       android:text="@string/payment_alternative_header"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/guideline2" />
+      app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <Spinner
       android:id="@+id/paymentAlternativeSpinner"
@@ -71,6 +71,7 @@
         android:id="@+id/wantRoomInfoRadioButton"
         android:layout_width="@dimen/initialize_booking_radio_button_width"
         android:layout_height="wrap_content"
+        android:checked="true"
         android:text="@string/radio_button_yes" />
 
       <RadioButton
@@ -103,6 +104,7 @@
         android:id="@+id/yesActivityInfoRadioButton"
         android:layout_width="@dimen/initialize_booking_radio_button_width"
         android:layout_height="wrap_content"
+        android:checked="true"
         android:text="@string/radio_button_yes" />
 
       <RadioButton
@@ -127,9 +129,12 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="10dp"
+      android:autofillHints="specialRequests"
       android:ems="10"
       android:gravity="start|top"
+      android:hint="@string/special_request_header"
       android:inputType="textMultiLine"
+      android:labelFor="@id/specialRequestTextView"
       android:paddingLeft="10dp"
       android:paddingRight="10dp"
       app:layout_constraintStart_toStartOf="@+id/specialRequestTextView"
@@ -149,6 +154,8 @@
       android:layout_width="300dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="10dp"
+      android:autofillHints="seatingType,desiredSeating"
+      android:labelFor="@id/seatingChoiceTextView"
       app:layout_constraintStart_toStartOf="@+id/seatingChoiceTextView"
       app:layout_constraintTop_toBottomOf="@+id/seatingChoiceTextView" />
 
@@ -166,8 +173,11 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="10dp"
+      android:autofillHints="numberOfParticipants,numberOfPeople"
       android:ems="10"
+      android:hint="@string/number_of_participants_header"
       android:inputType="number"
+      android:labelFor="@id/numberOfParticipantsTextView"
       android:paddingLeft="10dp"
       android:paddingRight="10dp"
       app:layout_constraintStart_toStartOf="@+id/numberOfParticipantsTextView"
@@ -188,9 +198,12 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="10dp"
       android:ems="10"
-      android:inputType="textPersonName"
+      android:hint="@string/agreement_number_header"
+      android:inputType="text"
+      android:labelFor="@id/agreementNumberTextView"
       app:layout_constraintStart_toStartOf="@+id/agreementNumberTextView"
-      app:layout_constraintTop_toBottomOf="@+id/agreementNumberTextView" />
+      app:layout_constraintTop_toBottomOf="@+id/agreementNumberTextView"
+      android:importantForAutofill="no" />
 
     <TextView
       android:id="@+id/timeSlotTextView"
@@ -213,6 +226,7 @@
         android:id="@+id/amRadioButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:checked="true"
         android:text="@string/am_radio_button_label" />
 
       <RadioButton
@@ -227,6 +241,30 @@
         android:layout_height="wrap_content"
         android:text="@string/full_day_radio_button_label" />
     </RadioGroup>
+
+    <Button
+      android:id="@+id/confirmRoomButton"
+      android:layout_width="230dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:layout_marginBottom="20dp"
+      android:text="@string/reserve_room_button"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/timeSlotRadioGroup" />
+
+    <ProgressBar
+      android:id="@+id/progressBar"
+      style="?android:attr/progressBarStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:indeterminate="true"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="@+id/confirmRoomButton"
+      app:layout_constraintStart_toEndOf="@+id/confirmRoomButton"
+      app:layout_constraintTop_toTopOf="@+id/confirmRoomButton" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
