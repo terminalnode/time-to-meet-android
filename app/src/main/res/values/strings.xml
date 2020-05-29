@@ -7,8 +7,7 @@
   <string name="sign_up">Sign up</string>
   <string name="something_went_wrong">Oops! Something went wrong.</string>
   <string name="invalid_credentials">Invalid username or password</string>
-  <string name="pick_start_date">Pick a start date</string>
-  <string name="pick_end_date">Pick an end date</string>
+  <string name="pick_date">Pick a date</string>
   <!-- Strings used for fragments for navigation -->
 
   <string name="create_booking_button_label">Create Booking</string>

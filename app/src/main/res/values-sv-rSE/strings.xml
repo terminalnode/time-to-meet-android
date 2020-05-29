@@ -7,8 +7,7 @@
   <string name="sign_up">Registrera</string>
   <string name="something_went_wrong">Hejsan hoppsan lillebror, något gick snett.</string>
   <string name="invalid_credentials">Felaktigt användarnamn eller lösenord</string>
-  <string name="pick_start_date">Välj ett startdatum</string>
-  <string name="pick_end_date">Välj ett slutdatum</string>
+  <string name="pick_date">Välj ett datum</string>
   <string name="create_booking_button_label">Skapa Bokning</string>
   <string name="loading_label">Laddar...</string>
   <string name="fetched_cities">Hämtat städer!</string>

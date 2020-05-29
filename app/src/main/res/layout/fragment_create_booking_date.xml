@@ -9,21 +9,22 @@
   <include
     android:id="@+id/startDateDisplay"
     layout="@layout/date_display"
-    android:layout_width="@dimen/date_label_right_hand_width"
+    android:layout_width="250dp"
     android:layout_height="@dimen/date_label_height"
+    app:layout_constraintBottom_toBottomOf="@+id/startDateTextView"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/startDateTextView"
-    app:layout_constraintTop_toTopOf="@+id/midpointGuideline" />
+    app:layout_constraintTop_toTopOf="@+id/startDateTextView" />
 
   <include
     android:id="@+id/endDateDisplay"
     layout="@layout/date_display"
-    android:layout_width="@dimen/date_label_right_hand_width"
+    android:layout_width="250dp"
     android:layout_height="@dimen/date_label_height"
-    android:layout_marginTop="20dp"
+    app:layout_constraintBottom_toBottomOf="@+id/endDateTextView"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/endDateTextView"
-    app:layout_constraintTop_toBottomOf="@+id/startDateDisplay" />
+    app:layout_constraintTop_toTopOf="@+id/endDateTextView" />
 
   <Button
     android:id="@+id/searchButton"
@@ -39,8 +40,7 @@
     android:id="@+id/spinCity"
     android:layout_width="250dp"
     android:layout_height="@dimen/date_label_height"
-    android:layout_marginBottom="20dp"
-    app:layout_constraintBottom_toTopOf="@+id/midpointGuideline"
+    app:layout_constraintBottom_toBottomOf="@+id/pickCityTextView"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/pickCityTextView"
     app:layout_constraintTop_toTopOf="@+id/pickCityTextView" />
@@ -49,13 +49,13 @@
     android:id="@+id/endDateTextView"
     android:layout_width="@dimen/date_label_left_hand_width"
     android:layout_height="@dimen/date_label_height"
-    android:layout_marginStart="20dp"
+    android:layout_marginStart="10dp"
     android:layout_marginTop="20dp"
     android:gravity="center"
     android:text="@string/end_date_label"
     android:textAlignment="viewStart"
     android:textSize="@dimen/date_label_font_size"
-    app:layout_constraintBottom_toBottomOf="@+id/endDateDisplay"
+    android:textStyle="bold"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/startDateTextView" />
 
@@ -63,40 +63,43 @@
     android:id="@+id/startDateTextView"
     android:layout_width="@dimen/date_label_left_hand_width"
     android:layout_height="@dimen/date_label_height"
-    android:layout_marginStart="20dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="20dp"
     android:gravity="center"
     android:text="@string/start_date_label"
     android:textAlignment="viewStart"
     android:textSize="@dimen/date_label_font_size"
+    android:textStyle="bold"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/startDateDisplay" />
+    app:layout_constraintTop_toBottomOf="@+id/pickCityTextView" />
 
   <androidx.constraintlayout.widget.Guideline
     android:id="@+id/midpointGuideline"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    app:layout_constraintGuide_percent="0.5" />
+    app:layout_constraintGuide_percent="0.34" />
 
   <TextView
     android:id="@+id/pickCityTextView"
-    android:layout_width="wrap_content"
+    android:layout_width="@dimen/date_label_left_hand_width"
     android:layout_height="@dimen/date_label_height"
-    android:layout_marginStart="20dp"
-    android:layout_marginBottom="20dp"
+    android:layout_marginStart="10dp"
     android:gravity="center_vertical"
     android:text="@string/pick_city"
     android:textSize="@dimen/date_label_font_size"
-    app:layout_constraintBottom_toTopOf="@+id/midpointGuideline"
-    app:layout_constraintStart_toStartOf="parent" />
+    android:textStyle="bold"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/midpointGuideline" />
 
   <TextView
     android:id="@+id/searchAvailableRoomsTitle"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/search_available_rooms_title"
+    android:textAlignment="center"
     android:textSize="36sp"
-    app:layout_constraintBottom_toTopOf="@+id/spinCity"
+    app:layout_constraintBottom_toTopOf="@+id/midpointGuideline"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />

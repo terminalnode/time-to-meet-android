@@ -32,12 +32,11 @@ import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.Venue;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.lang.reflect.Array;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -85,8 +84,16 @@ public class CreateBookingDateFragment extends Fragment {
     endDateDisplay = view.findViewById(R.id.endDateDisplay);
     TextView startDateText = startDateDisplay.findViewById(R.id.dateTextView);
     TextView endDateText = endDateDisplay.findViewById(R.id.dateTextView);
-    startDateText.setText(R.string.pick_start_date);
-    endDateText.setText(R.string.pick_end_date);
+
+    // Initialize date labels to today's date
+    LocalDateTime ldt = LocalDateTime.now();
+    String today = String.format(
+        "%s-%02d-%02d",
+        ldt.getYear(),
+        ldt.getMonthValue(),
+        ldt.getDayOfMonth());
+    startDateText.setText(today);
+    endDateText.setText(today);
 
     // Set up listeners
     startDateDisplayListener = new DateDisplayListener(getContext(), startDateText);
