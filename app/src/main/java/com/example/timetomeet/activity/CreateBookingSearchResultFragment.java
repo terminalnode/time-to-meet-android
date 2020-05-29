@@ -38,7 +38,6 @@ public class CreateBookingSearchResultFragment extends Fragment {
     Bundle bookingBundle = createBookingActivity.getBookingBundle();
     Bundle apiData = getActivity().getIntent().getExtras();
     List<AvailableRoom> availableRooms = bookingBundle.getParcelableArrayList(Helper.BUNDLE_AVAILABLE_ROOMS_LIST);
-    List<CitySimplified> cities = apiData.getParcelableArrayList(Helper.BUNDLE_CITIES);
 
     Map<Long, CitySimplified> citiesMap = createBookingActivity.getCityMap();
     availableRooms.forEach(room -> room.setAssociatedCity(citiesMap.get(room.getCityId())));
