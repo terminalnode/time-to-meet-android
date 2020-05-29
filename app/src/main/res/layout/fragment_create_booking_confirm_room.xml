@@ -180,6 +180,7 @@
       android:labelFor="@id/numberOfParticipantsTextView"
       android:paddingLeft="10dp"
       android:paddingRight="10dp"
+      android:text="@string/default_number_one"
       app:layout_constraintStart_toStartOf="@+id/numberOfParticipantsTextView"
       app:layout_constraintTop_toBottomOf="@+id/numberOfParticipantsTextView" />
 

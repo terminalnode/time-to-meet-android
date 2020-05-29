@@ -14,6 +14,7 @@ import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Seating;
 import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
+import com.example.timetomeet.retrofit.entity.TimeSlotAdd;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
 import com.example.timetomeet.retrofit.entity.Venue;
@@ -25,6 +26,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.Header;
+import retrofit2.http.Path;
 
 public class RetrofitHelper {
   private static final String BASE_URL = "https://dev-be.timetomeet.se/service/rest/";
@@ -112,7 +116,11 @@ public class RetrofitHelper {
     return getBase().getStandardSeating();
   }
 
-  public static Call<JSONObject> addBooking(BookingAdd addBooking, String token) {
+  public static Call<BookingAdd> addBooking(BookingAdd addBooking, String token) {
     return getBase().addBooking(addBooking, token);
+  }
+
+  public static Call<JSONObject> addTimeSlot(TimeSlotAdd timeSlotAdd, Long timeSlotId, String token) {
+    return getBase().addTimeSlot(timeSlotAdd, timeSlotId, token);
   }
 }

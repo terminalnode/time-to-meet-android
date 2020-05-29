@@ -79,4 +79,5 @@
   <string name="reserve_room_button">Reserve Room</string>
   <string name="payment_alternative_place_holder">[ Payment Alternative ]</string>
   <string name="invalid_number_of_participants">Invalid number of participants</string>
+  <string name="default_number_one" translatable="false">1</string>
 </resources>

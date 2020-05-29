@@ -14,6 +14,7 @@ import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Seating;
 import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
+import com.example.timetomeet.retrofit.entity.TimeSlotAdd;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
 import com.example.timetomeet.retrofit.entity.Venue;
@@ -27,23 +28,29 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface Endpoint {
   @POST("api-token-auth/")
-  Call<Token> signIn(@Body Credentials credentials);
+  Call<Token> signIn(
+      @Body Credentials credentials);
 
   @POST("user/add/")
-  Call<User> signUp(@Body User user);
+  Call<User> signUp(
+      @Body User user);
 
   @GET("city/{id}/")
-  Call<City> getCityById(@Path("id") long cityId);
+  Call<City> getCityById(
+      @Path("id") long cityId);
 
   @GET("conferenceroom/{id}/")
-  Call<ConferenceRoom> getConferenceRoomById(@Path("id") long id);
+  Call<ConferenceRoom> getConferenceRoomById(
+      @Path("id") long id);
 
   @GET("venue/{id}/")
-  Call<Venue> getVenueById(@Path("id") long id);
+  Call<Venue> getVenueById(
+      @Path("id") long id);
 
   @GET("paymentalternative/")
   Call<List<PaymentAlternative>> getPaymentAlternatives();
@@ -52,7 +59,8 @@ public interface Endpoint {
   Call<List<Technology>> getTechnology();
 
   @POST("search/availability/period/v3")
-  Call<AvailableRoomsContainer> searchAvailableRoomsByCity(@Body AvailableRoomsQuery query);
+  Call<AvailableRoomsContainer> searchAvailableRoomsByCity(
+      @Body AvailableRoomsQuery query);
 
   @GET("citieswithvenues/")
   Call<List<CitySimplified>> getCitiesWithVenues();
@@ -67,11 +75,20 @@ public interface Endpoint {
   Call<List<FoodBevarageList>> getFoodBevarageList();
 
   @GET("conferenceroomtechnology/conferenceroom/{id}/")
-  Call<List<ConferenceRoomTechnology>> getConferenceRoomTechnology(@Path("id") long roomId);
+  Call<List<ConferenceRoomTechnology>> getConferenceRoomTechnology(
+      @Path("id") long roomId);
 
   @GET("standardseating/")
   Call<List<Seating>> getStandardSeating();
 
   @POST("booking/add/")
-  Call<JSONObject> addBooking(@Body BookingAdd addBooking, @Header("Authorization") String token);
+  Call<BookingAdd> addBooking(
+      @Body BookingAdd addBooking,
+      @Header("Authorization") String token);
+
+  @PUT("conferenceroomavailability/book/{id}/")
+  Call<JSONObject> addTimeSlot(
+      @Body TimeSlotAdd timeSlotAdd,
+      @Path("id") Long timeSlotId,
+      @Header("Authorization") String token);
 }
