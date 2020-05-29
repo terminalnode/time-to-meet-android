@@ -56,7 +56,21 @@ public class AvailableRoomsRecyclerAdapter extends RecyclerView.Adapter<Availabl
     holder.cityNameTextView.setText(cityName);
     holder.amPriceTextView.setText(String.format("%.02f kr", availableRoom.getPreNoonPrice()));
     holder.pmPriceTextView.setText(String.format("%.02f kr", availableRoom.getAfterNoonPrice()));
-    holder.fullDayPriceView.setText(String.format("%.02f kr", availableRoom.getFullDayPrice()));
+    holder.fullDayPriceTextView.setText(String.format("%.02f kr", availableRoom.getFullDayPrice()));
+
+    if (availableRoom.getId31() == null) {
+      holder.amPriceLabel.setAlpha(0.5F);
+      holder.amPriceTextView.setAlpha(0.5F);
+
+    } else if (availableRoom.getId32() == null) {
+      holder.pmPriceLabel.setAlpha(0.5F);
+      holder.pmPriceTextView.setAlpha(0.5F);
+    }
+
+    if (availableRoom.getId31() == null || availableRoom.getId32() == null) {
+      holder.fullDayPriceLabel.setAlpha(0.5F);
+      holder.fullDayPriceTextView.setAlpha(0.5F);
+    }
   }
 
   @Override
@@ -67,18 +81,24 @@ public class AvailableRoomsRecyclerAdapter extends RecyclerView.Adapter<Availabl
   public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     TextView venueNameTextView;
     TextView cityNameTextView;
+    TextView amPriceLabel;
     TextView amPriceTextView;
+    TextView pmPriceLabel;
     TextView pmPriceTextView;
-    TextView fullDayPriceView;
+    TextView fullDayPriceLabel;
+    TextView fullDayPriceTextView;
     AvailableRoom availableRoom;
 
     ViewHolder(View itemView) {
       super(itemView);
       venueNameTextView = itemView.findViewById(R.id.venueName);
       cityNameTextView = itemView.findViewById(R.id.cityName);
+      amPriceLabel = itemView.findViewById(R.id.amPriceLabel);
       amPriceTextView = itemView.findViewById(R.id.amPrice);
+      pmPriceLabel = itemView.findViewById(R.id.pmPriceLabel);
       pmPriceTextView = itemView.findViewById(R.id.pmPrice);
-      fullDayPriceView = itemView.findViewById(R.id.fullDayPrice);
+      fullDayPriceLabel = itemView.findViewById(R.id.fullDayPriceLabel);
+      fullDayPriceTextView = itemView.findViewById(R.id.fullDayPrice);
 
       itemView.setOnClickListener(this);
     }
