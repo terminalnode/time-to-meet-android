@@ -23,13 +23,11 @@ public class PaymentAlternativeSpinnerAdapter extends ArrayAdapter<PaymentAltern
 
   public PaymentAlternativeSpinnerAdapter(
       @NonNull Context context,
-      int listView,
-      int textView,
       @NonNull List<PaymentAlternative> objects)
   {
-    super(context, listView, textView, objects);
+    super(context, R.layout.single_payment_alternative, objects);
     this.context = context;
-    this.listLayout = listView;
+    this.listLayout = R.layout.single_payment_alternative;
   }
 
   @NonNull

@@ -22,13 +22,11 @@ public class CitySimplifiedSpinnerAdapter extends ArrayAdapter<CitySimplified> {
 
   public CitySimplifiedSpinnerAdapter(
       @NonNull Context context,
-      int listView,
-      int textView,
       @NonNull List<CitySimplified> objects
   ) {
-    super(context, listView, textView, objects);
+    super(context, R.layout.single_city_simplified, objects);
     this.context = context;
-    this.listLayout = listView;
+    this.listLayout = R.layout.single_city_simplified;
   }
 
   @NonNull

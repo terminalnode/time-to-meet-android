@@ -96,11 +96,7 @@ public class CreateBookingDateFragment extends Fragment {
 
     // Set up city spinner
     spinCity = view.findViewById(R.id.spinCity);
-    citySpinnerAdapter = new CitySimplifiedSpinnerAdapter(
-        getContext(),
-        R.layout.single_city_simplified,
-        R.id.cityNameTextView,
-        citiesWithVenues);
+    citySpinnerAdapter = new CitySimplifiedSpinnerAdapter(getContext(), citiesWithVenues);
     spinCity.setAdapter(citySpinnerAdapter);
 
     // Set up button listener

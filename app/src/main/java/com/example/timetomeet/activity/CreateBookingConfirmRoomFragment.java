@@ -31,6 +31,7 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
   AvailableRoom selectedRoom;
   EditText specialRequestMultiLineText;
   EditText numberOfParticipantsEditText;
+  EditText agreementNumberEditText;
   Spinner paymentAlternativeSpinner;
   Spinner seatingChoiceSpinner;
   RadioGroup timeSlotRadioGroup;
@@ -63,12 +64,11 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
     wantRoomInfoRadioGroup = view.findViewById(R.id.wantRoomInfoRadioGroup);
     wantActivityInfoRadioGroup = view.findViewById(R.id.wantActivityInfoRadioGroup);
     progressBar = view.findViewById(R.id.progressBar);
+    agreementNumberEditText = view.findViewById(R.id.agreementNumberEditText);
 
     // Set up payment alternative spinner
     PaymentAlternativeSpinnerAdapter paymentAdapter = new PaymentAlternativeSpinnerAdapter(
         getContext(),
-        R.layout.single_payment_alternative,
-        R.id.paymentAlternativeTextView,
         apiData.getParcelableArrayList(Helper.BUNDLE_PAYMENT_ALTERNATIVES));
     paymentAlternativeSpinner.setAdapter(paymentAdapter);
 
@@ -100,7 +100,27 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
 
 
   private void confirmRoomButtonClicked(View view) {
+    ConferenceRoom conferenceRoom = selectedRoom.getAssociatedConferenceRoom();
+
+    // Collect information from the form
+    // 1. Get payment method
+    PaymentAlternative payment = (PaymentAlternative) paymentAlternativeSpinner.getSelectedItem();
+
+    // 2. Check if user wants room info
+    boolean wantRoomInfo = wantRoomInfoRadioGroup
+        .getCheckedRadioButtonId() == R.id.yesRoomInfoRadioButton;
+
+    // 3. Check if user wants activity info
+    boolean wantActivityInfo = wantActivityInfoRadioGroup
+        .getCheckedRadioButtonId() == R.id.yesActivityInfoRadioButton;
+
+    // 4. Check for special request
     String specialRequest = specialRequestMultiLineText.getText().toString();
+
+    // 5. Get desired seating
+    ConferenceRoomSeating seating = (ConferenceRoomSeating) seatingChoiceSpinner.getSelectedItem();
+
+    // 6. Get number of participants
     int numberOfParticipants;
     try {
       numberOfParticipants = Integer.parseInt(numberOfParticipantsEditText.getText().toString());
@@ -114,21 +134,10 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
       return;
     }
 
-    // Get seating and payment alternative
-    PaymentAlternative payment = (PaymentAlternative) paymentAlternativeSpinner.getSelectedItem();
-    ConferenceRoomSeating seating = (ConferenceRoomSeating) seatingChoiceSpinner.getSelectedItem();
+    // 7. Get agreement number
+    String agreementNumber = agreementNumberEditText.getText().toString().trim();
 
-    ConferenceRoom conferenceRoom = selectedRoom.getAssociatedConferenceRoom();
-
-    // Check if user wants activity info
-    boolean wantActivityInfo = wantActivityInfoRadioGroup
-        .getCheckedRadioButtonId() == R.id.yesActivityInfoRadioButton;
-
-    // Check if user wants room info
-    boolean wantRoomInfo = wantRoomInfoRadioGroup
-        .getCheckedRadioButtonId() == R.id.yesRoomInfoRadioButton;
-
-    // Check which time slots the user wants to book.
+    // 8. Get time slot IDs the user wants to book.
     // id31 is the before noon time slot.
     // id32 is the afternoon time slot.
     long[] listOfTimeSlots;
