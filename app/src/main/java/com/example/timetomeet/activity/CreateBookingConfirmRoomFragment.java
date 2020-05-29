@@ -54,18 +54,19 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
     paymentAlternativeSpinner.setAdapter(paymentAdapter);
 
     // Set up seating spinner
+    EditText numParticipantsEditText = view.findViewById(R.id.numberOfParticipantsEditText);
     Spinner seatingChoiceSpinner = view.findViewById(R.id.seatingChoiceSpinner);
     SeatingSpinnerAdapter seatingAdapter = new SeatingSpinnerAdapter(
         getContext(),
         selectedRoom.getAssociatedConferenceRoom().getDefaultSeating(),
-        activity.getSeatingMap()
+        activity.getSeatingMap(),
+        numParticipantsEditText
     );
     seatingChoiceSpinner.setAdapter(seatingAdapter);
 
     view.findViewById(R.id.confirmRoomButton)
         .setOnClickListener(this::confirmRoomButtonClicked);
 
-    EditText numParticipantsEditText = view.findViewById(R.id.numberOfParticipantsEditText);
     numParticipantsEditText.addTextChangedListener(
         new ParticipantsNumberTextWatcher(seatingChoiceSpinner));
   }

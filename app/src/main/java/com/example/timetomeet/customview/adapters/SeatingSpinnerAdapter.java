@@ -1,10 +1,12 @@
 package com.example.timetomeet.customview.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,21 +24,22 @@ public class SeatingSpinnerAdapter extends ArrayAdapter<ConferenceRoomSeating> {
   private Context context;
   private Map<Long, Seating> seatingMap;
   private int layout;
+  private EditText numberOfParticipantsEditText;
 
   public SeatingSpinnerAdapter(
       @NonNull Context context,
       @NonNull List<ConferenceRoomSeating> objects,
-      Map<Long, Seating> seatingMap
+      Map<Long, Seating> seatingMap,
+      EditText numberOfParticipantsEditText
   ) {
     super(context, R.layout.single_available_seating, objects);
     this.context = context;
     this.seatingMap = seatingMap;
     this.layout = R.layout.single_available_seating;
+    this.numberOfParticipantsEditText = numberOfParticipantsEditText;
   }
 
-  @NonNull
-  @Override
-  public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+  public View render(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
     LayoutInflater inflater = LayoutInflater.from(getContext());
     convertView = inflater.inflate(layout, parent, false);
 
@@ -51,8 +54,27 @@ public class SeatingSpinnerAdapter extends ArrayAdapter<ConferenceRoomSeating> {
     return convertView;
   }
 
+  @NonNull
+  @Override
+  public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    ConferenceRoomSeating currentSeating = getItem(position);
+    try {
+      int participantsInEditText = Integer.parseInt(
+          numberOfParticipantsEditText
+              .getText()
+              .toString()
+          );
+
+      if (participantsInEditText > currentSeating.getNumberOfSeats()) {
+        numberOfParticipantsEditText.setText(String.format("%s", currentSeating.getNumberOfSeats()));
+      }
+    } catch (Exception ignored) {}
+
+    return render(position, convertView, parent);
+  }
+
   @Override
   public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-    return getView(position, convertView, parent);
+    return render(position, convertView, parent);
   }
 }

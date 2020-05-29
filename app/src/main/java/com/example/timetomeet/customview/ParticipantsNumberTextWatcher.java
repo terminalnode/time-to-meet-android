@@ -31,17 +31,26 @@ public class ParticipantsNumberTextWatcher implements TextWatcher {
     if (ignoreNextChange) {
       ignoreNextChange = false;
       return;
+    } else if (text.isEmpty()) {
+      return;
     }
 
     // Get numeric value from text
     int value = 1;
     try {
       value = Integer.parseInt(text);
-    } catch (NumberFormatException ignored) {}
+    } catch (NumberFormatException ignored) {
+      ignoreNextChange = true;
+      s.clear();
+      ignoreNextChange = true;
+      s.append('1');
+    }
 
+    // Find out the maximum allowed value
     ConferenceRoomSeating crs = (ConferenceRoomSeating) seatingSpinner.getSelectedItem();
     int maxValue = crs.getNumberOfSeats();
 
+    // Ensure that the text has a value between 1 and maxValue
     if (value < 1) {
       ignoreNextChange = true;
       s.clear();
@@ -54,5 +63,8 @@ public class ParticipantsNumberTextWatcher implements TextWatcher {
       ignoreNextChange = true;
       s.append(String.format("%s", maxValue));
     }
+
+    // Should already be false, just making sure
+    ignoreNextChange = false;
   }
 }
