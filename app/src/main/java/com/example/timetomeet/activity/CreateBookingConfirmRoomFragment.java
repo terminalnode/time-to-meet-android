@@ -21,11 +21,20 @@ import com.example.timetomeet.customview.ParticipantsNumberTextWatcher;
 import com.example.timetomeet.customview.adapters.AlphaNumericFilter;
 import com.example.timetomeet.customview.adapters.PaymentAlternativeSpinnerAdapter;
 import com.example.timetomeet.customview.adapters.SeatingSpinnerAdapter;
+import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
-import com.example.timetomeet.retrofit.entity.ConferenceRoom;
+import com.example.timetomeet.retrofit.entity.BookingAdd;
 import com.example.timetomeet.retrofit.entity.ConferenceRoomSeating;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CreateBookingConfirmRoomFragment extends Fragment {
   AvailableRoom selectedRoom;
@@ -38,6 +47,7 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
   RadioGroup wantRoomInfoRadioGroup;
   RadioGroup wantActivityInfoRadioGroup;
   ProgressBar progressBar;
+  String token;
 
   @Override
   public View onCreateView(
@@ -97,11 +107,7 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
         .setOnClickListener(this::confirmRoomButtonClicked);
   }
 
-
-
   private void confirmRoomButtonClicked(View view) {
-    ConferenceRoom conferenceRoom = selectedRoom.getAssociatedConferenceRoom();
-
     // Collect information from the form
     // 1. Get payment method
     PaymentAlternative payment = (PaymentAlternative) paymentAlternativeSpinner.getSelectedItem();
@@ -153,5 +159,52 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
       default:
         listOfTimeSlots = new long[]{ selectedRoom.getId31(), selectedRoom.getId32() };
     }
+
+    // Create new booking
+    BookingAdd addBooking = new BookingAdd();
+    addBooking.setPaymentAlternative(payment.getId());
+    addBooking.setWantHotelRoomInfo(wantRoomInfo);
+    addBooking.setWantActivityInfo(wantActivityInfo);
+    addBooking.setSpecialRequest(specialRequest);
+    addBooking.setNumberOfParticipants(numberOfParticipants);
+    addBooking.setBookingSourceSystem(2);
+    addBooking.setAgreementNumber(agreementNumber);
+
+
+    token = getActivity().getIntent().getStringExtra(Helper.BUNDLE_TOKEN);
+
+    //Api calls
+    createNewBooking(addBooking);
+
+  }
+
+  private void createNewBooking(BookingAdd addBooking) {
+    RetrofitHelper
+        .addBooking(addBooking, token)
+        .enqueue(new Callback<JSONObject>() {
+          @Override
+          public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+            if (response.body() != null) {
+              Log.i(Logging.CreateBookingActivity, "Successfully started a booking");
+            } else {
+              Snackbar.make(getView(), R.string.something_went_wrong, Snackbar.LENGTH_LONG).show();
+              try {
+                Log.e(
+                    Logging.CreateBookingActivity,
+                    "Booking failed " + response.errorBody().string());
+              } catch (IOException ignored) { }
+            }
+          }
+
+          @Override
+          public void onFailure(Call<JSONObject> call, Throwable t) {
+            Log.e(Logging.CreateBookingActivity, "Error on createNewBooking: " + t);
+            Snackbar.make(getView(), R.string.something_went_wrong, Snackbar.LENGTH_LONG).show();
+          }
+        });
+  }
+
+  private void addTimeSlotToBooking() {
+    RetrofitHelper.
   }
 }

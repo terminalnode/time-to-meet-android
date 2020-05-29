@@ -2,6 +2,7 @@ package com.example.timetomeet.retrofit;
 
 import com.example.timetomeet.retrofit.entity.AvailableRoomsContainer;
 import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
+import com.example.timetomeet.retrofit.entity.BookingAdd;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.ConferenceRoom;
@@ -17,11 +18,14 @@ import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
 import com.example.timetomeet.retrofit.entity.Venue;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -67,4 +71,7 @@ public interface Endpoint {
 
   @GET("standardseating/")
   Call<List<Seating>> getStandardSeating();
+
+  @POST("booking/add/")
+  Call<JSONObject> addBooking(@Body BookingAdd addBooking, @Header("Authorization") String token);
 }

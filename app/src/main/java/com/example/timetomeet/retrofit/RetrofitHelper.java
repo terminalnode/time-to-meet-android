@@ -2,6 +2,7 @@ package com.example.timetomeet.retrofit;
 
 import com.example.timetomeet.retrofit.entity.AvailableRoomsContainer;
 import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
+import com.example.timetomeet.retrofit.entity.BookingAdd;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.ConferenceRoom;
@@ -16,6 +17,8 @@ import com.example.timetomeet.retrofit.entity.TechnologyAvailability;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
 import com.example.timetomeet.retrofit.entity.Venue;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -107,5 +110,9 @@ public class RetrofitHelper {
 
   public static Call<List<Seating>> getStandardSeating() {
     return getBase().getStandardSeating();
+  }
+
+  public static Call<JSONObject> addBooking(BookingAdd addBooking, String token) {
+    return getBase().addBooking(addBooking, token);
   }
 }

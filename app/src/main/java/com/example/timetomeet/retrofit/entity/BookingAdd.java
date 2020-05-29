@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class BookingAdd {
   @SerializedName("paymentAlternative")
-  private PaymentAlternative paymentAlternative;
+  private Long paymentAlternative;
 
   @SerializedName("wantHotelRoomInfo")
   private Boolean wantHotelRoomInfo;
@@ -47,7 +47,7 @@ public class BookingAdd {
   }
 
   //----- Setters -----//
-  public void setPaymentAlternative(PaymentAlternative paymentAlternative) {
+  public void setPaymentAlternative(Long paymentAlternative) {
     this.paymentAlternative = paymentAlternative;
   }
 
@@ -76,7 +76,7 @@ public class BookingAdd {
   }
 
   //----- Getters -----//
-  public PaymentAlternative getPaymentAlternative() {
+  public Long getPaymentAlternative() {
     return paymentAlternative;
   }
 

@@ -9,7 +9,6 @@ import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
-import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Seating;
 
 import java.util.List;
