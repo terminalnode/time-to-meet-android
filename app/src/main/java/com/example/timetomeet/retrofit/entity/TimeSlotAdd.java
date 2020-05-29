@@ -7,10 +7,20 @@ public class TimeSlotAdd {
   Long id;
 
   @SerializedName("chosenSeating")
-  Long seatingId;
+  Long chosenSeating;
 
   //----- Constructors -----//
   public TimeSlotAdd() {
+  }
+
+  //----- Methods -----//
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("TimeSlotAdd{");
+    sb.append("id=").append(id);
+    sb.append(", seatingId=").append(chosenSeating);
+    sb.append('}');
+    return sb.toString();
   }
 
   //----- Setters -----//
@@ -18,8 +28,8 @@ public class TimeSlotAdd {
     this.id = id;
   }
 
-  public void setSeatingId(Long seatingId) {
-    this.seatingId = seatingId;
+  public void setChosenSeating(Long chosenSeating) {
+    this.chosenSeating = chosenSeating;
   }
 
   //----- Getters -----//
@@ -27,7 +37,7 @@ public class TimeSlotAdd {
     return id;
   }
 
-  public Long getSeatingId() {
-    return seatingId;
+  public Long getChosenSeating() {
+    return chosenSeating;
   }
 }

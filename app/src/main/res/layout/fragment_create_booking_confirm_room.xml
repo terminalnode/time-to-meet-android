@@ -258,10 +258,9 @@
     <ProgressBar
       android:id="@+id/progressBar"
       style="?android:attr/progressBarStyle"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="44dp"
+      android:layout_height="0dp"
       android:layout_marginStart="10dp"
-      android:indeterminate="true"
       android:visibility="gone"
       app:layout_constraintBottom_toBottomOf="@+id/confirmRoomButton"
       app:layout_constraintStart_toEndOf="@+id/confirmRoomButton"

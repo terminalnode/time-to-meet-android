@@ -23,6 +23,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -120,7 +121,7 @@ public class RetrofitHelper {
     return getBase().addBooking(addBooking, token);
   }
 
-  public static Call<JSONObject> addTimeSlot(TimeSlotAdd timeSlotAdd, Long timeSlotId, String token) {
+  public static Call<TimeSlotAdd> addTimeSlot(TimeSlotAdd timeSlotAdd, Long timeSlotId, String token) {
     return getBase().addTimeSlot(timeSlotAdd, timeSlotId, token);
   }
 }

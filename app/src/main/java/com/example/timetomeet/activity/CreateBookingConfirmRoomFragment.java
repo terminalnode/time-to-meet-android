@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -31,9 +32,9 @@ import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.TimeSlotAdd;
 import com.google.android.material.snackbar.Snackbar;
 
-import org.json.JSONObject;
-
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,6 +51,7 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
   RadioGroup wantRoomInfoRadioGroup;
   RadioGroup wantActivityInfoRadioGroup;
   ProgressBar progressBar;
+  Button confirmRoomButton;
   String token;
   Runnable timeSlotChecker;
 
@@ -68,7 +70,6 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
     Bundle apiData = getActivity().getIntent().getExtras();
     CreateBookingActivity activity = (CreateBookingActivity) getActivity();
     selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
-    Log.i("YOLO", selectedRoom.toString());
 
     // Find views
     specialRequestMultiLineText = view.findViewById(R.id.specialRequestMultilineText);
@@ -80,6 +81,7 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
     wantActivityInfoRadioGroup = view.findViewById(R.id.wantActivityInfoRadioGroup);
     progressBar = view.findViewById(R.id.progressBar);
     agreementNumberEditText = view.findViewById(R.id.agreementNumberEditText);
+    confirmRoomButton = view.findViewById(R.id.confirmRoomButton);
 
     // Find am/pm/full day radio buttons, disable the ones that are unavailable.
     RadioButton amRadioButton = view.findViewById(R.id.amRadioButton);
@@ -122,22 +124,24 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
         new ParticipantsNumberTextWatcher(seatingChoiceSpinner));
 
     // Set input filters to agreement number
-    EditText agreementNumber = view.findViewById(R.id.agreementNumberEditText);
-    agreementNumber.setFilters(new InputFilter[] {
+    agreementNumberEditText.setFilters(new InputFilter[] {
         new InputFilter.AllCaps(),
         new AlphaNumericFilter()
     });
 
     // Set on confirm room button-click
-    view.findViewById(R.id.confirmRoomButton)
+    confirmRoomButton
         .setOnClickListener(this::confirmRoomButtonClicked);
   }
 
   private void confirmRoomButtonClicked(View view) {
-    // Reset and set progressbar to indefinite
-    progressBar.setProgress(0);
-    progressBar.setMax(0);
-    progressBar.setIndeterminate(true);
+    // Disable the confirm room button and show progress bar
+    progressBar.setVisibility(View.VISIBLE);
+    confirmRoomButton.setClickable(false);
+    confirmRoomButton.setAlpha(0.5F);
+
+    Log.i("YOLO", "confirmRoomButtonClicked progress: " + progressBar.getProgress());
+    Log.i("YOLO", "confirmRoomButtonClicked max: " + progressBar.getMax());
 
     // Collect information from the form
     // 1. Get payment method
@@ -243,34 +247,35 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
 
   private void addAllTimeSlots(long[] listOfTimeSlots, ConferenceRoomSeating seating) {
     // Make the progress bar determinate again and set appropriate max
-    progressBar.setIndeterminate(false);
-    progressBar.setMax(listOfTimeSlots.length);
+    int numberOfTimeSlots = listOfTimeSlots.length;
+    List<TimeSlotAdd> finishedTimeSlots = new ArrayList<>();
 
     // Start adding the time slots
     for (long timeSlotId : listOfTimeSlots) {
       TimeSlotAdd timeSlotAdd = new TimeSlotAdd();
-      timeSlotAdd.setSeatingId(seating.getSeatingId());
-      addTimeSlotToBooking(timeSlotId, timeSlotAdd);
+      timeSlotAdd.setChosenSeating(seating.getSeatingId());
+      addTimeSlotToBooking(timeSlotId, timeSlotAdd, finishedTimeSlots);
     }
 
     // Runnable for checking that the time slots have been added
     long delayMillis = 250;
     Handler timeSlotCheckerHandler = new Handler();
     timeSlotChecker = () -> {
-      boolean allTimeSlotsChecked = progressBar.getProgress() >= progressBar.getMax();
+      boolean allTimeSlotsChecked = finishedTimeSlots.size() == numberOfTimeSlots;
 
       Log.i(
           Logging.CreateBookingActivity,
           String.format(
               "%s / %s time slots added, all time slots added: %s",
-              progressBar.getProgress(),
-              progressBar.getMax(),
+              finishedTimeSlots.size(),
+              numberOfTimeSlots,
               allTimeSlotsChecked)
       );
 
       // Check if all time slots are done, and if so move to the next fragment
       if (allTimeSlotsChecked) {
         Log.i(Logging.CreateBookingActivity, "All time slots added!");
+        progressBar.setVisibility(View.GONE);
         // TODO Move to the next fragment
 
       } else {
@@ -282,25 +287,41 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
     timeSlotCheckerHandler.postDelayed(timeSlotChecker, delayMillis);
   }
 
-  private void addTimeSlotToBooking(long timeSlotId, TimeSlotAdd timeSlotAdd) {
+  private void addTimeSlotToBooking(
+      long timeSlotId,
+      TimeSlotAdd timeSlotAdd,
+      List<TimeSlotAdd> finishedTimeSlots
+  ) {
     // TODO Add some kind of error handling if adding time slot fails
 
-    TimeSlotAdd timeSlot = new TimeSlotAdd();
     RetrofitHelper
-        .addTimeSlot(timeSlot, timeSlotId, token)
-        .enqueue(new Callback<JSONObject>() {
+        .addTimeSlot(timeSlotAdd, timeSlotId, token)
+        .enqueue(new Callback<TimeSlotAdd>() {
           @Override
-          public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+          public void onResponse(Call<TimeSlotAdd> call, Response<TimeSlotAdd> response) {
+            // Log the error and return if response body is null
+            // Increment progress bar until we've implemented
+            // some kind of proper error handling.
+            if (response.body() == null) {
+              try {
+                Log.i("YOLO", response.errorBody().string());
+              } catch (IOException ignored) { }
+              finishedTimeSlots.add(null);
+              return;
+            }
+
+            // Response body is not null, we have a time slot reserved \o/
+            finishedTimeSlots.add(response.body());
             Log.i(
                 Logging.CreateBookingActivity,
-                "Add time slot response code: " + response.code()
+                "Successfully reserved time slot: " + response.body()
             );
-            progressBar.incrementProgressBy(1);
           }
 
           @Override
-          public void onFailure(Call<JSONObject> call, Throwable t) {
+          public void onFailure(Call<TimeSlotAdd> call, Throwable t) {
             Log.e(Logging.CreateBookingActivity, "Failed to add time slot: " + t);
+            finishedTimeSlots.add(null);
           }
         });
   }

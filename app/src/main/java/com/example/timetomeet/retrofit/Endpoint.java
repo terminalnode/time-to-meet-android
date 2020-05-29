@@ -19,10 +19,9 @@ import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
 import com.example.timetomeet.retrofit.entity.Venue;
 
-import org.json.JSONObject;
-
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -87,7 +86,7 @@ public interface Endpoint {
       @Header("Authorization") String token);
 
   @PUT("conferenceroomavailability/book/{id}/")
-  Call<JSONObject> addTimeSlot(
+  Call<TimeSlotAdd> addTimeSlot(
       @Body TimeSlotAdd timeSlotAdd,
       @Path("id") Long timeSlotId,
       @Header("Authorization") String token);
