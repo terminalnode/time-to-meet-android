@@ -34,16 +34,13 @@ public class CreateBookingSearchResultFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
 
     //Get bundle from first fragment
-    Bundle bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
+    CreateBookingActivity createBookingActivity = (CreateBookingActivity) getActivity();
+    Bundle bookingBundle = createBookingActivity.getBookingBundle();
     Bundle apiData = getActivity().getIntent().getExtras();
     List<AvailableRoom> availableRooms = bookingBundle.getParcelableArrayList(Helper.BUNDLE_AVAILABLE_ROOMS_LIST);
     List<CitySimplified> cities = apiData.getParcelableArrayList(Helper.BUNDLE_CITIES);
 
-    Map<Long, CitySimplified> citiesMap = cities.stream()
-        .collect(Collectors.toMap(
-            CitySimplified::getId, // Key
-            citySimplified -> citySimplified // Value
-        ));
+    Map<Long, CitySimplified> citiesMap = createBookingActivity.getCityMap();
     availableRooms.forEach(room -> room.setAssociatedCity(citiesMap.get(room.getCityId())));
 
     // Add the result list to the recycler view
