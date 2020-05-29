@@ -77,4 +77,5 @@
   <string name="pm_radio_button_label">Afternoon</string>
   <string name="full_day_radio_button_label">Full day</string>
   <string name="reserve_room_button">Reserve Room</string>
+  <string name="payment_alternative_place_holder">[ Payment Alternative ]</string>
 </resources>

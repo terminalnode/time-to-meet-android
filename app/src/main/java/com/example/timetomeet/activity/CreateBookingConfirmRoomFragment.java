@@ -14,11 +14,16 @@ import androidx.fragment.app.Fragment;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
+import com.example.timetomeet.customview.adapters.PaymentAlternativeSpinnerAdapter;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
 import com.example.timetomeet.retrofit.entity.ConferenceRoom;
+import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Seating;
 
+import java.util.List;
+
 public class CreateBookingConfirmRoomFragment extends Fragment {
+
   @Override
   public View onCreateView(
       LayoutInflater inflater, ViewGroup container,
@@ -30,6 +35,15 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    //Set up payment alternative spinner
+    Bundle apiData = getActivity().getIntent().getExtras();
+    Spinner paymentAlternativeSpinner = view.findViewById(R.id.paymentAlternativeSpinner);
+    PaymentAlternativeSpinnerAdapter paymentAdapter = new PaymentAlternativeSpinnerAdapter(
+        getContext(),
+        R.layout.single_payment_alternative,
+        R.id.paymentAlternativeTextView,
+        apiData.getParcelableArrayList(Helper.BUNDLE_PAYMENT_ALTERNATIVES));
+    paymentAlternativeSpinner.setAdapter(paymentAdapter);
 
     view.findViewById(R.id.confirmRoomButton)
         .setOnClickListener(this::confirmRoomButtonClicked);
