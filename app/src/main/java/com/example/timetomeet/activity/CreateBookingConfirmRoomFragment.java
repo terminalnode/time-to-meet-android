@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
 import com.example.timetomeet.customview.adapters.PaymentAlternativeSpinnerAdapter;
+import com.example.timetomeet.customview.adapters.SeatingSpinnerAdapter;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
 import com.example.timetomeet.retrofit.entity.ConferenceRoom;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
@@ -23,6 +24,7 @@ import com.example.timetomeet.retrofit.entity.Seating;
 import java.util.List;
 
 public class CreateBookingConfirmRoomFragment extends Fragment {
+  AvailableRoom selectedRoom;
 
   @Override
   public View onCreateView(
@@ -35,8 +37,12 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    //Set up payment alternative spinner
+    Bundle bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
     Bundle apiData = getActivity().getIntent().getExtras();
+    CreateBookingActivity activity = (CreateBookingActivity) getActivity();
+    selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
+
+    // Set up payment alternative spinner
     Spinner paymentAlternativeSpinner = view.findViewById(R.id.paymentAlternativeSpinner);
     PaymentAlternativeSpinnerAdapter paymentAdapter = new PaymentAlternativeSpinnerAdapter(
         getContext(),
@@ -45,13 +51,20 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
         apiData.getParcelableArrayList(Helper.BUNDLE_PAYMENT_ALTERNATIVES));
     paymentAlternativeSpinner.setAdapter(paymentAdapter);
 
+    // Set up seating spinner
+    Spinner seatingChoiceSpinner = view.findViewById(R.id.seatingChoiceSpinner);
+    SeatingSpinnerAdapter seatingAdapter = new SeatingSpinnerAdapter(
+        getContext(),
+        selectedRoom.getAssociatedConferenceRoom().getDefaultSeating(),
+        activity.getSeatingMap()
+    );
+    seatingChoiceSpinner.setAdapter(seatingAdapter);
+
     view.findViewById(R.id.confirmRoomButton)
         .setOnClickListener(this::confirmRoomButtonClicked);
   }
 
   private void confirmRoomButtonClicked(View view) {
-    Bundle bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
-    AvailableRoom selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
     ConferenceRoom conferenceRoom = selectedRoom.getAssociatedConferenceRoom();
     ProgressBar progressBar = view.findViewById(R.id.progressBar);
 
