@@ -31,6 +31,9 @@ import retrofit2.Response;
 
 public class CreateBookingRoomDetailsFragment extends Fragment {
   private Button createBookingButton;
+  TextView beforeNoonPriceTextView;
+  TextView afterNoonPriceTextView;
+  TextView fullDayPriceTextView;
 
   @Override
   public View onCreateView(
@@ -61,9 +64,9 @@ public class CreateBookingRoomDetailsFragment extends Fragment {
     cityNameTextView.setText(cityName);
 
     // Set prices in text view
-    TextView beforeNoonPriceTextView = view.findViewById(R.id.beforeNoonPriceTextView);
-    TextView afterNoonPriceTextView = view.findViewById(R.id.afterNoonPriceTextView);
-    TextView fullDayPriceTextView = view.findViewById(R.id.fullDayPriceTextView);
+    beforeNoonPriceTextView = view.findViewById(R.id.beforeNoonPriceTextView);
+    afterNoonPriceTextView = view.findViewById(R.id.afterNoonPriceTextView);
+    fullDayPriceTextView = view.findViewById(R.id.fullDayPriceTextView);
     beforeNoonPriceTextView.setText(String.format("%.02f kr", selectedRoom.getPreNoonPrice()));
     afterNoonPriceTextView.setText(String.format("%.02f kr", selectedRoom.getAfterNoonPrice()));
     fullDayPriceTextView.setText(String.format("%.02f kr", selectedRoom.getFullDayPrice()));
@@ -145,6 +148,26 @@ public class CreateBookingRoomDetailsFragment extends Fragment {
         "%s - %s",
         room.getAfterNoonHourStart(),
         room.getAfterNoonHourEnd()));
+
+    // Dim unavailable hours and prices
+    if (selectedRoom.getId31() == null) {
+      am.setAlpha(0.5F);
+      beforeNoonPriceTextView.setAlpha(0.5F);
+      view.findViewById(R.id.beforeNoonTextView).setAlpha(0.5F);
+      view.findViewById(R.id.amOpeningHoursTextView).setAlpha(0.5F);
+
+    } else if (selectedRoom.getId32() == null) {
+      pm.setAlpha(0.5F);
+      afterNoonPriceTextView.setAlpha(0.5F);
+      view.findViewById(R.id.afterNoonTextView).setAlpha(0.5F);
+      view.findViewById(R.id.pmOpeningHoursTextView).setAlpha(0.5F);
+    }
+
+    // Dim full day prices if either AM or PM time slots are unavailable
+    if (selectedRoom.getId31() == null || selectedRoom.getId32() == null) {
+      fullDayPriceTextView.setAlpha(0.5F);
+      view.findViewById(R.id.fullDayTextView).setAlpha(0.5F);
+    }
 
     // List available technologies
     RecyclerView technologyRecyclerView = view.findViewById(R.id.technologyAvailabilityRecyclerView);
