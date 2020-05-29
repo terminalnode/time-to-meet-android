@@ -8,12 +8,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
+import com.example.timetomeet.customview.ParticipantsNumberTextWatcher;
 import com.example.timetomeet.customview.adapters.PaymentAlternativeSpinnerAdapter;
 import com.example.timetomeet.customview.adapters.SeatingSpinnerAdapter;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
@@ -62,6 +64,10 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
 
     view.findViewById(R.id.confirmRoomButton)
         .setOnClickListener(this::confirmRoomButtonClicked);
+
+    EditText numParticipantsEditText = view.findViewById(R.id.numberOfParticipantsEditText);
+    numParticipantsEditText.addTextChangedListener(
+        new ParticipantsNumberTextWatcher(seatingChoiceSpinner));
   }
 
   private void confirmRoomButtonClicked(View view) {
@@ -102,6 +108,6 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
 
     Spinner paymentAlternativeSpinner = view.findViewById(R.id.paymentAlternativeSpinner);
     Spinner seatingChoiceSpinner = view.findViewById(R.id.seatingChoiceSpinner);
-    //Seating seating = (Seating) seatingChoiceSpinner.getSelectedItem();
+    Seating seating = (Seating) seatingChoiceSpinner.getSelectedItem();
   }
 }
