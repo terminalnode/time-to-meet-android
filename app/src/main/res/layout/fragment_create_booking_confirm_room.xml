@@ -193,17 +193,17 @@
       app:layout_constraintTop_toBottomOf="@+id/numberOfParticipantsEditText" />
 
     <EditText
-      android:id="@+id/agreementNumberPlainText"
+      android:id="@+id/agreementNumberEditText"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="10dp"
       android:ems="10"
       android:hint="@string/agreement_number_header"
-      android:inputType="text"
+      android:importantForAutofill="no"
+      android:inputType="text|textCapCharacters"
       android:labelFor="@id/agreementNumberTextView"
       app:layout_constraintStart_toStartOf="@+id/agreementNumberTextView"
-      app:layout_constraintTop_toBottomOf="@+id/agreementNumberTextView"
-      android:importantForAutofill="no" />
+      app:layout_constraintTop_toBottomOf="@+id/agreementNumberTextView" />
 
     <TextView
       android:id="@+id/timeSlotTextView"
@@ -212,7 +212,7 @@
       android:layout_marginTop="20dp"
       android:text="@string/time_slot_header"
       app:layout_constraintStart_toStartOf="@+id/agreementNumberTextView"
-      app:layout_constraintTop_toBottomOf="@+id/agreementNumberPlainText" />
+      app:layout_constraintTop_toBottomOf="@+id/agreementNumberEditText" />
 
     <RadioGroup
       android:id="@+id/timeSlotRadioGroup"
