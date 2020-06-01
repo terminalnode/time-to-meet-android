@@ -20,6 +20,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:text="@string/time_select_place_holder"
+    android:visibility="gone"
     app:layout_constraintStart_toStartOf="@+id/selectFoodCheckBox"
     app:layout_constraintTop_toBottomOf="@+id/selectFoodCheckBox" />
 </androidx.constraintlayout.widget.ConstraintLayout>

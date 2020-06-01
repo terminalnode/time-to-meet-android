@@ -17,6 +17,8 @@ public class VenueFoodBeverage {
 
   private boolean isSelected;
 
+  private String selectedTime;
+
   //----- Constructors -----//
   public VenueFoodBeverage() {
   }
@@ -54,6 +56,10 @@ public class VenueFoodBeverage {
     isSelected = selected;
   }
 
+  public void setSelectedTime(String selectedTime) {
+    this.selectedTime = selectedTime;
+  }
+
   //----- Getters -----//
   public Long getId() {
     return id;
@@ -73,5 +79,9 @@ public class VenueFoodBeverage {
 
   public boolean isSelected() {
     return isSelected;
+  }
+
+  public String getSelectedTime() {
+    return selectedTime;
   }
 }
