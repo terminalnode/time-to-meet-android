@@ -17,11 +17,7 @@ public class IWantedToMakeABooleanButFailed {
   }
 
   public boolean isTrue() {
-    if ("1".equals(oneOrZero)) {
-      return true;
-    } else {
-      return false;
-    }
+    return "1".equals(oneOrZero);
   }
 
   //----- Setters -----//
