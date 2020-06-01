@@ -59,5 +59,16 @@
     android:id="@+id/FoodFragment"
     android:name="com.example.timetomeet.activity.createbooking.FoodFragment"
     tools:layout="@layout/fragment_food">
+
+    <action
+      android:id="@+id/action_FoodFragment_to_BookingConfirmationFragment"
+      app:destination="@id/BookingConfirmationFragment" />
+  </fragment>
+
+  <!-- Booking Confirmation Fragment -->
+  <fragment
+    android:id="@+id/BookingConfirmationFragment"
+    android:name="com.example.timetomeet.activity.createbooking.BookingConfirmationFragment"
+    tools:layout="@layout/fragment_booking_confirmation">
   </fragment>
 </navigation>

@@ -4,9 +4,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +47,7 @@ public class FoodFragment extends Fragment {
   private Map<Long, FoodBeverage> foodMap;
   private Button confirmButton;
   private String token;
+  private Runnable confirmBookingActivity;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,6 +112,43 @@ public class FoodFragment extends Fragment {
     conferenceRoomTechnologies.forEach(conferenceRoomTechnology -> {
       addSelectableTechnology(conferenceRoomTechnology, finishedConferenceRoomTechnologies);
     });
+
+    startBookingConfirmationFragment(
+        venueFoodBeverages,
+        conferenceRoomTechnologies,
+        finishedVenueFoodBeverages,
+        finishedConferenceRoomTechnologies);
+  }
+
+  private void startBookingConfirmationFragment(
+      List<VenueFoodBeverage> venueFoodBeverages,
+      List<ConferenceRoomTechnology> conferenceRoomTechnologies,
+      List<BookingFoodBeverageAdd> finishedVenueFoodBeverages,
+      List<BookingSelectableTechnologyAdd> finishedConferenceRoomTechnologies
+  ) {
+    Handler handler = new Handler();
+    long delayMillis = 250;
+    int totalNumFood = venueFoodBeverages.size();
+    int totalNumTech = conferenceRoomTechnologies.size();
+
+    confirmBookingActivity = () -> {
+      boolean foodIsDone = totalNumFood == finishedVenueFoodBeverages.size();
+      boolean techIsDone = totalNumTech == finishedConferenceRoomTechnologies.size();
+      Log.i(Logging.CreateBookingActivity, "All food requested? " + foodIsDone);
+      Log.i(Logging.CreateBookingActivity, "All tech requested? " + techIsDone);
+      Log.i(Logging.CreateBookingActivity, "Everything requested? " + (foodIsDone && techIsDone));
+
+      if (foodIsDone && techIsDone) {
+        Log.i(Logging.CreateBookingActivity, "Starting Booking Confirmation Fragment");
+        NavHostFragment
+            .findNavController(FoodFragment.this)
+            .navigate(R.id.action_FoodFragment_to_BookingConfirmationFragment);
+      } else {
+        handler.postDelayed(confirmBookingActivity, delayMillis);
+      }
+    };
+
+    handler.postDelayed(confirmBookingActivity, delayMillis);
   }
 
   private void addFoodBeverage(VenueFoodBeverage vfb, List<BookingFoodBeverageAdd> finishedVenueFoodBeverages) {

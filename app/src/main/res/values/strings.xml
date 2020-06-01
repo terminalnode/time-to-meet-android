@@ -1,97 +1,97 @@
 <resources>
   <!-- General -->
-    <string name="app_name" translatable="false">Time to Meet</string>
-    <string name="something_went_wrong">Oops! Something went wrong.</string>
+  <string name="app_name" translatable="false">Time to Meet</string>
+  <string name="something_went_wrong">Oops! Something went wrong.</string>
 
   <!-- Place Holders -->
-    <string name="payment_alternative_place_holder">[ Payment Alternative ]</string>
-    <string name="food_beverage_place_holder">[ Food Beverage Name ]</string>
-    <string name="venue_place_holder">[ Venue name ]</string>
-    <string name="city_place_holder">[ City name ]</string>
-    <string name="technology_name_place_holder">[ Technology name ]</string>
-    <string name="empty_description_place_holder">Missing description.</string>
-    <string name="missing_name_place_holder">No name</string>
-    <string name="object_missing_place_holder">Object missing</string>
-    <string name="price_placholder" translatable="false">0.00 kr</string>
-    <string name="seat_type_place_holder">[ Seating type ]</string>
-    <string name="description_place_holder">Loading description…</string>
-    <string name="number_place_holder" translatable="false">0</string>
-    <string name="opening_hours_place_holder" translatable="false">00:00 - 00:00</string>
-    <string name="date_place_holder" translatable="false">1945-09-02</string>
-    <string name="default_number_one" translatable="false">1</string>
-    <string name="time_select_place_holder">Select time for food to be delivered</string>
+  <string name="payment_alternative_place_holder">[ Payment Alternative ]</string>
+  <string name="food_beverage_place_holder">[ Food Beverage Name ]</string>
+  <string name="venue_place_holder">[ Venue name ]</string>
+  <string name="city_place_holder">[ City name ]</string>
+  <string name="technology_name_place_holder">[ Technology name ]</string>
+  <string name="empty_description_place_holder">Missing description.</string>
+  <string name="missing_name_place_holder">No name</string>
+  <string name="object_missing_place_holder">Object missing</string>
+  <string name="price_placholder" translatable="false">0.00 kr</string>
+  <string name="seat_type_place_holder">[ Seating type ]</string>
+  <string name="description_place_holder">Loading description…</string>
+  <string name="number_place_holder" translatable="false">0</string>
+  <string name="opening_hours_place_holder" translatable="false">00:00 - 00:00</string>
+  <string name="date_place_holder" translatable="false">1945-09-02</string>
+  <string name="default_number_one" translatable="false">1</string>
+  <string name="time_select_place_holder">Select time for food to be delivered</string>
 
   <!-- Descriptions -->
-    <string name="splash_image_description">The app\'s logo, sillouette of people sitting in a meeting.</string>
-    <string name="seat_list_people_icon_description">Image of two people indicating that the number is showing highest possible number of participants.</string>
+  <string name="splash_image_description">The app\'s logo, sillouette of people sitting in a meeting.</string>
+  <string name="seat_list_people_icon_description">Image of two people indicating that the number is showing highest possible number of participants.</string>
 
   <!-- Splash screen -->
-    <string name="fetched_cities">Got cities!</string>
-    <string name="fetched_technology">Got technology!</string>
-    <string name="fetched_payment_alternatives">Got payment alternatives!</string>
-    <string name="fetched_food_bevarage_group_list">Fetched meal groups!</string>
-    <string name="fetched_food_bevarage_list">Fetched food and bevarages!</string>
-    <string name="fetched_technology_availability_text">Fetched technologies!</string>
-    <string name="fetched_standard_seating">Fetched standard seating!</string>
-    <string name="everything_loaded">Everything loaded!</string>
+  <string name="fetched_cities">Got cities!</string>
+  <string name="fetched_technology">Got technology!</string>
+  <string name="fetched_payment_alternatives">Got payment alternatives!</string>
+  <string name="fetched_food_bevarage_group_list">Fetched meal groups!</string>
+  <string name="fetched_food_bevarage_list">Fetched food and bevarages!</string>
+  <string name="fetched_technology_availability_text">Fetched technologies!</string>
+  <string name="fetched_standard_seating">Fetched standard seating!</string>
+  <string name="everything_loaded">Everything loaded!</string>
 
   <!-- Login screen -->
-    <string name="loading_label">Loading...</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-    <string name="sign_in">Sign in</string>
-    <string name="sign_up">Sign up</string>
-    <string name="invalid_credentials">Invalid username or password</string>
+  <string name="loading_label">Loading...</string>
+  <string name="username">Username</string>
+  <string name="password">Password</string>
+  <string name="sign_in">Sign in</string>
+  <string name="sign_up">Sign up</string>
+  <string name="invalid_credentials">Invalid username or password</string>
 
   <!-- Create user -->
-    <string name="first_name">First name</string>
-    <string name="last_name">Last name</string>
-    <string name="email">E-mail</string>
-    <string name="phone_number">Phone number</string>
-    <string name="organization_name">Organization name</string>
-    <string name="organization_number">Organization number</string>
-    <string name="street_address">Street address</string>
-    <string name="city_name">City</string>
-    <string name="zip_code">Zip code</string>
-    <string name="register">Register</string>
-    <string name="create_new_user">Create New User</string>
+  <string name="first_name">First name</string>
+  <string name="last_name">Last name</string>
+  <string name="email">E-mail</string>
+  <string name="phone_number">Phone number</string>
+  <string name="organization_name">Organization name</string>
+  <string name="organization_number">Organization number</string>
+  <string name="street_address">Street address</string>
+  <string name="city_name">City</string>
+  <string name="zip_code">Zip code</string>
+  <string name="register">Register</string>
+  <string name="create_new_user">Create New User</string>
 
   <!-- CreateBooking -->
-    <!-- Date Fragment -->
-      <string name="search_available_rooms_title">Search Available Rooms</string>
-      <string name="pick_date">Pick a date</string>
-      <string name="pick_city">Pick a city:</string>
-      <string name="start_date_label">Start date:</string>
-      <string name="end_date_label">End date:</string>
-      <string name="search_button_text">Search</string>
-      <string name="no_search_results">Query returned no results!</string>
+  <!-- Date Fragment -->
+  <string name="search_available_rooms_title">Search Available Rooms</string>
+  <string name="pick_date">Pick a date</string>
+  <string name="pick_city">Pick a city:</string>
+  <string name="start_date_label">Start date:</string>
+  <string name="end_date_label">End date:</string>
+  <string name="search_button_text">Search</string>
+  <string name="no_search_results">Query returned no results!</string>
 
-    <!-- Other -->
-      <string name="am_price_label">Before noon:</string>
-      <string name="pm_price_label">Afternoon:</string>
-      <string name="create_booking_button_label">Create Booking</string>
-      <string name="want_room_info_header">Include room information?</string>
-      <string name="want_activity_info_header">Include activity information?</string>
-      <string name="radio_button_yes">Yes</string>
-      <string name="radio_button_no">No</string>
-      <string name="full_day_price_label">Full day:</string>
-      <string name="hours_header">Opening hours</string>
-      <string name="am_opening_hours_label">Before noon:</string>
-      <string name="pm_opening_hours_label">After noon:</string>
-      <string name="prices_header">Pricing</string>
-      <string name="seatings_header">Seating Options</string>
-      <string name="technology_header">Available Technology</string>
-      <string name="description_header">Description</string>
-      <string name="confirm_room_header">Reserve Conference Room</string>
-      <string name="payment_alternative_header">Choose payment method</string>
-      <string name="special_request_header">Special requests</string>
-      <string name="seating_choice_header">Choose seating</string>
-      <string name="number_of_participants_header">Number of participants</string>
-      <string name="agreement_number_header">Agreement number</string>
-      <string name="time_slot_header">Choose time slot</string>
-      <string name="am_radio_button_label">Before noon</string>
-      <string name="pm_radio_button_label">Afternoon</string>
-      <string name="full_day_radio_button_label">Full day</string>
-      <string name="reserve_room_button">Reserve Room</string>
-      <string name="invalid_number_of_participants">Invalid number of participants</string>
+  <!-- Other -->
+  <string name="am_price_label">Before noon:</string>
+  <string name="pm_price_label">Afternoon:</string>
+  <string name="create_booking_button_label">Create Booking</string>
+  <string name="want_room_info_header">Include room information?</string>
+  <string name="want_activity_info_header">Include activity information?</string>
+  <string name="radio_button_yes">Yes</string>
+  <string name="radio_button_no">No</string>
+  <string name="full_day_price_label">Full day:</string>
+  <string name="hours_header">Opening hours</string>
+  <string name="am_opening_hours_label">Before noon:</string>
+  <string name="pm_opening_hours_label">After noon:</string>
+  <string name="prices_header">Pricing</string>
+  <string name="seatings_header">Seating Options</string>
+  <string name="technology_header">Available Technology</string>
+  <string name="description_header">Description</string>
+  <string name="confirm_room_header">Reserve Conference Room</string>
+  <string name="payment_alternative_header">Choose payment method</string>
+  <string name="special_request_header">Special requests</string>
+  <string name="seating_choice_header">Choose seating</string>
+  <string name="number_of_participants_header">Number of participants</string>
+  <string name="agreement_number_header">Agreement number</string>
+  <string name="time_slot_header">Choose time slot</string>
+  <string name="am_radio_button_label">Before noon</string>
+  <string name="pm_radio_button_label">Afternoon</string>
+  <string name="full_day_radio_button_label">Full day</string>
+  <string name="reserve_room_button">Reserve Room</string>
+  <string name="invalid_number_of_participants">Invalid number of participants</string>
 </resources>
