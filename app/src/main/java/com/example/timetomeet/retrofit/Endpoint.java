@@ -3,6 +3,8 @@ package com.example.timetomeet.retrofit;
 import com.example.timetomeet.retrofit.entity.AvailableRoomsContainer;
 import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
 import com.example.timetomeet.retrofit.entity.BookingAdd;
+import com.example.timetomeet.retrofit.entity.BookingFoodBeverageAdd;
+import com.example.timetomeet.retrofit.entity.BookingSelectableTechnologyAdd;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.ConferenceRoom;
@@ -94,5 +96,17 @@ public interface Endpoint {
   @GET("plantfoodbeverage/venue/{id}/")
   Call<List<VenueFoodBeverage>> getFoodBeverageByPlant(
       @Path("id") Long id
+  );
+
+  @POST("bookingfoodbeverage/add/")
+  Call<BookingFoodBeverageAdd> addFoodBeverage(
+      @Header("Authorization") String token,
+      @Body BookingFoodBeverageAdd bookingFoodBeverageAdd
+  );
+
+  @POST("bookingselectabletechnology/add/")
+  Call<BookingSelectableTechnologyAdd> addSelectableTechnology(
+      @Header("Authorization") String token,
+      @Body BookingSelectableTechnologyAdd bookingSelectableTechnologyAdd
   );
 }

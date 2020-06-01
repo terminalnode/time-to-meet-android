@@ -7,16 +7,21 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.timetomeet.Helper;
+import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 import com.example.timetomeet.customview.adapters.SelectFoodRecyclerAdapter;
 import com.example.timetomeet.customview.adapters.SelectTechnologyRecyclerAdapter;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
+import com.example.timetomeet.retrofit.entity.BookingFoodBeverageAdd;
+import com.example.timetomeet.retrofit.entity.BookingSelectableTechnologyAdd;
 import com.example.timetomeet.retrofit.entity.ConferenceRoom;
 import com.example.timetomeet.retrofit.entity.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.FoodBeverage;
@@ -24,8 +29,10 @@ import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.Venue;
 import com.example.timetomeet.retrofit.entity.VenueFoodBeverage;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +43,8 @@ public class FoodFragment extends Fragment {
   private ConferenceRoom conferenceRoom;
   private Map<Long, Technology> technologyMap;
   private Map<Long, FoodBeverage> foodMap;
+  private Button confirmButton;
+  private String token;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,10 +57,12 @@ public class FoodFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
     CreateBookingActivity activity = (CreateBookingActivity) getActivity();
     Bundle bookingBundle = activity.getBookingBundle();
+    token = activity.getIntent().getStringExtra(Helper.BUNDLE_TOKEN);
     selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
     conferenceRoom = selectedRoom.getAssociatedConferenceRoom();
     technologyMap = activity.getTechnologyMap();
     foodMap = activity.getFoodMap();
+    confirmButton = view.findViewById(R.id.confirmButton);
 
     // Fetch the selectedRoom's associatedVenue's FoodBeverage options,
     // if it is already fetched, just set up the recycler adapter.
@@ -69,6 +80,78 @@ public class FoodFragment extends Fragment {
     } else {
       setUpTechRecyclerAdapter();
     }
+
+    // Set onClick for confirmButton
+    confirmButton.setOnClickListener(this::confirmButtonClicked);
+  }
+
+  private void confirmButtonClicked(View view) {
+    List<VenueFoodBeverage> venueFoodBeverages = selectedRoom
+        .getAssociatedVenue()
+        .getAssociatedFoodBeverages()
+        .stream()
+        .filter(VenueFoodBeverage::isSelected)
+        .collect(Collectors.toList());
+
+    List<ConferenceRoomTechnology> conferenceRoomTechnologies = selectedRoom
+        .getAssociatedConferenceRoom()
+        .getAssociatedConferenceRoomTechnologies()
+        .stream()
+        .filter(ConferenceRoomTechnology::isSelected)
+        .collect(Collectors.toList());
+
+    List<BookingFoodBeverageAdd> finishedVenueFoodBeverages = new ArrayList<>();
+    List<BookingSelectableTechnologyAdd> finishedConferenceRoomTechnologies = new ArrayList<>();
+
+    venueFoodBeverages.forEach(venueFoodBeverage -> {
+      addFoodBeverage(venueFoodBeverage, finishedVenueFoodBeverages);
+    });
+    conferenceRoomTechnologies.forEach(conferenceRoomTechnology -> {
+      addSelectableTechnology(conferenceRoomTechnology, finishedConferenceRoomTechnologies);
+    });
+  }
+
+  private void addFoodBeverage(VenueFoodBeverage vfb, List<BookingFoodBeverageAdd> finishedVenueFoodBeverages) {
+    BookingFoodBeverageAdd bfba = new BookingFoodBeverageAdd();
+    bfba.setConferenceRoomAvailability("YOLO");
+    bfba.setFoodBeverageId(vfb.getFoodBeverage());
+    bfba.setAmount(1); // TODO Add amount field
+    bfba.setComment(""); // TODO Add comment field
+    bfba.setTimeToServe(String.format("%sT%s", selectedRoom.getStartDate(), vfb.getSelectedTime()));
+
+    RetrofitHelper
+        .addFoodBeverage(token, bfba)
+        .enqueue(new Callback<BookingFoodBeverageAdd>() {
+          @Override
+          public void onResponse(Call<BookingFoodBeverageAdd> call, Response<BookingFoodBeverageAdd> response) {
+            Log.i(Logging.CreateBookingActivity, "Successfully added " + response.body());
+            finishedVenueFoodBeverages.add(response.body());
+          }
+
+          @Override
+          public void onFailure(Call<BookingFoodBeverageAdd> call, Throwable t) {
+          }
+        });
+  }
+
+  private void addSelectableTechnology(ConferenceRoomTechnology conferenceRoomTechnology, List<BookingSelectableTechnologyAdd> finishedConferenceRoomTechnologies) {
+    BookingSelectableTechnologyAdd bsta = new BookingSelectableTechnologyAdd();
+    bsta.setConferenceRoomAvailability("YOLO");
+    bsta.setTechnology(conferenceRoomTechnology.getTechnology());
+
+    RetrofitHelper
+        .addSelectableTechnology(token, bsta)
+        .enqueue(new Callback<BookingSelectableTechnologyAdd>() {
+          @Override
+          public void onResponse(Call<BookingSelectableTechnologyAdd> call, Response<BookingSelectableTechnologyAdd> response) {
+            Log.i(Logging.CreateBookingActivity, "Successfully added " + response.body());
+            finishedConferenceRoomTechnologies.add(response.body());
+          }
+
+          @Override
+          public void onFailure(Call<BookingSelectableTechnologyAdd> call, Throwable t) {
+          }
+        });
   }
 
   private void fetchVenueFoodBeverage() {

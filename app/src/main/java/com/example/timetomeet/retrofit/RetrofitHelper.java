@@ -3,6 +3,8 @@ package com.example.timetomeet.retrofit;
 import com.example.timetomeet.retrofit.entity.AvailableRoomsContainer;
 import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
 import com.example.timetomeet.retrofit.entity.BookingAdd;
+import com.example.timetomeet.retrofit.entity.BookingFoodBeverageAdd;
+import com.example.timetomeet.retrofit.entity.BookingSelectableTechnologyAdd;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.ConferenceRoom;
@@ -122,5 +124,15 @@ public class RetrofitHelper {
 
   public static Call<List<VenueFoodBeverage>> getPlantFoodBeverage(Long id) {
     return getBase().getFoodBeverageByPlant(id);
+  }
+
+  public static Call<BookingFoodBeverageAdd> addFoodBeverage(
+      String token, BookingFoodBeverageAdd bfba) {
+    return getBase().addFoodBeverage(token, bfba);
+  }
+
+  public static Call<BookingSelectableTechnologyAdd> addSelectableTechnology(
+      String token, BookingSelectableTechnologyAdd bsta) {
+    return getBase().addSelectableTechnology(token, bsta);
   }
 }

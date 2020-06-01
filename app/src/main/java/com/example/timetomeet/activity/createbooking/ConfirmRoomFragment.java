@@ -141,9 +141,6 @@ public class ConfirmRoomFragment extends Fragment {
     confirmRoomButton.setClickable(false);
     confirmRoomButton.setAlpha(0.5F);
 
-    Log.i("YOLO", "confirmRoomButtonClicked progress: " + progressBar.getProgress());
-    Log.i("YOLO", "confirmRoomButtonClicked max: " + progressBar.getMax());
-
     // Collect information from the form
     // 1. Get payment method
     PaymentAlternative payment = (PaymentAlternative) paymentAlternativeSpinner.getSelectedItem();

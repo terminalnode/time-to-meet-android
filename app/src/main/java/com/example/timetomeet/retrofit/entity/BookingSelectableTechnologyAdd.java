@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class BookingSelectableTechnologyAdd {
   @SerializedName("conferenceRoomAvailability")
-  private Long conferenceRoomAvailability;
+  private String conferenceRoomAvailability;
 
   @SerializedName("technology")
   private Long technology;
@@ -24,7 +24,7 @@ public class BookingSelectableTechnologyAdd {
   }
 
   //----- Setters -----//
-  public void setConferenceRoomAvailability(Long conferenceRoomAvailability) {
+  public void setConferenceRoomAvailability(String conferenceRoomAvailability) {
     this.conferenceRoomAvailability = conferenceRoomAvailability;
   }
 
@@ -33,7 +33,7 @@ public class BookingSelectableTechnologyAdd {
   }
 
   //----- Getters -----//
-  public Long getConferenceRoomAvailability() {
+  public String getConferenceRoomAvailability() {
     return conferenceRoomAvailability;
   }
 

@@ -9,6 +9,7 @@
     android:id="@+id/techCheckBox"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
     android:text="@string/technology_name_place_holder"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"

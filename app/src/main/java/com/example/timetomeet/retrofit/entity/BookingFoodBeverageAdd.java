@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class BookingFoodBeverageAdd {
   @SerializedName("conferenceRoomAvailability")
-  private Long conferenceRoomAvailabilityId;
+  private String conferenceRoomAvailability;
 
   @SerializedName("foodBeverage")
   private Long foodBeverageId;
@@ -26,7 +26,7 @@ public class BookingFoodBeverageAdd {
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder("BookingFoodBeverageAdd{");
-    sb.append("conferenceRoomAvailabilityId=").append(conferenceRoomAvailabilityId);
+    sb.append("conferenceRoomAvailability=").append(conferenceRoomAvailability);
     sb.append(", foodBeverageId=").append(foodBeverageId);
     sb.append(", amount=").append(amount);
     sb.append(", comment='").append(comment).append('\'');
@@ -36,8 +36,8 @@ public class BookingFoodBeverageAdd {
   }
 
   //----- Setters -----//
-  public void setConferenceRoomAvailabilityId(Long conferenceRoomAvailabilityId) {
-    this.conferenceRoomAvailabilityId = conferenceRoomAvailabilityId;
+  public void setConferenceRoomAvailability(String conferenceRoomAvailability) {
+    this.conferenceRoomAvailability = conferenceRoomAvailability;
   }
 
   public void setFoodBeverageId(Long foodBeverageId) {
@@ -57,8 +57,8 @@ public class BookingFoodBeverageAdd {
   }
 
   //----- Getters -----//
-  public Long getConferenceRoomAvailabilityId() {
-    return conferenceRoomAvailabilityId;
+  public String getConferenceRoomAvailability() {
+    return conferenceRoomAvailability;
   }
 
   public Long getFoodBeverageId() {
