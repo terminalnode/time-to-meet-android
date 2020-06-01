@@ -8,8 +8,8 @@ import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.ConferenceRoom;
 import com.example.timetomeet.retrofit.entity.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.Credentials;
-import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
-import com.example.timetomeet.retrofit.entity.FoodBevarageList;
+import com.example.timetomeet.retrofit.entity.FoodBeverageGroup;
+import com.example.timetomeet.retrofit.entity.FoodBeverage;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Seating;
 import com.example.timetomeet.retrofit.entity.Technology;
@@ -18,10 +18,10 @@ import com.example.timetomeet.retrofit.entity.TimeSlotAdd;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
 import com.example.timetomeet.retrofit.entity.Venue;
+import com.example.timetomeet.retrofit.entity.VenueFoodBeverage;
 
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -68,10 +68,10 @@ public interface Endpoint {
   Call<List<TechnologyAvailability>> getTechnologyAvailability();
 
   @GET("foodbeveragegroup/")
-  Call<List<FoodBevarageGroupList>> getFoodBevarageGroupList();
+  Call<List<FoodBeverageGroup>> getFoodBevarageGroupList();
 
   @GET("foodbeverage/")
-  Call<List<FoodBevarageList>> getFoodBevarageList();
+  Call<List<FoodBeverage>> getFoodBevarageList();
 
   @GET("conferenceroomtechnology/conferenceroom/{id}/")
   Call<List<ConferenceRoomTechnology>> getConferenceRoomTechnology(
@@ -90,4 +90,9 @@ public interface Endpoint {
       @Body TimeSlotAdd timeSlotAdd,
       @Path("id") Long timeSlotId,
       @Header("Authorization") String token);
+
+  @GET("plantfoodbeverage/venue/{id}/")
+  Call<List<VenueFoodBeverage>> getFoodBeverageByPlant(
+      @Path("id") Long id
+  );
 }

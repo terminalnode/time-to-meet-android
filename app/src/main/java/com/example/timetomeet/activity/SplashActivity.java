@@ -14,8 +14,8 @@ import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
-import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
-import com.example.timetomeet.retrofit.entity.FoodBevarageList;
+import com.example.timetomeet.retrofit.entity.FoodBeverageGroup;
+import com.example.timetomeet.retrofit.entity.FoodBeverage;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Seating;
 import com.example.timetomeet.retrofit.entity.Technology;
@@ -112,12 +112,12 @@ public class SplashActivity extends AppCompatActivity {
   }
 
   private void fetchFoodBevarageList() {
-    ArrayList<FoodBevarageList> foodNDrinks = new ArrayList<>();
+    ArrayList<FoodBeverage> foodNDrinks = new ArrayList<>();
     apiData.putParcelableArrayList(Helper.BUNDLE_FOOD_BEVARAGE_LIST, foodNDrinks);
 
-    RetrofitHelper.getFoodBevarageList().enqueue(new Callback<List<FoodBevarageList>>() {
+    RetrofitHelper.getFoodBevarageList().enqueue(new Callback<List<FoodBeverage>>() {
       @Override
-      public void onResponse(Call<List<FoodBevarageList>> call, Response<List<FoodBevarageList>> response) {
+      public void onResponse(Call<List<FoodBeverage>> call, Response<List<FoodBeverage>> response) {
         if (response.body() != null) {
           foodNDrinks.addAll(response.body());
         }
@@ -127,18 +127,18 @@ public class SplashActivity extends AppCompatActivity {
       }
 
       @Override
-      public void onFailure(Call<List<FoodBevarageList>> call, Throwable t) {
+      public void onFailure(Call<List<FoodBeverage>> call, Throwable t) {
       }
     });
   }
 
   private void fetchFoodBevarageGroupList() {
-    ArrayList<FoodBevarageGroupList> mealGroups = new ArrayList<>();
+    ArrayList<FoodBeverageGroup> mealGroups = new ArrayList<>();
     apiData.putParcelableArrayList(Helper.BUNDLE_FOOD_BEVARAGE_GROUP_LIST, mealGroups);
 
-    RetrofitHelper.getFoodBevarageGroupList().enqueue(new Callback<List<FoodBevarageGroupList>>() {
+    RetrofitHelper.getFoodBevarageGroupList().enqueue(new Callback<List<FoodBeverageGroup>>() {
       @Override
-      public void onResponse(Call<List<FoodBevarageGroupList>> call, Response<List<FoodBevarageGroupList>> response) {
+      public void onResponse(Call<List<FoodBeverageGroup>> call, Response<List<FoodBeverageGroup>> response) {
         if (response.body() != null) {
           mealGroups.addAll(response.body());
         }
@@ -148,7 +148,7 @@ public class SplashActivity extends AppCompatActivity {
       }
 
       @Override
-      public void onFailure(Call<List<FoodBevarageGroupList>> call, Throwable t) {
+      public void onFailure(Call<List<FoodBeverageGroup>> call, Throwable t) {
       }
     });
   }

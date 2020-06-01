@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <CheckBox
+    android:id="@+id/selectFoodCheckBox"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:text="@string/food_beverage_place_holder"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+    android:id="@+id/timeSelectTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:text="@string/time_select_place_holder"
+    app:layout_constraintStart_toStartOf="@+id/selectFoodCheckBox"
+    app:layout_constraintTop_toBottomOf="@+id/selectFoodCheckBox" />
+</androidx.constraintlayout.widget.ConstraintLayout>

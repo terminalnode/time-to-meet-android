@@ -13,12 +13,16 @@ import android.view.ViewGroup;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
+import com.example.timetomeet.customview.adapters.SelectFoodRecyclerAdapter;
 import com.example.timetomeet.customview.adapters.SelectTechnologyRecyclerAdapter;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.AvailableRoom;
 import com.example.timetomeet.retrofit.entity.ConferenceRoom;
 import com.example.timetomeet.retrofit.entity.ConferenceRoomTechnology;
+import com.example.timetomeet.retrofit.entity.FoodBeverage;
 import com.example.timetomeet.retrofit.entity.Technology;
+import com.example.timetomeet.retrofit.entity.Venue;
+import com.example.timetomeet.retrofit.entity.VenueFoodBeverage;
 
 import java.util.List;
 import java.util.Map;
@@ -31,6 +35,7 @@ public class FoodFragment extends Fragment {
   private AvailableRoom selectedRoom;
   private ConferenceRoom conferenceRoom;
   private Map<Long, Technology> technologyMap;
+  private Map<Long, FoodBeverage> foodMap;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +51,16 @@ public class FoodFragment extends Fragment {
     selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
     conferenceRoom = selectedRoom.getAssociatedConferenceRoom();
     technologyMap = activity.getTechnologyMap();
+    foodMap = activity.getFoodMap();
+
+    // Fetch the selectedRoom's associatedVenue's FoodBeverage options,
+    // if it is already fetched, just set up the recycler adapter.
+    Venue associatedVenue = selectedRoom.getAssociatedVenue();
+    if (associatedVenue.getAssociatedFoodBeverages() == null) {
+      fetchVenueFoodBeverage();
+    } else {
+      setUpFoodRecyclerAdapter(associatedVenue);
+    }
 
     // Fetch the conference room's associated conference room technology,
     // if it is already fetched, just set up the recycler adapter.
@@ -54,6 +69,35 @@ public class FoodFragment extends Fragment {
     } else {
       setUpTechRecyclerAdapter();
     }
+  }
+
+  private void fetchVenueFoodBeverage() {
+    Venue associatedVenue = selectedRoom.getAssociatedVenue();
+
+    RetrofitHelper
+        .getPlantFoodBeverage(associatedVenue.getId())
+        .enqueue(new Callback<List<VenueFoodBeverage>>() {
+          @Override
+          public void onResponse(Call<List<VenueFoodBeverage>> call, Response<List<VenueFoodBeverage>> response) {
+            associatedVenue.setAssociatedFoodBeverages(response.body());
+            setUpFoodRecyclerAdapter(associatedVenue);
+          }
+
+          @Override
+          public void onFailure(Call<List<VenueFoodBeverage>> call, Throwable t) {
+          }
+        });
+  }
+
+  private void setUpFoodRecyclerAdapter(Venue associatedVenue) {
+    RecyclerView foodRecyclerView = getView().findViewById(R.id.foodRecyclerView);
+    SelectFoodRecyclerAdapter foodAdapter = new SelectFoodRecyclerAdapter(
+        getContext(),
+        associatedVenue.getAssociatedFoodBeverages(),
+        foodMap
+    );
+    foodRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    foodRecyclerView.setAdapter(foodAdapter);
   }
 
   private void fetchConferenceRoomTechnology() {

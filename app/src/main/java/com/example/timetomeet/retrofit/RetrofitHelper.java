@@ -8,8 +8,8 @@ import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.ConferenceRoom;
 import com.example.timetomeet.retrofit.entity.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.Credentials;
-import com.example.timetomeet.retrofit.entity.FoodBevarageGroupList;
-import com.example.timetomeet.retrofit.entity.FoodBevarageList;
+import com.example.timetomeet.retrofit.entity.FoodBeverageGroup;
+import com.example.timetomeet.retrofit.entity.FoodBeverage;
 import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Seating;
 import com.example.timetomeet.retrofit.entity.Technology;
@@ -18,18 +18,13 @@ import com.example.timetomeet.retrofit.entity.TimeSlotAdd;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.example.timetomeet.retrofit.entity.User;
 import com.example.timetomeet.retrofit.entity.Venue;
-
-import org.json.JSONObject;
+import com.example.timetomeet.retrofit.entity.VenueFoodBeverage;
 
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
-import retrofit2.http.Header;
-import retrofit2.http.Path;
 
 public class RetrofitHelper {
   private static final String BASE_URL = "https://dev-be.timetomeet.se/service/rest/";
@@ -101,11 +96,11 @@ public class RetrofitHelper {
     return getBase().getTechnologyAvailability();
   }
 
-  public static Call<List<FoodBevarageGroupList>> getFoodBevarageGroupList() {
+  public static Call<List<FoodBeverageGroup>> getFoodBevarageGroupList() {
     return getBase().getFoodBevarageGroupList();
   }
 
-  public static Call<List<FoodBevarageList>> getFoodBevarageList() {
+  public static Call<List<FoodBeverage>> getFoodBevarageList() {
     return getBase().getFoodBevarageList();
   }
 
@@ -123,5 +118,9 @@ public class RetrofitHelper {
 
   public static Call<TimeSlotAdd> addTimeSlot(TimeSlotAdd timeSlotAdd, Long timeSlotId, String token) {
     return getBase().addTimeSlot(timeSlotAdd, timeSlotId, token);
+  }
+
+  public static Call<List<VenueFoodBeverage>> getPlantFoodBeverage(Long id) {
+    return getBase().getFoodBeverageByPlant(id);
   }
 }

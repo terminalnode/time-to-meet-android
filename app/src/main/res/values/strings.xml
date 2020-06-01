@@ -19,6 +19,7 @@
     <string name="opening_hours_place_holder" translatable="false">00:00 - 00:00</string>
     <string name="date_place_holder" translatable="false">1945-09-02</string>
     <string name="default_number_one" translatable="false">1</string>
+    <string name="time_select_place_holder">Select time for food to be delivered</string>
 
   <!-- Descriptions -->
     <string name="splash_image_description">The app\'s logo, sillouette of people sitting in a meeting.</string>

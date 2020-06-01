@@ -3,12 +3,10 @@ package com.example.timetomeet.retrofit.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
-
 import com.example.timetomeet.retrofit.LocalizableName;
 import com.google.gson.annotations.SerializedName;
 
-public class FoodBevarageGroupList implements Parcelable, LocalizableName {
+public class FoodBeverageGroup implements Parcelable, LocalizableName {
   @SerializedName("id")
   private Long id;
 
@@ -19,10 +17,10 @@ public class FoodBevarageGroupList implements Parcelable, LocalizableName {
   private String nameEn;
 
   //----- Constructors -----//
-  public FoodBevarageGroupList() {
+  public FoodBeverageGroup() {
   }
 
-  public FoodBevarageGroupList(Long id, String nameSv, String nameEn) {
+  public FoodBeverageGroup(Long id, String nameSv, String nameEn) {
     this.id = id;
     this.nameSv = nameSv;
     this.nameEn = nameEn;
@@ -46,21 +44,21 @@ public class FoodBevarageGroupList implements Parcelable, LocalizableName {
     dest.writeString(this.nameEn);
   }
 
-  protected FoodBevarageGroupList(Parcel in) {
+  protected FoodBeverageGroup(Parcel in) {
     this.id = (Long) in.readValue(Long.class.getClassLoader());
     this.nameSv = in.readString();
     this.nameEn = in.readString();
   }
 
-  public static final Parcelable.Creator<FoodBevarageGroupList> CREATOR = new Parcelable.Creator<FoodBevarageGroupList>() {
+  public static final Parcelable.Creator<FoodBeverageGroup> CREATOR = new Parcelable.Creator<FoodBeverageGroup>() {
     @Override
-    public FoodBevarageGroupList createFromParcel(Parcel source) {
-      return new FoodBevarageGroupList(source);
+    public FoodBeverageGroup createFromParcel(Parcel source) {
+      return new FoodBeverageGroup(source);
     }
 
     @Override
-    public FoodBevarageGroupList[] newArray(int size) {
-      return new FoodBevarageGroupList[size];
+    public FoodBeverageGroup[] newArray(int size) {
+      return new FoodBeverageGroup[size];
     }
   };
 

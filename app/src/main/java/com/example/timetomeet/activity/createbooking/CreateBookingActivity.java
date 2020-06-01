@@ -9,6 +9,7 @@ import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
+import com.example.timetomeet.retrofit.entity.FoodBeverage;
 import com.example.timetomeet.retrofit.entity.Seating;
 import com.example.timetomeet.retrofit.entity.Technology;
 
@@ -21,6 +22,7 @@ public class CreateBookingActivity extends AppCompatActivity {
   private Map<Long, CitySimplified> cityMap;
   private Map<Long, Seating> seatingMap;
   private Map<Long, Technology> technologyMap;
+  private Map<Long, FoodBeverage> foodMap;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,14 @@ public class CreateBookingActivity extends AppCompatActivity {
             Technology::getId, // Key
             technology -> technology // Value
         ));
+
+    // Create map of id -> foodbeverage
+    List<FoodBeverage> foodBeverages = apiData.getParcelableArrayList(Helper.BUNDLE_FOOD_BEVARAGE_LIST);
+    foodMap = foodBeverages.stream()
+        .collect(Collectors.toMap(
+            FoodBeverage::getId,
+            foodBeverage -> foodBeverage
+        ));
   }
 
   public Bundle getBookingBundle() {
@@ -70,5 +80,9 @@ public class CreateBookingActivity extends AppCompatActivity {
 
   public Map<Long, Technology> getTechnologyMap() {
     return technologyMap;
+  }
+
+  public Map<Long, FoodBeverage> getFoodMap() {
+    return foodMap;
   }
 }

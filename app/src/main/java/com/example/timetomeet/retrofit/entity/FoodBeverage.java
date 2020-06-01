@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import com.example.timetomeet.retrofit.LocalizableName;
 import com.google.gson.annotations.SerializedName;
 
-public class FoodBevarageList implements Parcelable, LocalizableName {
+public class FoodBeverage implements Parcelable, LocalizableName {
   @SerializedName("id")
   private Long id;
 
@@ -23,10 +23,10 @@ public class FoodBevarageList implements Parcelable, LocalizableName {
   private Long stateId;
 
   //----- Constructors -----//
-  public FoodBevarageList() {
+  public FoodBeverage() {
   }
 
-  public FoodBevarageList(Long id, String nameSv, String nameEn, Long foodBeverageGroup, Long stateId) {
+  public FoodBeverage(Long id, String nameSv, String nameEn, Long foodBeverageGroup, Long stateId) {
     this.id = id;
     this.nameSv = nameSv;
     this.nameEn = nameEn;
@@ -59,7 +59,7 @@ public class FoodBevarageList implements Parcelable, LocalizableName {
     dest.writeValue(this.stateId);
   }
 
-  protected FoodBevarageList(Parcel in) {
+  protected FoodBeverage(Parcel in) {
     this.id = (Long) in.readValue(Long.class.getClassLoader());
     this.nameSv = in.readString();
     this.nameEn = in.readString();
@@ -67,12 +67,12 @@ public class FoodBevarageList implements Parcelable, LocalizableName {
     this.stateId = (Long) in.readValue(Long.class.getClassLoader());
   }
 
-  public static final Parcelable.Creator<FoodBevarageList> CREATOR = new Parcelable.Creator<FoodBevarageList>() {
+  public static final Parcelable.Creator<FoodBeverage> CREATOR = new Parcelable.Creator<FoodBeverage>() {
     @Override
-    public FoodBevarageList createFromParcel(Parcel source) { return new FoodBevarageList(source); }
+    public FoodBeverage createFromParcel(Parcel source) { return new FoodBeverage(source); }
 
     @Override
-    public FoodBevarageList[] newArray(int size) { return new FoodBevarageList[size]; }
+    public FoodBeverage[] newArray(int size) { return new FoodBeverage[size]; }
   };
 
   //----- Setters -----//

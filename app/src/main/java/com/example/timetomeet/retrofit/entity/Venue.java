@@ -100,7 +100,7 @@ public class Venue implements LocalizableName {
   private Boolean bookableSundays;
 
   @SerializedName("plantFoodBeverages")
-  private List<FoodBevarageList> plantFoodBeverages;
+  private List<FoodBeverage> plantFoodBeverages;
 
   @SerializedName("technologies")
   private List<Technology> technologies;
@@ -113,6 +113,8 @@ public class Venue implements LocalizableName {
 
   @SerializedName("rating")
   private Long rating;
+
+  private List<VenueFoodBeverage> associatedFoodBeverages;
 
   //----- Constructors -----//
   public Venue() {
@@ -288,7 +290,7 @@ public class Venue implements LocalizableName {
     this.bookableSundays = bookableSundays;
   }
 
-  public void setPlantFoodBeverages(List<FoodBevarageList> plantFoodBeverages) {
+  public void setPlantFoodBeverages(List<FoodBeverage> plantFoodBeverages) {
     this.plantFoodBeverages = plantFoodBeverages;
   }
 
@@ -306,6 +308,10 @@ public class Venue implements LocalizableName {
 
   public void setRating(Long rating) {
     this.rating = rating;
+  }
+
+  public void setAssociatedFoodBeverages(List<VenueFoodBeverage> associatedFoodBeverages) {
+    this.associatedFoodBeverages = associatedFoodBeverages;
   }
 
   //----- Getters -----//
@@ -435,7 +441,7 @@ public class Venue implements LocalizableName {
     return bookableSundays;
   }
 
-  public List<FoodBevarageList> getPlantFoodBeverages() {
+  public List<FoodBeverage> getPlantFoodBeverages() {
     return plantFoodBeverages;
   }
 
@@ -453,5 +459,9 @@ public class Venue implements LocalizableName {
 
   public Long getRating() {
     return rating;
+  }
+
+  public List<VenueFoodBeverage> getAssociatedFoodBeverages() {
+    return associatedFoodBeverages;
   }
 }
