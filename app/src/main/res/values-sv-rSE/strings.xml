@@ -71,4 +71,5 @@
   <string name="reserve_room_button">Reservera Rum</string>
   <string name="payment_alternative_place_holder">[ Betalningsalternativ ]</string>
   <string name="invalid_number_of_participants">Felaktigt antal deltagare</string>
+  <string name="food_beverage_place_holder">[ Namn för Mat/Dryck ]</string>
 </resources>
