@@ -1,4 +1,4 @@
-package com.example.timetomeet.activity;
+package com.example.timetomeet.activity.createbooking;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +16,7 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
@@ -40,7 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CreateBookingConfirmRoomFragment extends Fragment {
+public class ConfirmRoomFragment extends Fragment {
   AvailableRoom selectedRoom;
   EditText specialRequestMultiLineText;
   EditText numberOfParticipantsEditText;
@@ -61,7 +62,7 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
       Bundle savedInstanceState
   ) {
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_create_booking_confirm_room, container, false);
+    return inflater.inflate(R.layout.fragment_confirm_room, container, false);
   }
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -276,7 +277,11 @@ public class CreateBookingConfirmRoomFragment extends Fragment {
       if (allTimeSlotsChecked) {
         Log.i(Logging.CreateBookingActivity, "All time slots added!");
         progressBar.setVisibility(View.GONE);
-        // TODO Move to the next fragment
+        // TODO Send time slots to activity/next fragment, booking bundle or whatever.
+        Log.i(Logging.CreateBookingActivity, "Moving over to confirm room fragment");
+        NavHostFragment
+            .findNavController(ConfirmRoomFragment.this)
+            .navigate(R.id.action_ConfirmRoomFragment_to_FoodFragment);
 
       } else {
         timeSlotCheckerHandler.postDelayed(timeSlotChecker, delayMillis);

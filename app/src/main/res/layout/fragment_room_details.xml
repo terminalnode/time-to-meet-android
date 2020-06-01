@@ -5,7 +5,7 @@
   android:id="@+id/createBookingAvailableRoomScrollView"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".activity.CreateBookingRoomDetailsFragment">
+  tools:context=".activity.createbooking.RoomDetailsFragment">
 
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.example.timetomeet.activity;
+package com.example.timetomeet.activity.createbooking;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,14 +19,14 @@ import com.example.timetomeet.retrofit.entity.CitySimplified;
 import java.util.List;
 import java.util.Map;
 
-public class CreateBookingSearchResultFragment extends Fragment {
+public class SearchResultFragment extends Fragment {
   @Override
   public View onCreateView(
       LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState
   ) {
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_create_booking_search_result, container, false);
+    return inflater.inflate(R.layout.fragment_search_result, container, false);
   }
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

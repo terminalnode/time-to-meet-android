@@ -1,4 +1,4 @@
-package com.example.timetomeet.activity;
+package com.example.timetomeet.activity.createbooking;
 
 import android.os.Bundle;
 
@@ -29,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CreateBookingRoomDetailsFragment extends Fragment {
+public class RoomDetailsFragment extends Fragment {
   private Button createBookingButton;
   TextView beforeNoonPriceTextView;
   TextView afterNoonPriceTextView;
@@ -42,7 +42,7 @@ public class CreateBookingRoomDetailsFragment extends Fragment {
       Bundle savedInstanceState
   ) {
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_create_booking_room_details, container, false);
+    return inflater.inflate(R.layout.fragment_room_details, container, false);
   }
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -96,7 +96,7 @@ public class CreateBookingRoomDetailsFragment extends Fragment {
     // TODO Make sure all the necessary API calls are being made.
     Log.i(Logging.CreateBookingActivity, "Moving over to confirm room fragment");
     NavHostFragment
-        .findNavController(CreateBookingRoomDetailsFragment.this)
+        .findNavController(RoomDetailsFragment.this)
         .navigate(R.id.action_RoomDetailsFragment_to_ConfirmRoomFragment);
   }
 

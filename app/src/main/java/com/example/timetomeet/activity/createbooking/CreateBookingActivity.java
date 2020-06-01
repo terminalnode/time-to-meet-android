@@ -1,4 +1,4 @@
-package com.example.timetomeet.activity;
+package com.example.timetomeet.activity.createbooking;
 
 import android.os.Bundle;
 import android.util.Log;

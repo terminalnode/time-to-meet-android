@@ -1,4 +1,4 @@
-package com.example.timetomeet.activity;
+package com.example.timetomeet.activity.createbooking;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -48,7 +48,7 @@ import retrofit2.Response;
  * This fragment is used to select a date or time span in which
  * to search for available rooms.
  */
-public class CreateBookingDateFragment extends Fragment {
+public class DateFragment extends Fragment {
   private ConstraintLayout startDateDisplay, endDateDisplay;
   private DateDisplayListener startDateDisplayListener, endDateDisplayListener;
   private CitySimplifiedSpinnerAdapter citySpinnerAdapter;
@@ -71,7 +71,7 @@ public class CreateBookingDateFragment extends Fragment {
     }
 
     Log.i(Logging.CreateBookingActivity, "Inflating CreateBookingDateFragment");
-    return inflater.inflate(R.layout.fragment_create_booking_date, container, false);
+    return inflater.inflate(R.layout.fragment_date, container, false);
   }
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -225,7 +225,7 @@ public class CreateBookingDateFragment extends Fragment {
         Log.i(Logging.CreateBookingActivity, "All bundled up");
 
         NavHostFragment
-            .findNavController(CreateBookingDateFragment.this)
+            .findNavController(DateFragment.this)
             .navigate(R.id.action_DateFragment_to_SearchResultFragment);
         setSearchFinished();
       } else {

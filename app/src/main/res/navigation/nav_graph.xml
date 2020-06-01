@@ -3,50 +3,61 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/nav_graph"
-  app:startDestination="@id/CreateBookingDateFragment">
+  app:startDestination="@id/DateFragment">
 
   <!-- Date Fragment -->
   <fragment
-    android:id="@+id/CreateBookingDateFragment"
-    android:name="com.example.timetomeet.activity.CreateBookingDateFragment"
-    tools:layout="@layout/fragment_create_booking_date">
+    android:id="@+id/DateFragment"
+    android:name="com.example.timetomeet.activity.createbooking.DateFragment"
+    tools:layout="@layout/fragment_date">
 
     <action
       android:id="@+id/action_DateFragment_to_SearchResultFragment"
-      app:destination="@id/CreateBookingSearchResultFragment" />
+      app:destination="@id/SearchResultFragment" />
   </fragment>
 
   <!-- Search Result Fragment -->
   <fragment
-    android:id="@+id/CreateBookingSearchResultFragment"
-    android:name="com.example.timetomeet.activity.CreateBookingSearchResultFragment"
-    tools:layout="@layout/fragment_create_booking_search_result">
+    android:id="@+id/SearchResultFragment"
+    android:name="com.example.timetomeet.activity.createbooking.SearchResultFragment"
+    tools:layout="@layout/fragment_search_result">
 
     <action
       android:id="@+id/action_SearchResultFragment_to_DateFragment"
-      app:destination="@id/CreateBookingDateFragment" />
+      app:destination="@id/DateFragment" />
 
     <action
       android:id="@+id/action_SearchResultFragment_to_RoomDetailsFragment"
-      app:destination="@id/CreateBookingRoomDetailsFragment" />
+      app:destination="@id/RoomDetailsFragment" />
   </fragment>
 
   <!-- Room Details Fragment -->
   <fragment
-    android:id="@+id/CreateBookingRoomDetailsFragment"
-    android:name="com.example.timetomeet.activity.CreateBookingRoomDetailsFragment"
-    tools:layout="@layout/fragment_create_booking_room_details">
+    android:id="@+id/RoomDetailsFragment"
+    android:name="com.example.timetomeet.activity.createbooking.RoomDetailsFragment"
+    tools:layout="@layout/fragment_room_details">
 
     <action
       android:id="@+id/action_RoomDetailsFragment_to_ConfirmRoomFragment"
-      app:destination="@id/CreateBookingConfirmRoomFragment" />
+      app:destination="@id/ConfirmRoomFragment" />
   </fragment>
 
 
   <!-- Confirm Room Fragment -->
   <fragment
-    android:id="@+id/CreateBookingConfirmRoomFragment"
-    android:name="com.example.timetomeet.activity.CreateBookingConfirmRoomFragment"
-    tools:layout="@layout/fragment_create_booking_confirm_room">
+    android:id="@+id/ConfirmRoomFragment"
+    android:name="com.example.timetomeet.activity.createbooking.ConfirmRoomFragment"
+    tools:layout="@layout/fragment_confirm_room">
+
+    <action
+      android:id="@+id/action_ConfirmRoomFragment_to_FoodFragment"
+      app:destination="@id/FoodFragment" />
+  </fragment>
+
+  <!-- Food Fragment -->
+  <fragment
+    android:id="@+id/FoodFragment"
+    android:name="com.example.timetomeet.activity.createbooking.FoodFragment"
+    tools:layout="@layout/fragment_food">
   </fragment>
 </navigation>
