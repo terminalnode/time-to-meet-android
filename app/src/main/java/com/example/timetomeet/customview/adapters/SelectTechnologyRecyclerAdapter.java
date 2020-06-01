@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.CheckBox;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,7 +14,6 @@ import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.entity.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.Technology;
-import com.google.android.material.chip.Chip;
 
 import java.util.List;
 import java.util.Map;
@@ -50,24 +49,14 @@ public class SelectTechnologyRecyclerAdapter
     Technology associatedTechnology = technologyMap.get(technology.getTechnology());
     String techName = Helper.getLocalizedName(associatedTechnology, context);
 
-    Log.i("YOLO", "ConfRoomTech: " + technology);
-    Log.i("YOLO", "AssocTech: " + associatedTechnology);
-    Log.i("YOLO", "The name of that tech??? " + techName);
-    Log.i("YOLO", "Is it checkable? " + holder.selectTechChip.isCheckable());
-
-    holder.technologyNameTextView.setText(techName);
+    holder.techCheckBox.setText(techName);
     if (technology.isIncluded()) {
-      Log.i("YOLO", String.format("%s is included, should be selected.", techName));
-      holder.selectTechChip.setCheckable(false);
-      holder.selectTechChip.setChecked(true);
-      holder.selectTechChip.setAlpha(0.5F);
-      holder.technologyNameTextView.setAlpha(0.5F);
+      holder.techCheckBox.setAlpha(0.5F);
+      holder.techCheckBox.setChecked(true);
+      holder.techCheckBox.setClickable(false);
     } else {
-      holder.selectTechChip.setOnClickListener(view -> {
-        Log.i("YOLO", String.format("%s is not included, should be selectABLE.", techName));
-        boolean isChecked = holder.selectTechChip.isChecked();
+      holder.techCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
         technology.setSelected(isChecked);
-        Log.i("YOLO", String.format("Set selected value for %s to %s", techName, isChecked));
       });
     }
   }
@@ -78,13 +67,11 @@ public class SelectTechnologyRecyclerAdapter
   }
 
   public class ViewHolder extends RecyclerView.ViewHolder {
-    Chip selectTechChip;
-    TextView technologyNameTextView;
+    CheckBox techCheckBox;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
-      selectTechChip = itemView.findViewById(R.id.selectTechChip);
-      technologyNameTextView = itemView.findViewById(R.id.technologyNameTextView);
+      techCheckBox = itemView.findViewById(R.id.techCheckBox);
     }
   }
 }
