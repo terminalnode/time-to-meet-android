@@ -1,7 +1,6 @@
 package com.example.timetomeet.customview.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
-import com.example.timetomeet.retrofit.entity.ConferenceRoomSeating;
+import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomSeating;
 import com.example.timetomeet.retrofit.entity.Seating;
 
 import java.util.List;

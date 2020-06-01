@@ -1,14 +1,14 @@
 package com.example.timetomeet.retrofit;
 
-import com.example.timetomeet.retrofit.entity.AvailableRoomsContainer;
-import com.example.timetomeet.retrofit.entity.AvailableRoomsQuery;
+import com.example.timetomeet.retrofit.entity.availableroom.AvailableRoomsContainer;
+import com.example.timetomeet.retrofit.entity.availableroom.AvailableRoomsQuery;
 import com.example.timetomeet.retrofit.entity.BookingAdd;
 import com.example.timetomeet.retrofit.entity.BookingFoodBeverageAdd;
 import com.example.timetomeet.retrofit.entity.BookingSelectableTechnologyAdd;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
-import com.example.timetomeet.retrofit.entity.ConferenceRoom;
-import com.example.timetomeet.retrofit.entity.ConferenceRoomTechnology;
+import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoom;
+import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.Credentials;
 import com.example.timetomeet.retrofit.entity.FoodBeverageGroup;
 import com.example.timetomeet.retrofit.entity.FoodBeverage;

@@ -1,7 +1,10 @@
-package com.example.timetomeet.retrofit.entity;
+package com.example.timetomeet.retrofit.entity.conferenceroom;
 
 import com.example.timetomeet.retrofit.LocalizableDescription;
 import com.example.timetomeet.retrofit.LocalizableName;
+import com.example.timetomeet.retrofit.entity.FoodBeverage;
+import com.example.timetomeet.retrofit.entity.Seating;
+import com.example.timetomeet.retrofit.entity.Technology;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
-import com.example.timetomeet.retrofit.entity.AvailableRoom;
+import com.example.timetomeet.retrofit.entity.availableroom.AvailableRoom;
 
 import java.util.List;
 

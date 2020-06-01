@@ -1,6 +1,7 @@
 package com.example.timetomeet.retrofit.entity;
 
 import com.example.timetomeet.retrofit.LocalizableName;
+import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomBlob;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

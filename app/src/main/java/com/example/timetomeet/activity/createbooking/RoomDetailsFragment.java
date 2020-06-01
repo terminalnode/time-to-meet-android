@@ -21,8 +21,8 @@ import com.example.timetomeet.R;
 import com.example.timetomeet.customview.adapters.AvailableSeatingsRecyclerAdapter;
 import com.example.timetomeet.customview.adapters.AvailableTechnologiesRecyclerAdapter;
 import com.example.timetomeet.retrofit.RetrofitHelper;
-import com.example.timetomeet.retrofit.entity.AvailableRoom;
-import com.example.timetomeet.retrofit.entity.ConferenceRoom;
+import com.example.timetomeet.retrofit.entity.availableroom.AvailableRoom;
+import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoom;
 import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;

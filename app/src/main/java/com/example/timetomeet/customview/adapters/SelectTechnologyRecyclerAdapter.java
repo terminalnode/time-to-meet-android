@@ -1,7 +1,6 @@
 package com.example.timetomeet.customview.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
-import com.example.timetomeet.retrofit.entity.ConferenceRoomTechnology;
+import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.Technology;
 
 import java.util.List;

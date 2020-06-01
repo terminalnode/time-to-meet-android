@@ -1,8 +1,11 @@
-package com.example.timetomeet.retrofit.entity;
+package com.example.timetomeet.retrofit.entity.availableroom;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.timetomeet.retrofit.entity.CitySimplified;
+import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoom;
+import com.example.timetomeet.retrofit.entity.Venue;
 import com.google.gson.annotations.SerializedName;
 
 public class AvailableRoom implements Parcelable {

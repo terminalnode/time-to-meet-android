@@ -4,7 +4,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Spinner;
 
-import com.example.timetomeet.retrofit.entity.ConferenceRoomSeating;
+import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomSeating;
 
 public class ParticipantsNumberTextWatcher implements TextWatcher {
   private boolean ignoreNextChange;

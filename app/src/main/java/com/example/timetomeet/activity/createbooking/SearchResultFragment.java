@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
 import com.example.timetomeet.customview.adapters.AvailableRoomsRecyclerAdapter;
-import com.example.timetomeet.retrofit.entity.AvailableRoom;
+import com.example.timetomeet.retrofit.entity.availableroom.AvailableRoom;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
 
 import java.util.List;

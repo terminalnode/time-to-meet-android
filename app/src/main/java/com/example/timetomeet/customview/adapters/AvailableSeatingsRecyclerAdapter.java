@@ -1,20 +1,18 @@
 package com.example.timetomeet.customview.adapters;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
-import com.example.timetomeet.retrofit.entity.ConferenceRoom;
-import com.example.timetomeet.retrofit.entity.ConferenceRoomSeating;
+import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoom;
+import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomSeating;
 import com.example.timetomeet.retrofit.entity.Seating;
 
 public class AvailableSeatingsRecyclerAdapter

@@ -1,4 +1,4 @@
-package com.example.timetomeet.retrofit.entity;
+package com.example.timetomeet.retrofit.entity.conferenceroom;
 
 import android.os.Parcel;
 import android.os.Parcelable;
