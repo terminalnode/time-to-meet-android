@@ -278,7 +278,7 @@ public class ConfirmRoomFragment extends Fragment {
         Log.i(Logging.CreateBookingActivity, "All time slots added!");
         progressBar.setVisibility(View.GONE);
         // TODO Send time slots to activity/next fragment, booking bundle or whatever.
-        Log.i(Logging.CreateBookingActivity, "Moving over to confirm room fragment");
+        Log.i(Logging.CreateBookingActivity, "Moving over to food fragment");
         NavHostFragment
             .findNavController(ConfirmRoomFragment.this)
             .navigate(R.id.action_ConfirmRoomFragment_to_FoodFragment);

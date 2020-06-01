@@ -18,6 +18,8 @@ public class ConferenceRoomTechnology implements Parcelable {
   @SerializedName("technologyAvailability")
   private Long technologyAvailability;
 
+  private boolean selected;
+
   //----- Constructors -----//
   public ConferenceRoomTechnology() {
   }
@@ -30,6 +32,10 @@ public class ConferenceRoomTechnology implements Parcelable {
   }
 
   //----- Methods -----//
+  public boolean isIncluded() {
+    return technologyAvailability == 1;
+  }
+
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder("ConferenceRoomTechnology{");
@@ -90,6 +96,10 @@ public class ConferenceRoomTechnology implements Parcelable {
     this.technologyAvailability = technologyAvailability;
   }
 
+  public void setSelected(boolean selected) {
+    this.selected = selected;
+  }
+
   //----- Getters -----//
   public Long getId() {
     return id;
@@ -107,4 +117,7 @@ public class ConferenceRoomTechnology implements Parcelable {
     return technologyAvailability;
   }
 
+  public boolean isSelected() {
+    return selected;
+  }
 }

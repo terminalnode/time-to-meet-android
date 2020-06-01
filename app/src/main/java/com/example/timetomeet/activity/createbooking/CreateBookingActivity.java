@@ -10,6 +10,7 @@ import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.Seating;
+import com.example.timetomeet.retrofit.entity.Technology;
 
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ public class CreateBookingActivity extends AppCompatActivity {
   private Bundle bookingBundle;
   private Map<Long, CitySimplified> cityMap;
   private Map<Long, Seating> seatingMap;
+  private Map<Long, Technology> technologyMap;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,14 @@ public class CreateBookingActivity extends AppCompatActivity {
             Seating::getId, // Key
             seating -> seating // Value
         ));
+
+    // Create map of id -> technology
+    List<Technology> technologies = apiData.getParcelableArrayList(Helper.BUNDLE_TECHNOLOGIES);
+    technologyMap = technologies.stream()
+        .collect(Collectors.toMap(
+            Technology::getId, // Key
+            technology -> technology // Value
+        ));
   }
 
   public Bundle getBookingBundle() {
@@ -56,5 +66,9 @@ public class CreateBookingActivity extends AppCompatActivity {
 
   public Map<Long, Seating> getSeatingMap() {
     return seatingMap;
+  }
+
+  public Map<Long, Technology> getTechnologyMap() {
+    return technologyMap;
   }
 }

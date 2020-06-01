@@ -67,6 +67,8 @@ public class ConferenceRoom implements LocalizableName, LocalizableDescription {
   @SerializedName("blobs")
   private List<ConferenceRoomBlob> blobs;
 
+  private List<ConferenceRoomTechnology> associatedConferenceRoomTechnologies;
+
   //----- Constructors -----//
   public ConferenceRoom() {
   }
@@ -179,6 +181,10 @@ public class ConferenceRoom implements LocalizableName, LocalizableDescription {
     this.blobs = blobs;
   }
 
+  public void setAssociatedConferenceRoomTechnologies(List<ConferenceRoomTechnology> associatedConferenceRoomTechnologies) {
+    this.associatedConferenceRoomTechnologies = associatedConferenceRoomTechnologies;
+  }
+
   //----- Getters -----//
   public Long getId() {
     return id;
@@ -258,5 +264,9 @@ public class ConferenceRoom implements LocalizableName, LocalizableDescription {
 
   public List<ConferenceRoomBlob> getBlobs() {
     return blobs;
+  }
+
+  public List<ConferenceRoomTechnology> getAssociatedConferenceRoomTechnologies() {
+    return associatedConferenceRoomTechnologies;
   }
 }
