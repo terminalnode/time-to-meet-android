@@ -1,4 +1,4 @@
-package com.example.timetomeet.customview.adapters;
+package com.example.timetomeet.customview;
 
 import android.text.InputFilter;
 import android.text.Spanned;

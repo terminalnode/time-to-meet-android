@@ -22,7 +22,7 @@ import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 import com.example.timetomeet.customview.ParticipantsNumberTextWatcher;
-import com.example.timetomeet.customview.adapters.AlphaNumericFilter;
+import com.example.timetomeet.customview.AlphaNumericFilter;
 import com.example.timetomeet.customview.adapters.PaymentAlternativeSpinnerAdapter;
 import com.example.timetomeet.customview.adapters.SeatingSpinnerAdapter;
 import com.example.timetomeet.retrofit.RetrofitHelper;
