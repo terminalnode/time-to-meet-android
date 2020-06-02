@@ -45,17 +45,18 @@ import retrofit2.Response;
 
 public class FoodFragment extends Fragment {
   private AvailableRoom selectedRoom;
+  private Button confirmButton;
+  private ConferenceRoomSeating conferenceRoomSeating;
   private ConferenceRoom conferenceRoom;
+  private long timeSlotCode;
   private Map<Long, Technology> technologyMap;
   private Map<Long, FoodBeverage> foodMap;
-  private Button confirmButton;
-  private String token;
-  private Runnable confirmBookingActivity;
-  private ConferenceRoomSeating conferenceRoomSeating;
-  private long timeSlotCode;
   private ProgressBar techProgressBar;
   private ProgressBar foodProgressBar;
   private ProgressBar mainProgressBar;
+  private Runnable confirmBookingActivity;
+  private String token;
+
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,

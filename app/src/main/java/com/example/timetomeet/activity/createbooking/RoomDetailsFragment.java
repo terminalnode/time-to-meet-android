@@ -31,9 +31,9 @@ import retrofit2.Response;
 
 public class RoomDetailsFragment extends Fragment {
   private Button createBookingButton;
-  TextView beforeNoonPriceTextView;
-  TextView afterNoonPriceTextView;
-  TextView fullDayPriceTextView;
+  private TextView beforeNoonPriceTextView;
+  private TextView afterNoonPriceTextView;
+  private TextView fullDayPriceTextView;
 
   @Override
   public View onCreateView(

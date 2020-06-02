@@ -49,14 +49,14 @@ import retrofit2.Response;
  * to search for available rooms.
  */
 public class DateFragment extends Fragment {
-  private ConstraintLayout startDateDisplay, endDateDisplay;
-  private DateDisplayListener startDateDisplayListener, endDateDisplayListener;
-  private CitySimplifiedSpinnerAdapter citySpinnerAdapter;
-  private Spinner spinCity;
-  private List<CitySimplified> citiesWithVenues;
-  private Runnable activityStarter;
-  private ProgressBar progressBar;
   private Button searchButton;
+  private ConstraintLayout startDateDisplay, endDateDisplay;
+  private CitySimplifiedSpinnerAdapter citySpinnerAdapter;
+  private DateDisplayListener startDateDisplayListener, endDateDisplayListener;
+  private List<CitySimplified> citiesWithVenues;
+  private ProgressBar progressBar;
+  private Runnable activityStarter;
+  private Spinner spinCity;
 
   @Override
   public View onCreateView(
