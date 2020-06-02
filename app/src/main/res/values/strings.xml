@@ -107,10 +107,13 @@
   <string name="booking_number_place_holder" translatable="false">#1234567890</string>
   <string name="personal_information_header">Personal Information</string>
   <string name="booking_information_header">Booking Information</string>
-  <string name="arrival_date">Arrival</string>
-  <string name="departure_date">Departure</string>
+  <string name="arrival_time">Arrival</string>
+  <string name="departure_time">Departure</string>
   <string name="sum_total">Total cost</string>
   <string name="special_request">Special request</string>
   <string name="requested_tech_header">Requested technologies</string>
   <string name="requested_food_header">Requested food/beverage</string>
+  <string name="api_empty_response_header">No response from API</string>
+  <string name="api_empty_response_message">Something went wrong. When retrieving the confirmation the API returned an empty response. There was no error message and as such we can\'t tell you what happened. Press OK to do it all over again.</string>
+  <string name="date">Date</string>
 </resources>

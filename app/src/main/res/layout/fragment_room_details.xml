@@ -172,11 +172,11 @@
       android:layout_marginTop="30dp"
       android:text="@string/prices_header"
       android:textSize="20sp"
-      app:layout_constraintStart_toStartOf="@+id/dateTextView"
-      app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
+      app:layout_constraintStart_toStartOf="@+id/dateHeader"
+      app:layout_constraintTop_toBottomOf="@+id/dateHeader" />
 
     <TextView
-      android:id="@+id/dateTextView"
+      android:id="@+id/dateHeader"
       android:layout_width="230dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="10dp"

@@ -53,7 +53,7 @@ public class RoomDetailsFragment extends Fragment {
     AvailableRoom selectedRoom = bookingCoordinator.getSelectedRoom();
 
     // Set starting date
-    TextView dateTextView = view.findViewById(R.id.dateTextView);
+    TextView dateTextView = view.findViewById(R.id.dateHeader);
     dateTextView.setText(selectedRoom.getStartDate());
 
     // Set venue and city name using the correct locale

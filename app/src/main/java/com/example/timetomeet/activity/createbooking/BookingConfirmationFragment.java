@@ -1,26 +1,54 @@
 package com.example.timetomeet.activity.createbooking;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmation;
+import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmationDetails;
+import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmationFoodBeverage;
+import com.example.timetomeet.retrofit.entity.bookingconfirmation.IWantedToMakeAStringButFailed;
+import com.google.android.material.snackbar.Snackbar;
 
+import java.util.List;
+
+import okhttp3.internal.annotations.EverythingIsNonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BookingConfirmationFragment extends Fragment {
   private BookingCoordinator bookingCoordinator;
+
+  // Top view
+  TextView bookingNumberTextView;
+  ProgressBar bookingConfirmationProgressBar;
+
+  // Booking Information views
+  TextView dateTextView;
+  TextView arrivalTextView;
+  TextView departureTextView;
+  TextView participantsTextView;
+  TextView costTextView;
+  TextView specialRequestTextView;
+  RecyclerView requestedTechnologyRecyclerView;
+  RecyclerView requestedFoodRecyclerView;
 
   @Override
   public View onCreateView(
@@ -36,30 +64,97 @@ public class BookingConfirmationFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
     CreateBookingActivity activity = (CreateBookingActivity) getActivity();
     bookingCoordinator = activity.getBookingCoordinator();
+    finalizeBooking(getContext(), view); // Start API call while we find views
 
-    // Make API-call, until API call is made we have nothing to show.
+    // Find views
+    bookingNumberTextView = view.findViewById(R.id.bookingNumberTextView);
+    bookingConfirmationProgressBar = view.findViewById(R.id.bookingConfirmationProgressBar);
+
+    dateTextView = view.findViewById(R.id.dateTextView);
+    arrivalTextView = view.findViewById(R.id.arrivalTextView);
+    departureTextView = view.findViewById(R.id.departureTextView);
+    participantsTextView = view.findViewById(R.id.participantsTextView);
+    costTextView = view.findViewById(R.id.costTextView);
+    specialRequestTextView = view.findViewById(R.id.specialRequestTextView);
+    requestedTechnologyRecyclerView = view.findViewById(R.id.requestedTechnologyRecyclerView);
+    requestedFoodRecyclerView = view.findViewById(R.id.requestedFoodRecyclerView);
+  }
+
+  private void finalizeBooking(Context context, View view) {
+    Log.i(Logging.BookingConfirmation, "We be confirming baby");
     RetrofitHelper
         .finalizeBooking(bookingCoordinator.getToken())
         .enqueue(new Callback<BookingConfirmation>() {
           @Override
+          @EverythingIsNonNull
           public void onResponse(Call<BookingConfirmation> call, Response<BookingConfirmation> response) {
-            Log.i("YOLO", "responseBody=" + response.body());
-            response.body().prettyPrint();
-
+            Log.i(Logging.BookingConfirmation, "Did confirmation call, booyah!");
             onApiCallFinish(view, response.body());
-          }
+         }
 
           @Override
+          @EverythingIsNonNull
           public void onFailure(Call<BookingConfirmation> call, Throwable t) {
-            Log.i("YOLO", "awaddafuk");
+            Log.e(Logging.BookingConfirmation, "Catastrophic failure! " + t);
+            t.printStackTrace();
+
+            // This usually means an empty incomprehensible response from the API.
+            // We will show an error thingie then throw the user back to the starting screen.
+            // They'll be at least as frustrated as I am, but what can I do?
+            new AlertDialog.Builder(context)
+                .setTitle(R.string.api_empty_response_header)
+                .setMessage(R.string.api_empty_response_message)
+                .setIcon(android.R.drawable.ic_delete)
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                  bookingConfirmationProgressBar.setVisibility(View.GONE);
+                  Intent restartBookingIntent = new Intent(getContext(), CreateBookingActivity.class);
+                  restartBookingIntent.putExtras(getActivity().getIntent());
+                  restartBookingIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                  startActivity(restartBookingIntent);
+                }).show();
           }
         });
   }
 
   private void onApiCallFinish(View view, BookingConfirmation bookingConfirmation) {
     // Set the booking number
-    TextView bookingNumberTextView = view.findViewById(R.id.bookingNumberTextView);
     String bookingNumber = String.format("#%s", bookingConfirmation.getBookingDetails().getBookingNumber());
     bookingNumberTextView.setText(bookingNumber);
+
+    // Set various booking information
+    BookingConfirmationDetails bookingDetails = bookingConfirmation.getBookingDetails();
+    dateTextView.setText(bookingDetails.getArrivalDate());
+    arrivalTextView.setText(bookingDetails.getArrivalTime());
+    departureTextView.setText(bookingDetails.getDepartTime());
+    participantsTextView.setText(bookingConfirmation.getNumberOfParticipants());
+    costTextView.setText(String.format("%s kr", bookingConfirmation.getSumTotalExclVat()));
+
+    // Set the special request, or hide it if it's empty
+    String specialRequest = bookingConfirmation.getSpecialRequest();
+    if (specialRequest == null || specialRequest.trim().isEmpty()) {
+      view.findViewById(R.id.specialRequestHeader).setVisibility(View.GONE);
+      specialRequestTextView.setVisibility(View.GONE);
+    } else {
+      specialRequestTextView.setText(bookingConfirmation.getSpecialRequest());
+    }
+
+    List<IWantedToMakeAStringButFailed> technologies = bookingConfirmation.getBookedTechList();
+    if (technologies.isEmpty()) {
+      view.findViewById(R.id.requestedTechnologiesHeader).setVisibility(View.GONE);
+      requestedTechnologyRecyclerView.setVisibility(View.GONE);
+    } else {
+      Log.w(Logging.BookingConfirmation, "Missing adapter for technologies list!");
+    }
+
+    List<BookingConfirmationFoodBeverage> foodBeverages = bookingConfirmation.getBookedFoodBeverage();
+    if (foodBeverages.isEmpty()) {
+      view.findViewById(R.id.requestedFoodHeader).setVisibility(View.GONE);
+      requestedTechnologyRecyclerView.setVisibility(View.GONE);
+    } else {
+      Log.w(Logging.BookingConfirmation, "Missing adapter for foodBeverages list!");
+    }
+
+    // All done, shut down the progress bar!
+    bookingConfirmationProgressBar.setVisibility(View.GONE);
   }
 }

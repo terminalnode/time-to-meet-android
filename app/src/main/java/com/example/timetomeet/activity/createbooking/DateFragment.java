@@ -77,8 +77,8 @@ public class DateFragment extends Fragment {
     // Set up date labels
     startDateDisplay = view.findViewById(R.id.startDateDisplay);
     endDateDisplay = view.findViewById(R.id.endDateDisplay);
-    TextView startDateText = startDateDisplay.findViewById(R.id.dateTextView);
-    TextView endDateText = endDateDisplay.findViewById(R.id.dateTextView);
+    TextView startDateText = startDateDisplay.findViewById(R.id.dateHeader);
+    TextView endDateText = endDateDisplay.findViewById(R.id.dateHeader);
 
     // Initialize date labels to today's date
     LocalDateTime ldt = LocalDateTime.now();
