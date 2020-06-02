@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Map;
 
 public class SearchResultFragment extends Fragment {
+  private BookingCoordinator bookingCoordinator;
+
   @Override
   public View onCreateView(
       LayoutInflater inflater, ViewGroup container,
@@ -34,17 +36,17 @@ public class SearchResultFragment extends Fragment {
 
     //Get bundle from first fragment
     CreateBookingActivity createBookingActivity = (CreateBookingActivity) getActivity();
+    bookingCoordinator = createBookingActivity.getBookingCoordinator();
     Bundle bookingBundle = createBookingActivity.getBookingBundle();
-    Bundle apiData = getActivity().getIntent().getExtras();
-    List<AvailableRoom> availableRooms = bookingBundle.getParcelableArrayList(Helper.BUNDLE_AVAILABLE_ROOMS_LIST);
+    List<AvailableRoom> searchResult = bookingCoordinator.getSearchResult();
 
-    Map<Long, CitySimplified> citiesMap = createBookingActivity.getCityMap();
-    availableRooms.forEach(room -> room.setAssociatedCity(citiesMap.get(room.getCityId())));
+    Map<Long, CitySimplified> citiesMap = bookingCoordinator.getCityMap();
+    searchResult.forEach(room -> room.setAssociatedCity(citiesMap.get(room.getCityId())));
 
     // Add the result list to the recycler view
     RecyclerView recyclerView = view.findViewById(R.id.availableRoomsList);
     AvailableRoomsRecyclerAdapter adapter = new AvailableRoomsRecyclerAdapter(
-        getContext(), availableRooms, this, bookingBundle
+        getContext(), searchResult, this, bookingBundle
     );
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     recyclerView.setAdapter(adapter);

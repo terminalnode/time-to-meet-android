@@ -8,4 +8,5 @@ public class Logging {
   public static final String CreateBookingActivity = "CreateBookingActivity";
   public static final String NewUserActivity = "NewUserActivity";
   public static final String BookingConfirmation = "BookingConfirmation";
+  public static final String BookingCoordinator = "BookingCoordinator";
 }

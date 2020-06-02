@@ -1,7 +1,6 @@
 package com.example.timetomeet.activity.createbooking;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -53,29 +52,26 @@ public class DateFragment extends Fragment {
   private ConstraintLayout startDateDisplay, endDateDisplay;
   private CitySimplifiedSpinnerAdapter citySpinnerAdapter;
   private DateDisplayListener startDateDisplayListener, endDateDisplayListener;
-  private List<CitySimplified> citiesWithVenues;
   private ProgressBar progressBar;
   private Runnable activityStarter;
   private Spinner spinCity;
+  private BookingCoordinator bookingCoordinator;
 
   @Override
   public View onCreateView(
       LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState
   ) {
-    Intent intent = Objects.requireNonNull(getActivity()).getIntent();
-    if (intent != null) {
-      citiesWithVenues = intent.getParcelableArrayListExtra(Helper.BUNDLE_CITIES);
-    } else {
-      citiesWithVenues = new ArrayList<>();
-    }
-
     Log.i(Logging.CreateBookingActivity, "Inflating CreateBookingDateFragment");
     return inflater.inflate(R.layout.fragment_date, container, false);
   }
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    CreateBookingActivity activity = (CreateBookingActivity) getActivity();
+    bookingCoordinator = activity.getBookingCoordinator();
+    Context context = getContext();
+
     // Find progress bar
     progressBar = view.findViewById(R.id.searchProgressBar);
 
@@ -96,14 +92,14 @@ public class DateFragment extends Fragment {
     endDateText.setText(today);
 
     // Set up listeners
-    startDateDisplayListener = new DateDisplayListener(getContext(), startDateText);
-    endDateDisplayListener = new DateDisplayListener(getContext(), endDateText);
+    startDateDisplayListener = new DateDisplayListener(context, startDateText);
+    endDateDisplayListener = new DateDisplayListener(context, endDateText);
     startDateDisplay.setOnClickListener(startDateDisplayListener);
     endDateDisplay.setOnClickListener(endDateDisplayListener);
 
     // Set up city spinner
     spinCity = view.findViewById(R.id.spinCity);
-    citySpinnerAdapter = new CitySimplifiedSpinnerAdapter(getContext(), citiesWithVenues);
+    citySpinnerAdapter = new CitySimplifiedSpinnerAdapter(context, bookingCoordinator.getCitiesWithVenues());
     spinCity.setAdapter(citySpinnerAdapter);
 
     // Set up button listener
@@ -121,7 +117,7 @@ public class DateFragment extends Fragment {
 
     // Get start date
     DatePicker startDP = startDateDisplayListener.getDatePickerDialog().getDatePicker();
-    @SuppressLint("DefaultLocale") String startDate = String.format(
+    String startDate = String.format(
         "%d-%02d-%02d",
         startDP.getYear(),
         startDP.getMonth() + 1,
@@ -131,7 +127,7 @@ public class DateFragment extends Fragment {
 
     // Get end date
     DatePicker endDP = endDateDisplayListener.getDatePickerDialog().getDatePicker();
-    @SuppressLint("DefaultLocale") String endDate = String.format(
+    String endDate = String.format(
         "%d-%02d-%02d",
         endDP.getYear(),
         endDP.getMonth() + 1,
@@ -186,9 +182,9 @@ public class DateFragment extends Fragment {
    * Fetch all the venues from the list of available rooms, and associate them with the rooms.
    * Then start the next activity, showing a list of all available rooms.
    * @param venueIds The list of (unique) venue IDs.
-   * @param availableRooms The list of available rooms.
+   * @param searchResult The list of available rooms.
    */
-  private void fetchVenuesAndStartActivity(List<Long> venueIds, ArrayList<AvailableRoom> availableRooms) {
+  private void fetchVenuesAndStartActivity(List<Long> venueIds, ArrayList<AvailableRoom> searchResult) {
     long retryDelay = 100;
     int totalNumberOfVenues = venueIds.size();
     Map<Long, Venue> mapFetchedVenues = new ConcurrentHashMap<>();
@@ -209,25 +205,20 @@ public class DateFragment extends Fragment {
 
     Handler activityStartHandler = new Handler();
     activityStarter = () -> {
+      int numFetchedVenues = mapFetchedVenues.size();
       Log.i(
           Logging.CreateBookingActivity,
-          String.format("Fetched venues %s / %s", mapFetchedVenues.size(), totalNumberOfVenues));
+          String.format("Fetched venues %s / %s", numFetchedVenues, totalNumberOfVenues));
 
-      if (mapFetchedVenues.size() == totalNumberOfVenues) {
-
+      if (numFetchedVenues == totalNumberOfVenues) {
         // Associate Venues with AvailableRooms
-        availableRooms.forEach(x -> x.setAssociatedVenue(mapFetchedVenues.get(x.getPlantId())));
+        searchResult.forEach(x -> x.setAssociatedVenue(mapFetchedVenues.get(x.getPlantId())));
+        bookingCoordinator.setSearchResult(searchResult);
 
-        // Bundle the parcelable rooms
-        ((CreateBookingActivity) getActivity())
-            .getBookingBundle()
-            .putParcelableArrayList(Helper.BUNDLE_AVAILABLE_ROOMS_LIST, availableRooms);
-        Log.i(Logging.CreateBookingActivity, "All bundled up");
-
+        setSearchFinished();
         NavHostFragment
             .findNavController(DateFragment.this)
             .navigate(R.id.action_DateFragment_to_SearchResultFragment);
-        setSearchFinished();
       } else {
         activityStartHandler.postDelayed(activityStarter, retryDelay);
       }
