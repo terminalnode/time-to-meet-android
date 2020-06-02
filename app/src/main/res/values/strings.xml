@@ -96,4 +96,6 @@
   <string name="reserve_room_button">Reserve Room</string>
   <string name="invalid_number_of_participants">Invalid number of participants</string>
   <string name="add_comment">Add a comment</string>
+  <string name="food_beverage_price_each_place_holder" translatable="false">13.37 kr/st</string>
+  <string name="food_beverage_price_total_place_holder" translatable="false">1337 kr</string>
 </resources>

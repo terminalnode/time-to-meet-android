@@ -16,6 +16,16 @@
     app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
+    android:id="@+id/selectFoodPriceEachTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="20dp"
+    android:text="@string/food_beverage_price_each_place_holder"
+    app:layout_constraintBottom_toBottomOf="@+id/selectFoodCheckBox"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/selectFoodCheckBox" />
+
+  <TextView
     android:id="@+id/timeSelectTextView"
     android:layout_width="wrap_content"
     android:layout_height="25dp"
@@ -28,13 +38,13 @@
 
   <EditText
     android:id="@+id/commentEditText"
-    android:layout_width="wrap_content"
+    android:layout_width="255dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:autofillHints="@string/add_comment"
     android:ems="10"
     android:hint="@string/add_comment"
-    android:inputType="textPersonName"
+    android:inputType="textMultiLine|text"
     android:textSize="14sp"
     android:visibility="gone"
     app:layout_constraintStart_toStartOf="@+id/selectFoodCheckBox"
@@ -78,4 +88,5 @@
     app:layout_constraintEnd_toStartOf="@+id/timeSelectTextView"
     app:layout_constraintTop_toTopOf="@id/timeSelectTextView"
     app:srcCompat="@android:drawable/ic_popup_reminder" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
