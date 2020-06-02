@@ -2,6 +2,8 @@ package com.example.timetomeet.customview.adapters;
 
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,12 +99,29 @@ public class SelectFoodRecyclerAdapter
       numberOfPeopleEditText = itemView.findViewById(R.id.numberOfPeopleEditText);
       bellImageView = itemView.findViewById(R.id.bellImageView);
 
-      // Set input filters to agreement number
+      // Set text watcher to make sure we can't enter
+      // more participants than the available seatings.
       numberOfPeopleEditText.addTextChangedListener(
           new ParticipantsNumberTextWatcher(conferenceRoomSeating));
 
+      // Create the TimePickerDialog
       timePickerDialog = new TimePickerDialog(
-          context, this::onTimeSet, 12, 12, true);
+          context, this::onTimeSet, 12, 10, true);
+    }
+
+    public String getComment() {
+      return commentEditText.getText().toString();
+    }
+
+    public int getNumberOfParticipants() {
+      int numberOfParticipants = 0;
+      String rawNumberOfParticipants = numberOfPeopleEditText.getText().toString();
+
+      try {
+        numberOfParticipants = Integer.parseInt(rawNumberOfParticipants);
+      } catch (NumberFormatException ignored) { }
+
+      return numberOfParticipants;
     }
 
     /**
@@ -129,6 +148,10 @@ public class SelectFoodRecyclerAdapter
 
     public void setVenueFoodBeverage(VenueFoodBeverage venueFoodBeverage) {
       this.venueFoodBeverage = venueFoodBeverage;
+
+      // Add myself to the venueFoodBeverage object.
+      // Hold my beverage, I'm going in.
+      venueFoodBeverage.setViewHolder(this);
     }
 
     private void onTimeSet(TimePicker timePicker, int hour, int minute) {

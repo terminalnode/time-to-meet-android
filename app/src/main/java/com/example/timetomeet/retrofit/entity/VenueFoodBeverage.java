@@ -1,5 +1,6 @@
 package com.example.timetomeet.retrofit.entity;
 
+import com.example.timetomeet.customview.adapters.SelectFoodRecyclerAdapter;
 import com.google.gson.annotations.SerializedName;
 
 public class VenueFoodBeverage {
@@ -16,8 +17,8 @@ public class VenueFoodBeverage {
   private Double price;
 
   private boolean isSelected;
-
   private String selectedTime;
+  private transient SelectFoodRecyclerAdapter.ViewHolder viewHolder;
 
   //----- Constructors -----//
   public VenueFoodBeverage() {
@@ -60,6 +61,10 @@ public class VenueFoodBeverage {
     this.selectedTime = selectedTime;
   }
 
+  public void setViewHolder(SelectFoodRecyclerAdapter.ViewHolder viewHolder) {
+    this.viewHolder = viewHolder;
+  }
+
   //----- Getters -----//
   public Long getId() {
     return id;
@@ -83,5 +88,9 @@ public class VenueFoodBeverage {
 
   public String getSelectedTime() {
     return selectedTime;
+  }
+
+  public SelectFoodRecyclerAdapter.ViewHolder getViewHolder() {
+    return viewHolder;
   }
 }

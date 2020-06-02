@@ -32,6 +32,7 @@ import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.Venue;
 import com.example.timetomeet.retrofit.entity.VenueFoodBeverage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -155,12 +156,16 @@ public class FoodFragment extends Fragment {
   }
 
   private void addFoodBeverage(VenueFoodBeverage vfb, List<BookingFoodBeverageAdd> finishedVenueFoodBeverages) {
+    // TODO Verify input, possibly add error handling?
+    Log.i(Logging.CreateBookingActivity, "Preparing BookingFoodBeverageAdd from: " + vfb);
     BookingFoodBeverageAdd bfba = new BookingFoodBeverageAdd();
-    bfba.setConferenceRoomAvailability("YOLO");
+    bfba.setConferenceRoomAvailability("YOLO"); // TODO Ask Jon wtf this is supposed to be
+    bfba.setConferenceRoomAvailability("YOLO"); // TODO Ask Jon wtf this is supposed to be
     bfba.setFoodBeverageId(vfb.getFoodBeverage());
-    bfba.setAmount(1); // TODO Add amount field
-    bfba.setComment(""); // TODO Add comment field
+    bfba.setAmount(vfb.getViewHolder().getNumberOfParticipants());
+    bfba.setComment(vfb.getViewHolder().getComment());
     bfba.setTimeToServe(String.format("%sT%s", selectedRoom.getStartDate(), vfb.getSelectedTime()));
+    Log.i(Logging.CreateBookingActivity, "Prepared BookingFoodBeverageAdd: " + bfba);
 
     RetrofitHelper
         .addFoodBeverage(token, bfba)
@@ -168,6 +173,7 @@ public class FoodFragment extends Fragment {
           @Override
           public void onResponse(Call<BookingFoodBeverageAdd> call, Response<BookingFoodBeverageAdd> response) {
             Log.i(Logging.CreateBookingActivity, "Successfully added " + response.body());
+
             finishedVenueFoodBeverages.add(response.body());
           }
 
@@ -179,7 +185,7 @@ public class FoodFragment extends Fragment {
 
   private void addSelectableTechnology(ConferenceRoomTechnology conferenceRoomTechnology, List<BookingSelectableTechnologyAdd> finishedConferenceRoomTechnologies) {
     BookingSelectableTechnologyAdd bsta = new BookingSelectableTechnologyAdd();
-    bsta.setConferenceRoomAvailability("YOLO");
+    bsta.setConferenceRoomAvailability("YOLO"); // TODO Ask Jon wtf this is supposed to be
     bsta.setTechnology(conferenceRoomTechnology.getTechnology());
 
     RetrofitHelper
