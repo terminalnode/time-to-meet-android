@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ConferenceRoomTechnology implements Parcelable {
+public class ConferenceRoomTechnology implements Parcelable, Comparable<ConferenceRoomTechnology> {
   @SerializedName("id")
   private Long id;
 
@@ -119,5 +119,15 @@ public class ConferenceRoomTechnology implements Parcelable {
 
   public boolean isSelected() {
     return selected;
+  }
+
+  @Override
+  public int compareTo(ConferenceRoomTechnology o) {
+    if (isIncluded() && !o.isIncluded()) {
+      return -1;
+    } else if (!isIncluded() && o.isIncluded()) {
+      return 1;
+    }
+    return 0;
   }
 }

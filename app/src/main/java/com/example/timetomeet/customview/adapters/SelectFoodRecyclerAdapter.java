@@ -56,9 +56,14 @@ public class SelectFoodRecyclerAdapter
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     VenueFoodBeverage venueFoodBeverage = foodAlternatives.get(position);
+
+    // Fetch the foodBeverage and associate it with the holder object.
     FoodBeverage foodBeverage = foodMap.get(venueFoodBeverage.getFoodBeverage());
-    String foodBeverageName = Helper.getLocalizedName(foodBeverage, context);
     holder.setVenueFoodBeverage(venueFoodBeverage);
+
+    // Find and capitalize the food/beverage name
+    String foodBeverageName = Helper.getLocalizedName(foodBeverage, context);
+    foodBeverageName = Character.toUpperCase(foodBeverageName.charAt(0)) + foodBeverageName.substring(1);
 
     holder.selectFoodCheckBox.setText(foodBeverageName);
     holder.selectFoodCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {

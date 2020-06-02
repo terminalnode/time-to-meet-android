@@ -46,7 +46,10 @@ public class SelectTechnologyRecyclerAdapter
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     ConferenceRoomTechnology technology = technologies.get(position);
     Technology associatedTechnology = technologyMap.get(technology.getTechnology());
+
+    // Find and capitalize the tech name
     String techName = Helper.getLocalizedName(associatedTechnology, context);
+    techName = Character.toUpperCase(techName.charAt(0)) + techName.substring(1);
 
     holder.techCheckBox.setText(techName);
     if (technology.isIncluded()) {

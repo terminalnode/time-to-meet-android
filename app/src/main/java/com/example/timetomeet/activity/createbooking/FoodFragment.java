@@ -33,6 +33,7 @@ import com.example.timetomeet.retrofit.entity.Venue;
 import com.example.timetomeet.retrofit.entity.VenueFoodBeverage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -251,9 +252,12 @@ public class FoodFragment extends Fragment {
 
   private void setUpTechRecyclerAdapter() {
     RecyclerView techRecyclerView = getView().findViewById(R.id.technologyRecyclerView);
+    List<ConferenceRoomTechnology> technologies = conferenceRoom.getAssociatedConferenceRoomTechnologies();
+    Collections.sort(technologies);
+
     SelectTechnologyRecyclerAdapter techAdapter = new SelectTechnologyRecyclerAdapter(
         getContext(),
-        conferenceRoom.getAssociatedConferenceRoomTechnologies(),
+        technologies,
         technologyMap
     );
     techRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
