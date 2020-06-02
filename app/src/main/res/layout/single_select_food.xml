@@ -3,7 +3,8 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content">
+  android:layout_height="wrap_content"
+  android:layout_marginBottom="10dp">
 
   <CheckBox
     android:id="@+id/selectFoodCheckBox"
@@ -17,10 +18,64 @@
   <TextView
     android:id="@+id/timeSelectTextView"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
+    android:layout_height="25dp"
+    android:layout_marginStart="35dp"
+    android:layout_marginTop="10dp"
     android:text="@string/time_select_place_holder"
     android:visibility="gone"
     app:layout_constraintStart_toStartOf="@+id/selectFoodCheckBox"
     app:layout_constraintTop_toBottomOf="@+id/selectFoodCheckBox" />
+
+  <EditText
+    android:id="@+id/commentEditText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:autofillHints="@string/add_comment"
+    android:ems="10"
+    android:hint="@string/add_comment"
+    android:inputType="textPersonName"
+    android:textSize="14sp"
+    android:visibility="gone"
+    app:layout_constraintStart_toStartOf="@+id/selectFoodCheckBox"
+    app:layout_constraintTop_toBottomOf="@id/numberOfPeopleEditText" />
+
+  <EditText
+    android:id="@+id/numberOfPeopleEditText"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:ems="10"
+    android:hint="@string/number_of_participants_header"
+    android:importantForAutofill="no"
+    android:inputType="number"
+    android:text="@string/default_number_one"
+    android:textAlignment="center"
+    android:visibility="gone"
+    app:layout_constraintStart_toEndOf="@+id/numberOfPeopleHeader"
+    app:layout_constraintTop_toBottomOf="@+id/timeSelectTextView" />
+
+  <TextView
+    android:id="@+id/numberOfPeopleHeader"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/number_of_participants_header"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="@+id/numberOfPeopleEditText"
+    app:layout_constraintStart_toStartOf="@+id/selectFoodCheckBox"
+    app:layout_constraintTop_toTopOf="@+id/numberOfPeopleEditText" />
+
+  <ImageView
+    android:id="@+id/bellImageView"
+    android:layout_width="25dp"
+    android:layout_height="25dp"
+    android:layout_marginEnd="10dp"
+    android:contentDescription="@string/food_bell_icon_description"
+    android:tint="#292626"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="@+id/timeSelectTextView"
+    app:layout_constraintEnd_toStartOf="@+id/timeSelectTextView"
+    app:layout_constraintTop_toTopOf="@id/timeSelectTextView"
+    app:srcCompat="@android:drawable/ic_popup_reminder" />
 </androidx.constraintlayout.widget.ConstraintLayout>

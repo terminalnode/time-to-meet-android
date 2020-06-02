@@ -73,4 +73,6 @@
   <string name="invalid_number_of_participants">Felaktigt antal deltagare</string>
   <string name="food_beverage_place_holder">[ Namn för Mat/Dryck ]</string>
   <string name="time_select_place_holder">Välj tid som mat ska levereras</string>
+  <string name="add_comment">Lägg till kommentar</string>
+  <string name="food_bell_icon_description">En bild på en klocka som indikerar att detta är den tidpunkt då du vill ha dina förfriskningar serverade.</string>
 </resources>

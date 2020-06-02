@@ -9,9 +9,31 @@ import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomSeati
 public class ParticipantsNumberTextWatcher implements TextWatcher {
   private boolean ignoreNextChange;
   private Spinner seatingSpinner;
+  private ConferenceRoomSeating conferenceRoomSeating;
 
+  /**
+   * Constructor for adjusting behaviour to seatingSpinner.
+   * The selected object will be retrieved from the spinner every time a change is made,
+   * making sure the number never exceeds the maximum number of allowed seats.
+   * @param seatingSpinner The spinner containing ConferenceRoomSeating objects.
+   */
   public ParticipantsNumberTextWatcher(Spinner seatingSpinner) {
-    this.seatingSpinner = seatingSpinner;
+    this(seatingSpinner, null);
+  }
+
+  /**
+   * Constructor for adjusting behaviour to a constant ConferenceRoomSeating object.
+   * Works same as the constructor above, except the maximum number of allowed seats
+   * does not change.
+   * @param conferenceRoomSeating The ConferenceRoomSeating object.
+   */
+  public ParticipantsNumberTextWatcher(ConferenceRoomSeating conferenceRoomSeating) {
+    this(null, conferenceRoomSeating);
+  }
+
+  private ParticipantsNumberTextWatcher(Spinner s, ConferenceRoomSeating crs) {
+    this.seatingSpinner = s;
+    this.conferenceRoomSeating = crs;
     ignoreNextChange = false;
   }
 
@@ -47,8 +69,10 @@ public class ParticipantsNumberTextWatcher implements TextWatcher {
     }
 
     // Find out the maximum allowed value
-    ConferenceRoomSeating crs = (ConferenceRoomSeating) seatingSpinner.getSelectedItem();
-    int maxValue = crs.getNumberOfSeats();
+    if (seatingSpinner != null) {
+      conferenceRoomSeating = (ConferenceRoomSeating) seatingSpinner.getSelectedItem();
+    }
+    int maxValue = conferenceRoomSeating.getNumberOfSeats();
 
     // Ensure that the text has a value between 1 and maxValue
     if (value < 1) {

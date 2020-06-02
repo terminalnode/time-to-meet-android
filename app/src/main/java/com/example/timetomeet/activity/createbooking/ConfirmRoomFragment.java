@@ -55,6 +55,7 @@ public class ConfirmRoomFragment extends Fragment {
   Button confirmRoomButton;
   String token;
   Runnable timeSlotChecker;
+  Bundle bookingBundle;
 
   @Override
   public View onCreateView(
@@ -67,7 +68,7 @@ public class ConfirmRoomFragment extends Fragment {
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    Bundle bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
+    bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
     Bundle apiData = getActivity().getIntent().getExtras();
     CreateBookingActivity activity = (CreateBookingActivity) getActivity();
     selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
@@ -274,7 +275,8 @@ public class ConfirmRoomFragment extends Fragment {
       if (allTimeSlotsChecked) {
         Log.i(Logging.CreateBookingActivity, "All time slots added!");
         progressBar.setVisibility(View.GONE);
-        // TODO Send time slots to activity/next fragment, booking bundle or whatever.
+        bookingBundle.putParcelable(Helper.BUNDLE_CONFERENCE_ROOM_SEATING, seating);
+
         Log.i(Logging.CreateBookingActivity, "Moving over to food fragment");
         NavHostFragment
             .findNavController(ConfirmRoomFragment.this)

@@ -24,6 +24,7 @@
   <!-- Descriptions -->
   <string name="splash_image_description">The app\'s logo, sillouette of people sitting in a meeting.</string>
   <string name="seat_list_people_icon_description">Image of two people indicating that the number is showing highest possible number of participants.</string>
+  <string name="food_bell_icon_description">A bell image indicating that this is where you enter the time at which you\'d like the refreshments to be served.</string>
 
   <!-- Splash screen -->
   <string name="fetched_cities">Got cities!</string>
@@ -94,4 +95,5 @@
   <string name="full_day_radio_button_label">Full day</string>
   <string name="reserve_room_button">Reserve Room</string>
   <string name="invalid_number_of_participants">Invalid number of participants</string>
+  <string name="add_comment">Add a comment</string>
 </resources>

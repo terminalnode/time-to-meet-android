@@ -25,6 +25,7 @@ import com.example.timetomeet.retrofit.entity.availableroom.AvailableRoom;
 import com.example.timetomeet.retrofit.entity.BookingFoodBeverageAdd;
 import com.example.timetomeet.retrofit.entity.BookingSelectableTechnologyAdd;
 import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoom;
+import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomSeating;
 import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.FoodBeverage;
 import com.example.timetomeet.retrofit.entity.Technology;
@@ -48,6 +49,7 @@ public class FoodFragment extends Fragment {
   private Button confirmButton;
   private String token;
   private Runnable confirmBookingActivity;
+  private ConferenceRoomSeating conferenceRoomSeating;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,6 +64,7 @@ public class FoodFragment extends Fragment {
     Bundle bookingBundle = activity.getBookingBundle();
     token = activity.getIntent().getStringExtra(Helper.BUNDLE_TOKEN);
     selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
+    conferenceRoomSeating = bookingBundle.getParcelable(Helper.BUNDLE_CONFERENCE_ROOM_SEATING);
     conferenceRoom = selectedRoom.getAssociatedConferenceRoom();
     technologyMap = activity.getTechnologyMap();
     foodMap = activity.getFoodMap();
@@ -217,7 +220,8 @@ public class FoodFragment extends Fragment {
     SelectFoodRecyclerAdapter foodAdapter = new SelectFoodRecyclerAdapter(
         getContext(),
         associatedVenue.getAssociatedFoodBeverages(),
-        foodMap
+        foodMap,
+        conferenceRoomSeating
     );
     foodRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     foodRecyclerView.setAdapter(foodAdapter);
