@@ -7,6 +7,7 @@ import com.example.timetomeet.retrofit.entity.BookingFoodBeverageAdd;
 import com.example.timetomeet.retrofit.entity.BookingSelectableTechnologyAdd;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
+import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmation;
 import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoom;
 import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.Credentials;
@@ -134,5 +135,9 @@ public class RetrofitHelper {
   public static Call<BookingSelectableTechnologyAdd> addSelectableTechnology(
       String token, BookingSelectableTechnologyAdd bsta) {
     return getBase().addSelectableTechnology(token, bsta);
+  }
+
+  public static Call<BookingConfirmation> finalizeBooking(String token) {
+    return getBase().finalizeBooking(token);
   }
 }

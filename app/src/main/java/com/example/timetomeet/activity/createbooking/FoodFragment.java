@@ -32,7 +32,6 @@ import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.Venue;
 import com.example.timetomeet.retrofit.entity.VenueFoodBeverage;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +50,7 @@ public class FoodFragment extends Fragment {
   private String token;
   private Runnable confirmBookingActivity;
   private ConferenceRoomSeating conferenceRoomSeating;
+  private long timeSlotCode;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,6 +70,7 @@ public class FoodFragment extends Fragment {
     technologyMap = activity.getTechnologyMap();
     foodMap = activity.getFoodMap();
     confirmButton = view.findViewById(R.id.confirmButton);
+    timeSlotCode = bookingBundle.getLong(Helper.BUNDLE_TIME_SLOT_CODE);
 
     // Fetch the selectedRoom's associatedVenue's FoodBeverage options,
     // if it is already fetched, just set up the recycler adapter.
@@ -159,8 +160,7 @@ public class FoodFragment extends Fragment {
     // TODO Verify input, possibly add error handling?
     Log.i(Logging.CreateBookingActivity, "Preparing BookingFoodBeverageAdd from: " + vfb);
     BookingFoodBeverageAdd bfba = new BookingFoodBeverageAdd();
-    bfba.setConferenceRoomAvailability("YOLO"); // TODO Ask Jon wtf this is supposed to be
-    bfba.setConferenceRoomAvailability("YOLO"); // TODO Ask Jon wtf this is supposed to be
+    bfba.setConferenceRoomAvailability("" + timeSlotCode);
     bfba.setFoodBeverageId(vfb.getFoodBeverage());
     bfba.setAmount(vfb.getViewHolder().getNumberOfParticipants());
     bfba.setComment(vfb.getViewHolder().getComment());
@@ -185,7 +185,7 @@ public class FoodFragment extends Fragment {
 
   private void addSelectableTechnology(ConferenceRoomTechnology conferenceRoomTechnology, List<BookingSelectableTechnologyAdd> finishedConferenceRoomTechnologies) {
     BookingSelectableTechnologyAdd bsta = new BookingSelectableTechnologyAdd();
-    bsta.setConferenceRoomAvailability("YOLO"); // TODO Ask Jon wtf this is supposed to be
+    bsta.setConferenceRoomAvailability("" + timeSlotCode);
     bsta.setTechnology(conferenceRoomTechnology.getTechnology());
 
     RetrofitHelper

@@ -92,8 +92,6 @@ public class RoomDetailsFragment extends Fragment {
    * @param view The view in which the button is clicked.
    */
   private void createBookingButtonClicked(View view) {
-    // TODO Make sure to send the information to the next fragment.
-    // TODO Make sure all the necessary API calls are being made.
     Log.i(Logging.CreateBookingActivity, "Moving over to confirm room fragment");
     NavHostFragment
         .findNavController(RoomDetailsFragment.this)

@@ -204,12 +204,9 @@ public class ConfirmRoomFragment extends Fragment {
     addBooking.setBookingSourceSystem(2);
     addBooking.setAgreementNumber(agreementNumber);
 
-
-    token = getActivity().getIntent().getStringExtra(Helper.BUNDLE_TOKEN);
-
     //Api calls
+    token = getActivity().getIntent().getStringExtra(Helper.BUNDLE_TOKEN);
     createNewBooking(addBooking, listOfTimeSlots, seating);
-
   }
 
   private void createNewBooking(
@@ -276,6 +273,7 @@ public class ConfirmRoomFragment extends Fragment {
         Log.i(Logging.CreateBookingActivity, "All time slots added!");
         progressBar.setVisibility(View.GONE);
         bookingBundle.putParcelable(Helper.BUNDLE_CONFERENCE_ROOM_SEATING, seating);
+        bookingBundle.putLong(Helper.BUNDLE_TIME_SLOT_CODE, listOfTimeSlots[0]);
 
         Log.i(Logging.CreateBookingActivity, "Moving over to food fragment");
         NavHostFragment
@@ -308,7 +306,7 @@ public class ConfirmRoomFragment extends Fragment {
             // some kind of proper error handling.
             if (response.body() == null) {
               try {
-                Log.i("YOLO", response.errorBody().string());
+                Log.i(Logging.BookingConfirmation, response.errorBody().string());
               } catch (IOException ignored) { }
               finishedTimeSlots.add(null);
               return;

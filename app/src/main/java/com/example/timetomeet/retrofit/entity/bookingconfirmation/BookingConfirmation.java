@@ -1,5 +1,8 @@
 package com.example.timetomeet.retrofit.entity.bookingconfirmation;
 
+import android.util.Log;
+
+import com.example.timetomeet.Logging;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -20,14 +23,14 @@ public class BookingConfirmation {
   @SerializedName("number_of_participants")
   private String numberOfParticipants;
 
-  //@SerializedName("bookedFoodBeverage")
-  //private List<Object> bookedFoodBeverage; // TODO replace with real type when fixed;
+  @SerializedName("bookingFoodBeverage")
+  private List<BookingConfirmationFoodBeverage> bookingFoodBeverage;
 
   @SerializedName("sum_total_excl_vat")
   private Double sumTotalExclVat;
 
-  //@SerializedName("booked_tech")
-  //private List<Object> bookedTechList; // TODO replace with real type when fixed.
+  @SerializedName("booked_tech")
+  private List<IWantedToMakeAStringButFailed> bookedTechList;
 
   @SerializedName("postmarkBool")
   private BookingConfirmationPostmarkBool postmarkBool;
@@ -65,6 +68,26 @@ public class BookingConfirmation {
   }
 
   //----- Methods -----//
+  public void prettyPrint() {
+    Log.i(Logging.BookingConfirmation, "sender=" + sender);
+    Log.i(Logging.BookingConfirmation, "bookingVenue=" + bookingVenue);
+    Log.i(Logging.BookingConfirmation, "bookingDetails=" + bookingDetails);
+    Log.i(Logging.BookingConfirmation, "bookedConferenceRoomWithPriceList=" + bookedConferenceRoomWithPriceList);
+    Log.i(Logging.BookingConfirmation, "numberOfParticipants=" + numberOfParticipants);
+    Log.i(Logging.BookingConfirmation, "sumTotalExclVat=" + sumTotalExclVat);
+    Log.i(Logging.BookingConfirmation, "postmarkBool=" + postmarkBool);
+    Log.i(Logging.BookingConfirmation, "customerNumber=" + customerNumber);
+    Log.i(Logging.BookingConfirmation, "myFirstName=" + myFirstName);
+    Log.i(Logging.BookingConfirmation, "myLastName=" + myLastName);
+    Log.i(Logging.BookingConfirmation, "myPhoneNumber=" + myPhoneNumber);
+    Log.i(Logging.BookingConfirmation, "bookedByPerson=" + bookedByPerson);
+    Log.i(Logging.BookingConfirmation, "bookerInvoiceAddress=" + bookerInvoiceAddress);
+    Log.i(Logging.BookingConfirmation, "specialRequest=" + specialRequest);
+    Log.i(Logging.BookingConfirmation, "acceptDecline=" + acceptDecline);
+    Log.i(Logging.BookingConfirmation, "bookingFoodBeverage=" + bookingFoodBeverage);
+    Log.i(Logging.BookingConfirmation, "bookedTechList=" + bookedTechList);
+  }
+
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder("BookingConfirmation{");
@@ -73,7 +96,9 @@ public class BookingConfirmation {
     sb.append(", bookingDetails=").append(bookingDetails);
     sb.append(", bookedConferenceRoomWithPriceList=").append(bookedConferenceRoomWithPriceList);
     sb.append(", numberOfParticipants='").append(numberOfParticipants).append('\'');
+    sb.append(", bookingFoodBeverage=").append(bookingFoodBeverage);
     sb.append(", sumTotalExclVat=").append(sumTotalExclVat);
+    sb.append(", bookedTechList=").append(bookedTechList);
     sb.append(", postmarkBool=").append(postmarkBool);
     sb.append(", customerNumber='").append(customerNumber).append('\'');
     sb.append(", myFirstName='").append(myFirstName).append('\'');
@@ -148,6 +173,14 @@ public class BookingConfirmation {
     this.acceptDecline = acceptDecline;
   }
 
+  public void setBookedFoodBeverage(List<BookingConfirmationFoodBeverage> bookedFoodBeverage) {
+    this.bookingFoodBeverage = bookedFoodBeverage;
+  }
+
+  public void setBookedTechList(List<IWantedToMakeAStringButFailed> bookedTechList) {
+    this.bookedTechList = bookedTechList;
+  }
+
   //----- Getters -----//
   public String getSender() {
     return sender;
@@ -207,5 +240,13 @@ public class BookingConfirmation {
 
   public BookingConfirmationAcceptDecline getAcceptDecline() {
     return acceptDecline;
+  }
+
+  public List<BookingConfirmationFoodBeverage> getBookedFoodBeverage() {
+    return bookingFoodBeverage;
+  }
+
+  public List<IWantedToMakeAStringButFailed> getBookedTechList() {
+    return bookedTechList;
   }
 }

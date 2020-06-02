@@ -7,6 +7,7 @@ import com.example.timetomeet.retrofit.entity.BookingFoodBeverageAdd;
 import com.example.timetomeet.retrofit.entity.BookingSelectableTechnologyAdd;
 import com.example.timetomeet.retrofit.entity.City;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
+import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmation;
 import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoom;
 import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.Credentials;
@@ -108,5 +109,10 @@ public interface Endpoint {
   Call<BookingSelectableTechnologyAdd> addSelectableTechnology(
       @Header("Authorization") String token,
       @Body BookingSelectableTechnologyAdd bookingSelectableTechnologyAdd
+  );
+
+  @GET("booking/completed/")
+  Call<BookingConfirmation> finalizeBooking(
+      @Header("Authorization") String token
   );
 }

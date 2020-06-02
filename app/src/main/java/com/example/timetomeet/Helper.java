@@ -28,6 +28,7 @@ public class Helper {
   public static final String BUNDLE_SELECTED_ROOM = "bundle-selected-room";
   public static final String BUNDLE_STANDARD_SEATING = "bundle-standard-seating";
   public static final String BUNDLE_CONFERENCE_ROOM_SEATING = "bundle-conference-room-seating";
+  public static final String BUNDLE_TIME_SLOT_CODE = "bundle-time-slot-code";
 
   // Other
   private static String[] supportedLocales = new String[]{"en", "sv"};
