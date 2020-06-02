@@ -18,7 +18,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
 import com.example.timetomeet.customview.adapters.CitySimplifiedSpinnerAdapter;

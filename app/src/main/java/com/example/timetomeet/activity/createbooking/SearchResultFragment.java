@@ -37,7 +37,6 @@ public class SearchResultFragment extends Fragment {
     //Get bundle from first fragment
     CreateBookingActivity createBookingActivity = (CreateBookingActivity) getActivity();
     bookingCoordinator = createBookingActivity.getBookingCoordinator();
-    Bundle bookingBundle = createBookingActivity.getBookingBundle();
     List<AvailableRoom> searchResult = bookingCoordinator.getSearchResult();
 
     Map<Long, CitySimplified> citiesMap = bookingCoordinator.getCityMap();
@@ -46,7 +45,7 @@ public class SearchResultFragment extends Fragment {
     // Add the result list to the recycler view
     RecyclerView recyclerView = view.findViewById(R.id.availableRoomsList);
     AvailableRoomsRecyclerAdapter adapter = new AvailableRoomsRecyclerAdapter(
-        getContext(), searchResult, this, bookingBundle
+        getContext(), searchResult, this, bookingCoordinator
     );
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     recyclerView.setAdapter(adapter);

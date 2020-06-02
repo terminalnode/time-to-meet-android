@@ -44,7 +44,6 @@ import retrofit2.Response;
 public class ConfirmRoomFragment extends Fragment {
   AvailableRoom selectedRoom;
   Button confirmRoomButton;
-  Bundle bookingBundle;
   EditText specialRequestMultiLineText;
   EditText numberOfParticipantsEditText;
   EditText agreementNumberEditText;
@@ -56,7 +55,7 @@ public class ConfirmRoomFragment extends Fragment {
   Spinner paymentAlternativeSpinner;
   Spinner seatingChoiceSpinner;
   String token;
-
+  BookingCoordinator bookingCoordinator;
 
   @Override
   public View onCreateView(
@@ -69,10 +68,9 @@ public class ConfirmRoomFragment extends Fragment {
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
-    Bundle apiData = getActivity().getIntent().getExtras();
     CreateBookingActivity activity = (CreateBookingActivity) getActivity();
-    selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
+    bookingCoordinator = activity.getBookingCoordinator();
+    selectedRoom = bookingCoordinator.getSelectedRoom();
 
     // Find views
     specialRequestMultiLineText = view.findViewById(R.id.specialRequestMultilineText);
@@ -110,14 +108,15 @@ public class ConfirmRoomFragment extends Fragment {
     // Set up payment alternative spinner
     PaymentAlternativeSpinnerAdapter paymentAdapter = new PaymentAlternativeSpinnerAdapter(
         getContext(),
-        apiData.getParcelableArrayList(Helper.BUNDLE_PAYMENT_ALTERNATIVES));
+        bookingCoordinator.getPaymentAlternatives()
+    );
     paymentAlternativeSpinner.setAdapter(paymentAdapter);
 
     // Set up seating spinner
     SeatingSpinnerAdapter seatingAdapter = new SeatingSpinnerAdapter(
         getContext(),
         selectedRoom.getAssociatedConferenceRoom().getDefaultSeating(),
-        activity.getSeatingMap(),
+        bookingCoordinator.getSeatingMap(),
         numberOfParticipantsEditText
     );
     seatingChoiceSpinner.setAdapter(seatingAdapter);
@@ -273,8 +272,9 @@ public class ConfirmRoomFragment extends Fragment {
       if (allTimeSlotsChecked) {
         Log.i(Logging.CreateBookingActivity, "All time slots added!");
         progressBar.setVisibility(View.GONE);
-        bookingBundle.putParcelable(Helper.BUNDLE_CONFERENCE_ROOM_SEATING, seating);
-        bookingBundle.putLong(Helper.BUNDLE_TIME_SLOT_CODE, listOfTimeSlots[0]);
+
+        bookingCoordinator.setSelectedRoomSeating(seating);
+        bookingCoordinator.setTimeSlotId(listOfTimeSlots[0]);
 
         Log.i(Logging.CreateBookingActivity, "Moving over to food fragment");
         NavHostFragment

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
+import com.example.timetomeet.activity.createbooking.BookingCoordinator;
 import com.example.timetomeet.retrofit.entity.availableroom.AvailableRoom;
 
 import java.util.List;
@@ -22,19 +23,20 @@ public class AvailableRoomsRecyclerAdapter extends RecyclerView.Adapter<Availabl
   private LayoutInflater inflater;
   private List<AvailableRoom> availableRooms;
   private Fragment parentFragment;
-  private Bundle bookingBundle;
   private Context context;
+  private BookingCoordinator bookingCoordinator;
 
   public AvailableRoomsRecyclerAdapter(
       Context context,
       List<AvailableRoom> availableRooms,
       Fragment parentFragment,
-      Bundle bookingBundle) {
+      BookingCoordinator bookingCoordinator
+  ) {
     this.context = context;
     this.inflater = LayoutInflater.from(context);
     this.availableRooms = availableRooms;
     this.parentFragment = parentFragment;
-    this.bookingBundle = bookingBundle;
+    this.bookingCoordinator = bookingCoordinator;
   }
 
   @NonNull
@@ -78,7 +80,7 @@ public class AvailableRoomsRecyclerAdapter extends RecyclerView.Adapter<Availabl
     return availableRooms.size();
   }
 
-  public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+  public class ViewHolder extends RecyclerView.ViewHolder {
     TextView venueNameTextView;
     TextView cityNameTextView;
     TextView amPriceLabel;
@@ -99,17 +101,15 @@ public class AvailableRoomsRecyclerAdapter extends RecyclerView.Adapter<Availabl
       pmPriceTextView = itemView.findViewById(R.id.pmPrice);
       fullDayPriceLabel = itemView.findViewById(R.id.fullDayPriceLabel);
       fullDayPriceTextView = itemView.findViewById(R.id.fullDayPrice);
-
-      itemView.setOnClickListener(this);
+      itemView.setOnClickListener(this::onClick);
     }
 
     void setAvailableRoom(AvailableRoom availableRoom) {
       this.availableRoom = availableRoom;
     }
 
-    @Override
     public void onClick(View view) {
-      bookingBundle.putParcelable(Helper.BUNDLE_SELECTED_ROOM, availableRoom);
+      bookingCoordinator.setSelectedRoom(availableRoom);
       NavHostFragment
           .findNavController(parentFragment)
           .navigate(R.id.action_SearchResultFragment_to_RoomDetailsFragment);

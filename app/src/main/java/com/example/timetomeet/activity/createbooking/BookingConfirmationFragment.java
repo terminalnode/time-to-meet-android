@@ -11,19 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmation;
-
-import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BookingConfirmationFragment extends Fragment {
-  private String token;
+  private BookingCoordinator bookingCoordinator;
 
   @Override
   public View onCreateView(
@@ -37,11 +34,12 @@ public class BookingConfirmationFragment extends Fragment {
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    CreateBookingActivity activity = (CreateBookingActivity) getActivity();
+    bookingCoordinator = activity.getBookingCoordinator();
 
     // Make API-call, until API call is made we have nothing to show.
-    token = getActivity().getIntent().getStringExtra(Helper.BUNDLE_TOKEN);
     RetrofitHelper
-        .finalizeBooking(token)
+        .finalizeBooking(bookingCoordinator.getToken())
         .enqueue(new Callback<BookingConfirmation>() {
           @Override
           public void onResponse(Call<BookingConfirmation> call, Response<BookingConfirmation> response) {

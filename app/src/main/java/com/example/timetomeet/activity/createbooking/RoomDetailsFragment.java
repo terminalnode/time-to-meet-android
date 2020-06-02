@@ -34,6 +34,7 @@ public class RoomDetailsFragment extends Fragment {
   private TextView beforeNoonPriceTextView;
   private TextView afterNoonPriceTextView;
   private TextView fullDayPriceTextView;
+  private BookingCoordinator bookingCoordinator;
 
   @Override
   public View onCreateView(
@@ -47,8 +48,9 @@ public class RoomDetailsFragment extends Fragment {
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     // Get the selected room from booking bundle
-    Bundle bookingBundle = ((CreateBookingActivity) getActivity()).getBookingBundle();
-    AvailableRoom selectedRoom = bookingBundle.getParcelable(Helper.BUNDLE_SELECTED_ROOM);
+    CreateBookingActivity activity = (CreateBookingActivity) getActivity();
+    bookingCoordinator = activity.getBookingCoordinator();
+    AvailableRoom selectedRoom = bookingCoordinator.getSelectedRoom();
 
     // Set starting date
     TextView dateTextView = view.findViewById(R.id.dateTextView);

@@ -7,9 +7,11 @@ import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.retrofit.entity.CitySimplified;
 import com.example.timetomeet.retrofit.entity.FoodBeverage;
+import com.example.timetomeet.retrofit.entity.PaymentAlternative;
 import com.example.timetomeet.retrofit.entity.Seating;
 import com.example.timetomeet.retrofit.entity.Technology;
 import com.example.timetomeet.retrofit.entity.availableroom.AvailableRoom;
+import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomSeating;
 
 import java.util.List;
 import java.util.Map;
@@ -28,6 +30,8 @@ public class BookingCoordinator {
   List<Seating> seatings;
   List<Technology> technologies;
   List<FoodBeverage> foodBeverages;
+  List<PaymentAlternative> paymentAlternatives;
+  String token;
 
   // Prerequisites
   private Map<Long, Seating> seatingMap;
@@ -37,6 +41,13 @@ public class BookingCoordinator {
 
   // DateFragment
   private List<AvailableRoom> searchResult;
+
+  // SearchResultFragment
+  private AvailableRoom selectedRoom; // Through AvailableRoomsRecyclerAdapter
+
+  // ConfirmRoomFragment
+  private ConferenceRoomSeating selectedRoomSeating;
+  private long timeSlotId;
 
   //----- Constructors -----//
   public BookingCoordinator(Bundle apiData) {
@@ -51,6 +62,9 @@ public class BookingCoordinator {
 
     foodBeverages = apiData.getParcelableArrayList(Helper.BUNDLE_FOOD_BEVARAGE_LIST);
     createFoodMap(foodBeverages);
+
+    paymentAlternatives = apiData.getParcelableArrayList(Helper.BUNDLE_PAYMENT_ALTERNATIVES);
+    token = apiData.getString(Helper.BUNDLE_TOKEN);
   }
 
   //----- Methods -----//
@@ -96,6 +110,21 @@ public class BookingCoordinator {
     this.searchResult = searchResult;
   }
 
+  public void setSelectedRoom(AvailableRoom selectedRoom) {
+    log(String.format("Selecting room: %s", selectedRoom));
+    this.selectedRoom = selectedRoom;
+  }
+
+  public void setSelectedRoomSeating(ConferenceRoomSeating selectedRoomSeating) {
+    log(String.format("Seating in selected room: %s", selectedRoomSeating));
+    this.selectedRoomSeating = selectedRoomSeating;
+  }
+
+  public void setTimeSlotId(long timeSlotId) {
+    log(String.format("Saving time slot id: %s", timeSlotId));
+    this.timeSlotId = timeSlotId;
+  }
+
   //----- Getters -----//
   public List<CitySimplified> getCitiesWithVenues() {
     return citiesWithVenues;
@@ -113,8 +142,12 @@ public class BookingCoordinator {
     return foodBeverages;
   }
 
-  public List<AvailableRoom> getSearchResult() {
-    return searchResult;
+  public List<PaymentAlternative> getPaymentAlternatives() {
+    return paymentAlternatives;
+  }
+
+  public String getToken() {
+    return token;
   }
 
   public Map<Long, Seating> getSeatingMap() {
@@ -131,5 +164,21 @@ public class BookingCoordinator {
 
   public Map<Long, CitySimplified> getCityMap() {
     return cityMap;
+  }
+
+  public List<AvailableRoom> getSearchResult() {
+    return searchResult;
+  }
+
+  public AvailableRoom getSelectedRoom() {
+    return selectedRoom;
+  }
+
+  public ConferenceRoomSeating getSelectedRoomSeating() {
+    return selectedRoomSeating;
+  }
+
+  public long getTimeSlotId() {
+    return timeSlotId;
   }
 }
