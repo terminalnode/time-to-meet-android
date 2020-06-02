@@ -12,19 +12,34 @@
     android:layout_height="wrap_content">
 
     <TextView
+      android:id="@+id/textView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="30dp"
+      android:text="@string/booking_add_options_title"
+      android:textSize="24sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
       android:id="@+id/technologyHeader"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="10dp"
-      android:text="I am tech, destroyer of man"
+      android:layout_marginTop="30dp"
+      android:text="@string/choose_tech_header"
       android:textSize="18sp"
+      android:textStyle="bold"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/technologyRecyclerView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:paddingStart="10dp"
+      android:paddingEnd="10dp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/technologyHeader" />
@@ -33,9 +48,10 @@
       android:id="@+id/foodHeader"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="10dp"
-      android:text="I am food, creator of man"
+      android:layout_marginTop="20dp"
+      android:text="@string/choose_food_header"
       android:textSize="18sp"
+      android:textStyle="bold"
       app:layout_constraintStart_toStartOf="@+id/technologyHeader"
       app:layout_constraintTop_toBottomOf="@+id/technologyRecyclerView" />
 
@@ -43,19 +59,52 @@
       android:id="@+id/foodRecyclerView"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:paddingStart="10dp"
+      android:paddingEnd="10dp"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/foodHeader" />
 
     <Button
-      android:id="@+id/confirmButton"
+      android:id="@+id/finalizeBookingButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="10dp"
-      android:text="Button"
+      android:layout_marginTop="20dp"
+      android:text="@string/finalize_booking_button"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/foodRecyclerView"
       app:layout_constraintVertical_bias="0.0" />
+
+    <ProgressBar
+      android:id="@+id/techProgressBar"
+      style="?android:attr/progressBarStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      app:layout_constraintBottom_toBottomOf="@+id/technologyHeader"
+      app:layout_constraintStart_toEndOf="@+id/technologyHeader"
+      app:layout_constraintTop_toTopOf="@+id/technologyHeader" />
+
+    <ProgressBar
+      android:id="@+id/foodProgressBar"
+      style="?android:attr/progressBarStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      app:layout_constraintBottom_toBottomOf="@+id/foodHeader"
+      app:layout_constraintStart_toEndOf="@+id/foodHeader"
+      app:layout_constraintTop_toTopOf="@+id/foodHeader" />
+
+    <ProgressBar
+      android:id="@+id/mainProgressBar"
+      style="?android:attr/progressBarStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="@+id/finalizeBookingButton"
+      app:layout_constraintStart_toEndOf="@+id/finalizeBookingButton"
+      app:layout_constraintTop_toTopOf="@+id/finalizeBookingButton" />
   </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

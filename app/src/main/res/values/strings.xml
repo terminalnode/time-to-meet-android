@@ -98,4 +98,8 @@
   <string name="add_comment">Add a comment</string>
   <string name="food_beverage_price_each_place_holder" translatable="false">13.37 kr/st</string>
   <string name="food_beverage_price_total_place_holder" translatable="false">1337 kr</string>
+  <string name="finalize_booking_button">Finalize Booking</string>
+  <string name="choose_tech_header">Choose technologies</string>
+  <string name="choose_food_header">Choose food/beverage options</string>
+  <string name="booking_add_options_title">Additions Options</string>
 </resources>

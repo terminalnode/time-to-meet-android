@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
@@ -52,6 +53,9 @@ public class FoodFragment extends Fragment {
   private Runnable confirmBookingActivity;
   private ConferenceRoomSeating conferenceRoomSeating;
   private long timeSlotCode;
+  private ProgressBar techProgressBar;
+  private ProgressBar foodProgressBar;
+  private ProgressBar mainProgressBar;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,8 +74,11 @@ public class FoodFragment extends Fragment {
     conferenceRoom = selectedRoom.getAssociatedConferenceRoom();
     technologyMap = activity.getTechnologyMap();
     foodMap = activity.getFoodMap();
-    confirmButton = view.findViewById(R.id.confirmButton);
+    confirmButton = view.findViewById(R.id.finalizeBookingButton);
     timeSlotCode = bookingBundle.getLong(Helper.BUNDLE_TIME_SLOT_CODE);
+    techProgressBar = view.findViewById(R.id.techProgressBar);
+    foodProgressBar = view.findViewById(R.id.foodProgressBar);
+    mainProgressBar = view.findViewById(R.id.mainProgressBar);
 
     // Fetch the selectedRoom's associatedVenue's FoodBeverage options,
     // if it is already fetched, just set up the recycler adapter.
@@ -95,6 +102,8 @@ public class FoodFragment extends Fragment {
   }
 
   private void confirmButtonClicked(View view) {
+    startVisuallyLoading();
+
     List<VenueFoodBeverage> venueFoodBeverages = selectedRoom
         .getAssociatedVenue()
         .getAssociatedFoodBeverages()
@@ -146,6 +155,8 @@ public class FoodFragment extends Fragment {
 
       if (foodIsDone && techIsDone) {
         Log.i(Logging.CreateBookingActivity, "Starting Booking Confirmation Fragment");
+
+        stopVisuallyLoading();
         NavHostFragment
             .findNavController(FoodFragment.this)
             .navigate(R.id.action_FoodFragment_to_BookingConfirmationFragment);
@@ -232,6 +243,8 @@ public class FoodFragment extends Fragment {
     );
     foodRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     foodRecyclerView.setAdapter(foodAdapter);
+
+    foodProgressBar.setVisibility(View.GONE);
   }
 
   private void fetchConferenceRoomTechnology() {
@@ -262,5 +275,19 @@ public class FoodFragment extends Fragment {
     );
     techRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     techRecyclerView.setAdapter(techAdapter);
+
+    techProgressBar.setVisibility(View.GONE);
+  }
+
+  private void startVisuallyLoading() {
+    mainProgressBar.setVisibility(View.VISIBLE);
+    confirmButton.setClickable(false);
+    confirmButton.setAlpha(0.5F);
+  }
+
+  private void stopVisuallyLoading() {
+    mainProgressBar.setVisibility(View.GONE);
+    confirmButton.setClickable(true);
+    confirmButton.setAlpha(1F);
   }
 }

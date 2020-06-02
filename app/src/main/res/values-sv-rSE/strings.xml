@@ -75,4 +75,8 @@
   <string name="time_select_place_holder">Välj tid som mat ska levereras</string>
   <string name="add_comment">Lägg till kommentar</string>
   <string name="food_bell_icon_description">En bild på en klocka som indikerar att detta är den tidpunkt då du vill ha dina förfriskningar serverade.</string>
+  <string name="finalize_booking_button">Färdigställ Bokning</string>
+  <string name="choose_tech_header">Välj teknologier</string>
+  <string name="choose_food_header">Välj mat- och dryckesalternativ</string>
+  <string name="booking_add_options_title">Bokningstillval</string>
 </resources>
