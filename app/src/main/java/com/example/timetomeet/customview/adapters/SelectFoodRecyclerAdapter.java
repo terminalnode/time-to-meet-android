@@ -66,6 +66,7 @@ public class SelectFoodRecyclerAdapter
     foodBeverageName = Character.toUpperCase(foodBeverageName.charAt(0)) + foodBeverageName.substring(1);
 
     holder.selectFoodCheckBox.setText(foodBeverageName);
+    holder.selectFoodPriceEachTextView.setText(String.format("%s kr", venueFoodBeverage.getPrice()));
     holder.selectFoodCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
       venueFoodBeverage.setSelected(isChecked);
       if (isChecked) {
@@ -87,6 +88,7 @@ public class SelectFoodRecyclerAdapter
 
   public class ViewHolder extends RecyclerView.ViewHolder {
     CheckBox selectFoodCheckBox;
+    TextView selectFoodPriceEachTextView;
     TextView timeSelectTextView;
     EditText commentEditText;
     TextView numberOfPeopleHeader;
@@ -95,9 +97,11 @@ public class SelectFoodRecyclerAdapter
     TimePickerDialog timePickerDialog;
     VenueFoodBeverage venueFoodBeverage;
 
+
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
       selectFoodCheckBox = itemView.findViewById(R.id.selectFoodCheckBox);
+      selectFoodPriceEachTextView = itemView.findViewById(R.id.selectFoodPriceEachTextView);
       timeSelectTextView = itemView.findViewById(R.id.timeSelectTextView);
       commentEditText = itemView.findViewById(R.id.commentEditText);
       numberOfPeopleHeader = itemView.findViewById(R.id.numberOfPeopleHeader);
