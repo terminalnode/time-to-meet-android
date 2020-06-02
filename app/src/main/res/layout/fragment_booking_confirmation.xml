@@ -135,8 +135,8 @@
         android:id="@+id/requestedTechnologyRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
         app:layout_constraintStart_toStartOf="@+id/requestedTechnologiesHeader"
         app:layout_constraintTop_toBottomOf="@+id/requestedTechnologiesHeader" />
 
@@ -154,8 +154,8 @@
         android:id="@+id/requestedFoodRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/requestedFoodHeader" />
 

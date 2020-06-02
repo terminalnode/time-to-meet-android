@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
+import com.example.timetomeet.customview.adapters.IWantedToMakeAStringButFailedRecyclerAdapter;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmation;
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmationDetails;
@@ -117,6 +119,8 @@ public class BookingConfirmationFragment extends Fragment {
   }
 
   private void onApiCallFinish(View view, BookingConfirmation bookingConfirmation) {
+    Context context = getContext();
+
     // Set the booking number
     String bookingNumber = String.format("#%s", bookingConfirmation.getBookingDetails().getBookingNumber());
     bookingNumberTextView.setText(bookingNumber);
@@ -138,19 +142,32 @@ public class BookingConfirmationFragment extends Fragment {
       specialRequestTextView.setText(bookingConfirmation.getSpecialRequest());
     }
 
+    // Add requested technologies
     List<IWantedToMakeAStringButFailed> technologies = bookingConfirmation.getBookedTechList();
     if (technologies.isEmpty()) {
       view.findViewById(R.id.requestedTechnologiesHeader).setVisibility(View.GONE);
       requestedTechnologyRecyclerView.setVisibility(View.GONE);
     } else {
-      Log.w(Logging.BookingConfirmation, "Missing adapter for technologies list!");
+      Log.i(
+          Logging.BookingConfirmation,
+          String.format("Adding requested technologies: %s", technologies)
+      );
+      requestedTechnologyRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+      requestedTechnologyRecyclerView.setAdapter(
+          new IWantedToMakeAStringButFailedRecyclerAdapter(context, technologies)
+      );
     }
 
+    // Add requested food and beverages
     List<BookingConfirmationFoodBeverage> foodBeverages = bookingConfirmation.getBookedFoodBeverage();
     if (foodBeverages.isEmpty()) {
       view.findViewById(R.id.requestedFoodHeader).setVisibility(View.GONE);
-      requestedTechnologyRecyclerView.setVisibility(View.GONE);
+      requestedFoodRecyclerView.setVisibility(View.GONE);
     } else {
+      Log.i(
+          Logging.BookingConfirmation,
+          String.format("Adding requested foodBeverages: %s", foodBeverages)
+      );
       Log.w(Logging.BookingConfirmation, "Missing adapter for foodBeverages list!");
     }
 

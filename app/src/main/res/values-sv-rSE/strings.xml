@@ -92,4 +92,5 @@
   <string name="api_empty_response_header">Ingen respons från API</string>
   <string name="api_empty_response_message">Något gick snett. När vi hämtade bekräftelsen lämnade API:n ett tomt svar. Eftersom den inte lämnade tillbaka något felmeddelande vet vi inte vad som gick fel. Tryck OK för att börja om från början.</string>
   <string name="date">Datum</string>
+  <string name="single_wannabe_string_place_holder">[ Lite text ]</string>
 </resources>
