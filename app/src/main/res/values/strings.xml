@@ -20,6 +20,7 @@
   <string name="date_place_holder" translatable="false">1945-09-02</string>
   <string name="default_number_one" translatable="false">1</string>
   <string name="time_select_place_holder">Select time for food to be delivered</string>
+  <string name="generic_place_holder">Loading…</string>
 
   <!-- Descriptions -->
   <string name="splash_image_description">The app\'s logo, sillouette of people sitting in a meeting.</string>
@@ -102,4 +103,14 @@
   <string name="choose_tech_header">Choose technologies</string>
   <string name="choose_food_header">Choose food/beverage options</string>
   <string name="booking_add_options_title">Additions Options</string>
+  <string name="booking_confirmation_title">Booking Confirmation</string>
+  <string name="booking_number_place_holder" translatable="false">#1234567890</string>
+  <string name="personal_information_header">Personal Information</string>
+  <string name="booking_information_header">Booking Information</string>
+  <string name="arrival_date">Arrival</string>
+  <string name="departure_date">Departure</string>
+  <string name="sum_total">Total cost</string>
+  <string name="special_request">Special request</string>
+  <string name="requested_tech_header">Requested technologies</string>
+  <string name="requested_food_header">Requested food/beverage</string>
 </resources>

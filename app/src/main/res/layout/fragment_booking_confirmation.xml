@@ -1,9 +1,325 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context=".activity.createbooking.BookingConfirmationFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+      android:id="@+id/bookingConfirmationTitleTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/booking_confirmation_title"
+      android:textSize="24sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+      android:id="@+id/bookingNumberTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/booking_number_place_holder"
+      android:textSize="14sp"
+      android:textStyle="bold"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/bookingConfirmationTitleTextView" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/bookingInformationContainer"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      app:layout_constraintTop_toBottomOf="@+id/bookingNumberTextView">
+
+      <TextView
+        android:id="@+id/bookingInformationHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/booking_information_header"
+        android:textSize="@dimen/booking_confirmation_header_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+        android:id="@+id/arrivalHeader"
+        android:layout_width="@dimen/booking_confirmation_header_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/arrival_date"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/bookingInformationHeader"
+        app:layout_constraintTop_toBottomOf="@+id/bookingInformationHeader" />
+
+      <TextView
+        android:id="@+id/departureHeader"
+        android:layout_width="@dimen/booking_confirmation_header_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/departure_date"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/arrivalHeader"
+        app:layout_constraintTop_toBottomOf="@+id/arrivalHeader" />
+
+      <TextView
+        android:id="@+id/participantsHeader"
+        android:layout_width="@dimen/booking_confirmation_header_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/number_of_participants_header"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/departureHeader"
+        app:layout_constraintTop_toBottomOf="@+id/departureHeader" />
+
+      <TextView
+        android:id="@+id/costHeader"
+        android:layout_width="@dimen/booking_confirmation_header_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/sum_total"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/participantsHeader"
+        app:layout_constraintTop_toBottomOf="@+id/participantsHeader" />
+
+      <TextView
+        android:id="@+id/specialRequestHeader"
+        android:layout_width="@dimen/booking_confirmation_header_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/special_request"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/costHeader"
+        app:layout_constraintTop_toBottomOf="@+id/costHeader" />
+
+      <TextView
+        android:id="@+id/specialRequestTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/generic_place_holder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/specialRequestHeader" />
+
+      <TextView
+        android:id="@+id/requestedTechnologiesHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/requested_tech_header"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/specialRequestHeader"
+        app:layout_constraintTop_toBottomOf="@+id/specialRequestTextView" />
+
+      <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/requestedTechnologyRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintStart_toStartOf="@+id/requestedTechnologiesHeader"
+        app:layout_constraintTop_toBottomOf="@+id/requestedTechnologiesHeader" />
+
+      <TextView
+        android:id="@+id/requestedFoodHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/requested_food_header"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/requestedTechnologiesHeader"
+        app:layout_constraintTop_toBottomOf="@+id/requestedTechnologyRecyclerView" />
+
+      <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/requestedFoodRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/requestedFoodHeader" />
+
+      <TextView
+        android:id="@+id/arrivalTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generic_place_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/arrivalHeader"
+        app:layout_constraintStart_toEndOf="@+id/arrivalHeader"
+        app:layout_constraintTop_toTopOf="@+id/arrivalHeader" />
+
+      <TextView
+        android:id="@+id/departureTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generic_place_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/departureHeader"
+        app:layout_constraintStart_toEndOf="@+id/departureHeader"
+        app:layout_constraintTop_toTopOf="@+id/departureHeader" />
+
+      <TextView
+        android:id="@+id/participantsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generic_place_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/participantsHeader"
+        app:layout_constraintStart_toEndOf="@+id/participantsHeader"
+        app:layout_constraintTop_toTopOf="@+id/participantsHeader" />
+
+      <TextView
+        android:id="@+id/costTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generic_place_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/costHeader"
+        app:layout_constraintStart_toEndOf="@+id/costHeader"
+        app:layout_constraintTop_toTopOf="@+id/costHeader" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/personalInformationContainer"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      app:layout_constraintTop_toBottomOf="@+id/bookingInformationContainer">
+
+      <TextView
+        android:id="@+id/personalInformationHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/personal_information_header"
+        android:textSize="@dimen/booking_confirmation_header_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+        android:id="@+id/firstNameHeader"
+        android:layout_width="@dimen/booking_confirmation_header_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/first_name"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/personalInformationHeader"
+        app:layout_constraintTop_toBottomOf="@+id/personalInformationHeader" />
+
+      <TextView
+        android:id="@+id/lastNameHeader"
+        android:layout_width="@dimen/booking_confirmation_header_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/last_name"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/firstNameHeader"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameHeader" />
+
+      <TextView
+        android:id="@+id/phoneNumberHeader"
+        android:layout_width="@dimen/booking_confirmation_header_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/phone_number"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/lastNameHeader"
+        app:layout_constraintTop_toBottomOf="@+id/lastNameHeader" />
+
+      <TextView
+        android:id="@+id/emailHeader"
+        android:layout_width="@dimen/booking_confirmation_header_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/email"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/phoneNumberHeader"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberHeader" />
+
+      <TextView
+        android:id="@+id/organizationNameHeader"
+        android:layout_width="@dimen/booking_confirmation_header_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/organization_name"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/emailHeader"
+        app:layout_constraintTop_toBottomOf="@+id/emailHeader" />
+
+      <TextView
+        android:id="@+id/organizationNumberHeader"
+        android:layout_width="@dimen/booking_confirmation_header_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/organization_number"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/organizationNameHeader"
+        app:layout_constraintTop_toBottomOf="@+id/organizationNameHeader" />
+
+      <TextView
+        android:id="@+id/firstNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generic_place_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/firstNameHeader"
+        app:layout_constraintStart_toEndOf="@+id/firstNameHeader"
+        app:layout_constraintTop_toTopOf="@+id/firstNameHeader" />
+
+      <TextView
+        android:id="@+id/lastNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generic_place_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/lastNameHeader"
+        app:layout_constraintStart_toEndOf="@+id/lastNameHeader"
+        app:layout_constraintTop_toTopOf="@+id/lastNameHeader" />
+
+      <TextView
+        android:id="@+id/phoneNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generic_place_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/phoneNumberHeader"
+        app:layout_constraintStart_toEndOf="@+id/phoneNumberHeader"
+        app:layout_constraintTop_toTopOf="@+id/phoneNumberHeader" />
+
+      <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generic_place_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/emailHeader"
+        app:layout_constraintStart_toEndOf="@+id/emailHeader"
+        app:layout_constraintTop_toTopOf="@+id/emailHeader" />
+
+      <TextView
+        android:id="@+id/organizationNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generic_place_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/organizationNumberHeader"
+        app:layout_constraintStart_toEndOf="@+id/organizationNumberHeader"
+        app:layout_constraintTop_toTopOf="@+id/organizationNumberHeader" />
+
+      <TextView
+        android:id="@+id/organizationNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generic_place_holder"
+        app:layout_constraintBottom_toBottomOf="@+id/organizationNameHeader"
+        app:layout_constraintStart_toEndOf="@+id/organizationNameHeader"
+        app:layout_constraintTop_toTopOf="@+id/organizationNameHeader" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

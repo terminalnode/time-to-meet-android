@@ -79,4 +79,14 @@
   <string name="choose_tech_header">Välj teknologier</string>
   <string name="choose_food_header">Välj mat- och dryckesalternativ</string>
   <string name="booking_add_options_title">Bokningstillval</string>
+  <string name="booking_confirmation_title">Bokningsbekräftelse</string>
+  <string name="personal_information_header">Personlig Information</string>
+  <string name="generic_place_holder">Laddar…</string>
+  <string name="booking_information_header">Bokningsinformation</string>
+  <string name="arrival_date">Ankomst</string>
+  <string name="departure_date">Hemgång</string>
+  <string name="sum_total">Totalkostnad</string>
+  <string name="special_request">Speciella önskemål</string>
+  <string name="requested_tech_header">Önskade teknologier</string>
+  <string name="requested_food_header">Önskad mat/dryck</string>
 </resources>

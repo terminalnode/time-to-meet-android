@@ -29,4 +29,7 @@
   <dimen name="new_user_field_input_text_size">14sp</dimen>
 
   <dimen name="initialize_booking_radio_button_width">80dp</dimen>
+
+  <dimen name="booking_confirmation_header_text_size">20sp</dimen>
+  <dimen name="booking_confirmation_header_width">160dp</dimen>
 </resources>

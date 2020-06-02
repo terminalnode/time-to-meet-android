@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.R;
@@ -36,8 +37,9 @@ public class BookingConfirmationFragment extends Fragment {
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    token = getActivity().getIntent().getStringExtra(Helper.BUNDLE_TOKEN);
 
+    // Make API-call, until API call is made we have nothing to show.
+    token = getActivity().getIntent().getStringExtra(Helper.BUNDLE_TOKEN);
     RetrofitHelper
         .finalizeBooking(token)
         .enqueue(new Callback<BookingConfirmation>() {
@@ -45,6 +47,8 @@ public class BookingConfirmationFragment extends Fragment {
           public void onResponse(Call<BookingConfirmation> call, Response<BookingConfirmation> response) {
             Log.i("YOLO", "responseBody=" + response.body());
             response.body().prettyPrint();
+
+            onApiCallFinish(view, response.body());
           }
 
           @Override
@@ -52,5 +56,12 @@ public class BookingConfirmationFragment extends Fragment {
             Log.i("YOLO", "awaddafuk");
           }
         });
+  }
+
+  private void onApiCallFinish(View view, BookingConfirmation bookingConfirmation) {
+    // Set the booking number
+    TextView bookingNumberTextView = view.findViewById(R.id.bookingNumberTextView);
+    String bookingNumber = String.format("#%s", bookingConfirmation.getBookingDetails().getBookingNumber());
+    bookingNumberTextView.setText(bookingNumber);
   }
 }
