@@ -95,4 +95,5 @@
   <string name="single_wannabe_string_place_holder">[ Lite text ]</string>
   <string name="price_each">Styckepris</string>
   <string name="price_total">Summa</string>
+  <string name="please_give_food_times">Vänligen specificera önskade tider för alla valda mat- och dryckesalternativ.</string>
 </resources>

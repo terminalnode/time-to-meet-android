@@ -107,7 +107,7 @@
   <string name="booking_number_place_holder" translatable="false">#1234567890</string>
   <string name="personal_information_header">Personal Information</string>
   <string name="booking_information_header">Booking Information</string>
-  <string name="arrival_time">Arrival</string>
+  <string name="arrival_time" translatable="false">Arrival</string>
   <string name="departure_time">Departure</string>
   <string name="sum_total">Total cost</string>
   <string name="special_request">Special request</string>
@@ -119,4 +119,5 @@
   <string name="single_wannabe_string_place_holder">[ Some text ]</string>
   <string name="price_each">Price each</string>
   <string name="price_total">Sum total</string>
+  <string name="please_give_food_times">Please specify the times for all checked food options.</string>
 </resources>

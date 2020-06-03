@@ -27,6 +27,7 @@ import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoom;
 import com.example.timetomeet.retrofit.entity.conferenceroom.ConferenceRoomTechnology;
 import com.example.timetomeet.retrofit.entity.Venue;
 import com.example.timetomeet.retrofit.entity.VenueFoodBeverage;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,11 +45,14 @@ public class FoodFragment extends Fragment {
   private ProgressBar mainProgressBar;
   private Runnable confirmBookingActivity;
   private BookingCoordinator bookingCoordinator;
-
+  private View mainView;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState) {
+  public View onCreateView(
+      LayoutInflater inflater,
+      ViewGroup container,
+      Bundle savedInstanceState
+  ) {
     // Inflate the layout for this fragment
     return inflater.inflate(R.layout.fragment_food, container, false);
   }
@@ -57,6 +61,7 @@ public class FoodFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
     CreateBookingActivity activity = (CreateBookingActivity) getActivity();
     bookingCoordinator = activity.getBookingCoordinator();
+    mainView = view;
 
     // Find views
     confirmButton = view.findViewById(R.id.finalizeBookingButton);
@@ -89,35 +94,38 @@ public class FoodFragment extends Fragment {
     confirmButton.setOnClickListener(this::confirmButtonClicked);
   }
 
+  /**
+   * When the confirm button is clicked we check that all the selected foods have a date, then
+   * request all the food and tech the user has selected. Once that's done we move on to the
+   * booking confirmation fragment.
+   * @param view The button's view
+   */
   private void confirmButtonClicked(View view) {
     startVisuallyLoading();
-
-    List<VenueFoodBeverage> venueFoodBeverages = bookingCoordinator
-        .getSelectedRoom()
-        .getAssociatedVenue()
-        .getAssociatedFoodBeverages()
-        .stream()
-        .filter(VenueFoodBeverage::isSelected)
-        .collect(Collectors.toList());
-
-    List<ConferenceRoomTechnology> conferenceRoomTechnologies = bookingCoordinator
-        .getSelectedRoom()
-        .getAssociatedConferenceRoom()
-        .getAssociatedConferenceRoomTechnologies()
-        .stream()
-        .filter(ConferenceRoomTechnology::isSelected)
-        .collect(Collectors.toList());
-
+    List<VenueFoodBeverage> venueFoodBeverages = getCheckedFoodBeverages();
+    List<ConferenceRoomTechnology> conferenceRoomTechnologies = getCheckedTechnologies();
     List<BookingFoodBeverageAdd> finishedVenueFoodBeverages = new ArrayList<>();
     List<BookingSelectableTechnologyAdd> finishedConferenceRoomTechnologies = new ArrayList<>();
 
+    // Stop everything if one or more of the checked
+    // food/beverage options are missing a date.
+    if (!checkedFoodBeveragesHaveDates(venueFoodBeverages)) {
+      Snackbar.make(mainView, R.string.please_give_food_times, Snackbar.LENGTH_LONG).show();
+      stopVisuallyLoading();
+      return;
+    }
+
+    // Add all the food
     venueFoodBeverages.forEach(venueFoodBeverage -> {
       addFoodBeverage(venueFoodBeverage, finishedVenueFoodBeverages);
     });
+
+    // Add all the tech
     conferenceRoomTechnologies.forEach(conferenceRoomTechnology -> {
       addSelectableTechnology(conferenceRoomTechnology, finishedConferenceRoomTechnologies);
     });
 
+    // Move on with your life
     startBookingConfirmationFragment(
         venueFoodBeverages,
         conferenceRoomTechnologies,
@@ -125,6 +133,52 @@ public class FoodFragment extends Fragment {
         finishedConferenceRoomTechnologies);
   }
 
+  /**
+   * Check that all VenueFoodBeverages have a time set.
+   * @return Boolean signalling if all VenueFoodBeverages supplied have a time.
+   */
+  private boolean checkedFoodBeveragesHaveDates(List<VenueFoodBeverage> vfbs) {
+    return vfbs.stream()
+        .allMatch(x -> x.getSelectedTime() != null);
+  }
+
+  /**
+   * Get a list of all VenueFoodBeverages where isSelected is true.
+   * @return A list of selected VenueFoodBeverages
+   */
+  private List<VenueFoodBeverage> getCheckedFoodBeverages() {
+    return bookingCoordinator
+        .getSelectedRoom()
+        .getAssociatedVenue()
+        .getAssociatedFoodBeverages()
+        .stream()
+        .filter(VenueFoodBeverage::isSelected)
+        .collect(Collectors.toList());
+  }
+
+  /**
+   * Get a list of all ConferenceRoomTechnology where isSelected is true.
+   * @return A list of selected ConferenceRoomTechnologies
+   */
+  private List<ConferenceRoomTechnology> getCheckedTechnologies() {
+    return bookingCoordinator
+        .getSelectedRoom()
+        .getAssociatedConferenceRoom()
+        .getAssociatedConferenceRoomTechnologies()
+        .stream()
+        .filter(ConferenceRoomTechnology::isSelected)
+        .collect(Collectors.toList());
+  }
+
+  /**
+   * Check that all of the tech and food has been requested, then start the booking
+   * confirmation fragment. As in other places of the app, we check that everything's been
+   * added by comparing the size of lists with all items vs lists with finished items.
+   * @param venueFoodBeverages The full list of venue food beverages to add.
+   * @param conferenceRoomTechnologies The full list of conference room technologies to add.
+   * @param finishedVenueFoodBeverages The list of added venue food beverages.
+   * @param finishedConferenceRoomTechnologies The list of added conference room technologies.
+   */
   private void startBookingConfirmationFragment(
       List<VenueFoodBeverage> venueFoodBeverages,
       List<ConferenceRoomTechnology> conferenceRoomTechnologies,
@@ -158,8 +212,12 @@ public class FoodFragment extends Fragment {
     handler.postDelayed(confirmBookingActivity, delayMillis);
   }
 
+  /**
+   * Make the API call to add a VenueFoodBeverage for the booking.
+   * @param vfb The VenueFoodBeverage that we wish to reserve.
+   * @param finishedVenueFoodBeverages The list where we save all successful additions.
+   */
   private void addFoodBeverage(VenueFoodBeverage vfb, List<BookingFoodBeverageAdd> finishedVenueFoodBeverages) {
-    // TODO Verify input, possibly add error handling?
     Log.i(Logging.CreateBookingActivity, "Preparing BookingFoodBeverageAdd from: " + vfb);
     BookingFoodBeverageAdd bfba = new BookingFoodBeverageAdd();
     bfba.setConferenceRoomAvailability("" + bookingCoordinator.getTimeSlotId());
@@ -185,6 +243,11 @@ public class FoodFragment extends Fragment {
         });
   }
 
+  /**
+   * Make the API call to add a ConferenceRoomTechnology for the booking.
+   * @param conferenceRoomTechnology The ConferenceRoomTechnology to be added.
+   * @param finishedConferenceRoomTechnologies The list where we save all successful additions.
+   */
   private void addSelectableTechnology(
       ConferenceRoomTechnology conferenceRoomTechnology,
       List<BookingSelectableTechnologyAdd> finishedConferenceRoomTechnologies
@@ -211,6 +274,9 @@ public class FoodFragment extends Fragment {
         });
   }
 
+  /**
+   * Retrieve venue food beverages for the recycler adapter.
+   */
   private void fetchVenueFoodBeverage() {
     Venue associatedVenue = bookingCoordinator.getSelectedRoom().getAssociatedVenue();
 
@@ -232,6 +298,9 @@ public class FoodFragment extends Fragment {
         });
   }
 
+  /**
+   * Add all the food to the recyclerview through a recycler adapter.
+   */
   private void setUpFoodRecyclerAdapter(Venue associatedVenue) {
     RecyclerView foodRecyclerView = getView().findViewById(R.id.foodRecyclerView);
     SelectFoodRecyclerAdapter foodAdapter = new SelectFoodRecyclerAdapter(
@@ -246,6 +315,9 @@ public class FoodFragment extends Fragment {
     foodProgressBar.setVisibility(View.GONE);
   }
 
+  /**
+   * Retrieve conference room technologies for the recycler adapter.
+   */
   private void fetchConferenceRoomTechnology() {
     ConferenceRoom conferenceRoom = bookingCoordinator
         .getSelectedRoom()
@@ -266,6 +338,9 @@ public class FoodFragment extends Fragment {
         });
   }
 
+  /**
+   * Add all the technologies to the recyclerview through a recycleradapter.
+   */
   private void setUpTechRecyclerAdapter() {
     ConferenceRoom conferenceRoom = bookingCoordinator
         .getSelectedRoom()
@@ -286,12 +361,20 @@ public class FoodFragment extends Fragment {
     techProgressBar.setVisibility(View.GONE);
   }
 
+  /**
+   * Show the progress bar and deactivate the confirm button
+   * to indicate to the user that something's loading.
+   */
   private void startVisuallyLoading() {
     mainProgressBar.setVisibility(View.VISIBLE);
     confirmButton.setClickable(false);
     confirmButton.setAlpha(0.5F);
   }
 
+  /**
+   * Hide the progress bar and reactivate the confirm button
+   * to indicate to the user that the loading has finished.
+   */
   private void stopVisuallyLoading() {
     mainProgressBar.setVisibility(View.GONE);
     confirmButton.setClickable(true);
