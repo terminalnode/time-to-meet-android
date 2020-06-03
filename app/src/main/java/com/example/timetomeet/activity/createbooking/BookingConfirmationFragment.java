@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
+import com.example.timetomeet.customview.adapters.BookingConfirmationFoodBeverageRecyclerAdapter;
 import com.example.timetomeet.customview.adapters.IWantedToMakeAStringButFailedRecyclerAdapter;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmation;
@@ -159,6 +160,7 @@ public class BookingConfirmationFragment extends Fragment {
     }
 
     // Add requested food and beverages
+    // TODO Make better layout for adapter
     List<BookingConfirmationFoodBeverage> foodBeverages = bookingConfirmation.getBookedFoodBeverage();
     if (foodBeverages.isEmpty()) {
       view.findViewById(R.id.requestedFoodHeader).setVisibility(View.GONE);
@@ -168,7 +170,10 @@ public class BookingConfirmationFragment extends Fragment {
           Logging.BookingConfirmation,
           String.format("Adding requested foodBeverages: %s", foodBeverages)
       );
-      Log.w(Logging.BookingConfirmation, "Missing adapter for foodBeverages list!");
+      requestedFoodRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+      requestedFoodRecyclerView.setAdapter(
+          new BookingConfirmationFoodBeverageRecyclerAdapter(context, foodBeverages)
+      );
     }
 
     // All done, shut down the progress bar!
