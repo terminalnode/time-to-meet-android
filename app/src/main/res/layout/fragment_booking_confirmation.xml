@@ -218,6 +218,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/personalInformationConstraintLayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="10dp"
@@ -350,6 +351,17 @@
         app:layout_constraintStart_toEndOf="@+id/organizationNameHeader"
         app:layout_constraintTop_toTopOf="@+id/organizationNameHeader" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+      android:id="@+id/startOverButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:layout_marginEnd="16dp"
+      android:text="@string/start_over_button"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/personalInformationConstraintLayout" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

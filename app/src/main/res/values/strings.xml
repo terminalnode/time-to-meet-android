@@ -117,4 +117,5 @@
   <string name="price_each">Price each</string>
   <string name="price_total">Sum total</string>
   <string name="please_give_food_times">Please specify the times for all checked food options.</string>
+  <string name="start_over_button">Start over</string>
 </resources>

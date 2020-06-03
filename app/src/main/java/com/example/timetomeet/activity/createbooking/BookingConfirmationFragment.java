@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -41,6 +42,7 @@ public class BookingConfirmationFragment extends Fragment {
   // Top view
   private ProgressBar bookingConfirmationProgressBar;
   private TextView bookingNumberTextView;
+  private Button startOverButton;
 
   // Booking Information views
   private RecyclerView requestedTechnologyRecyclerView;
@@ -79,6 +81,7 @@ public class BookingConfirmationFragment extends Fragment {
     // Find views
     bookingNumberTextView = view.findViewById(R.id.bookingNumberTextView);
     bookingConfirmationProgressBar = view.findViewById(R.id.bookingConfirmationProgressBar);
+    startOverButton = view.findViewById(R.id.startOverButton);
 
     dateTextView = view.findViewById(R.id.dateTextView);
     arrivalTextView = view.findViewById(R.id.arrivalTextView);
@@ -95,6 +98,9 @@ public class BookingConfirmationFragment extends Fragment {
     emailTextView = view.findViewById(R.id.emailTextView);
     organizationNumberTextView = view.findViewById(R.id.organizationNumberTextView);
     organizationNameTextView = view.findViewById(R.id.organizationNameTextView);
+
+    // Bind start over button
+    startOverButton.setOnClickListener(this::startOver);
   }
 
   private void finalizeBooking(Context context, View view) {
@@ -124,10 +130,7 @@ public class BookingConfirmationFragment extends Fragment {
                 .setIcon(android.R.drawable.ic_delete)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                   bookingConfirmationProgressBar.setVisibility(View.GONE);
-                  Intent restartBookingIntent = new Intent(getContext(), CreateBookingActivity.class);
-                  restartBookingIntent.putExtras(getActivity().getIntent());
-                  restartBookingIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                  startActivity(restartBookingIntent);
+                  startOver();
                 }).show();
           }
         });
@@ -201,5 +204,16 @@ public class BookingConfirmationFragment extends Fragment {
 
     // All done, shut down the progress bar!
     bookingConfirmationProgressBar.setVisibility(View.GONE);
+  }
+
+  private void startOver(View view) {
+    Intent restartBookingIntent = new Intent(getContext(), CreateBookingActivity.class);
+    restartBookingIntent.putExtras(getActivity().getIntent());
+    restartBookingIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    startActivity(restartBookingIntent);
+  }
+
+  private void startOver() {
+    startOver(null);
   }
 }
