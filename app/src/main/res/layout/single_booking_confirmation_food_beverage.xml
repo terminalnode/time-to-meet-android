@@ -21,23 +21,23 @@
     android:layout_height="wrap_content"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toBottomOf="@+id/foodBeverageTextView">
 
     <TextView
       android:id="@+id/priceEachTextView"
       android:layout_width="75dp"
       android:layout_height="wrap_content"
       android:text="@string/price_placholder"
-      android:textAlignment="center"
+      android:textAlignment="viewStart"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
       android:id="@+id/priceEachHeader"
-      android:layout_width="wrap_content"
+      android:layout_width="75dp"
       android:layout_height="wrap_content"
       android:text="@string/price_each"
-      android:textAlignment="viewEnd"
+      android:textAlignment="viewStart"
       app:layout_constraintBottom_toBottomOf="@+id/priceEachTextView"
       app:layout_constraintEnd_toStartOf="@+id/priceEachTextView"
       app:layout_constraintTop_toTopOf="@+id/priceEachTextView" />
@@ -47,16 +47,16 @@
       android:layout_width="75dp"
       android:layout_height="wrap_content"
       android:text="@string/price_placholder"
-      android:textAlignment="center"
+      android:textAlignment="viewStart"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/priceEachTextView" />
 
     <TextView
       android:id="@+id/priceTotalHeader"
-      android:layout_width="wrap_content"
+      android:layout_width="75dp"
       android:layout_height="wrap_content"
       android:text="@string/price_total"
-      android:textAlignment="viewEnd"
+      android:textAlignment="viewStart"
       app:layout_constraintBottom_toBottomOf="@+id/priceTotalTextView"
       app:layout_constraintEnd_toStartOf="@+id/priceTotalTextView"
       app:layout_constraintTop_toTopOf="@+id/priceTotalTextView" />

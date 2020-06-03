@@ -1,6 +1,7 @@
 package com.example.timetomeet.customview.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timetomeet.R;
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmationFoodBeverage;
-import com.example.timetomeet.retrofit.entity.bookingconfirmation.IWantedToMakeAStringButFailed;
 
 import java.util.List;
 
@@ -39,6 +39,9 @@ public class BookingConfirmationFoodBeverageRecyclerAdapter
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
       BookingConfirmationFoodBeverage thisFood = food.get(position);
       holder.foodBeverageTextView.setText(thisFood.getName());
+      holder.participantsTextView.setText(thisFood.getAmount());
+      holder.priceEachTextView.setText(thisFood.getIndividualPrice() + " kr");
+      holder.priceTotalTextView.setText(thisFood.getTotalPrice() + " kr");
     }
 
     @Override
@@ -48,10 +51,17 @@ public class BookingConfirmationFoodBeverageRecyclerAdapter
 
     public class ViewHolder extends RecyclerView.ViewHolder {
       TextView foodBeverageTextView;
+      TextView participantsTextView;
+      TextView priceEachTextView;
+      TextView priceTotalTextView;
+
 
       public ViewHolder(@NonNull View itemView) {
         super(itemView);
         foodBeverageTextView = itemView.findViewById(R.id.foodBeverageTextView);
+        participantsTextView = itemView.findViewById(R.id.participantsTextView);
+        priceEachTextView = itemView.findViewById(R.id.priceEachTextView);
+        priceTotalTextView = itemView.findViewById(R.id.priceTotalTextView);
       }
     }
   }
