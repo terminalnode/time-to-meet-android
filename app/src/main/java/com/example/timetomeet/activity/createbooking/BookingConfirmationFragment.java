@@ -23,6 +23,7 @@ import com.example.timetomeet.customview.adapters.BookingConfirmationFoodBeverag
 import com.example.timetomeet.customview.adapters.IWantedToMakeAStringButFailedRecyclerAdapter;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmation;
+import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmationBookedByPerson;
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmationDetails;
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmationFoodBeverage;
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.IWantedToMakeAStringButFailed;
@@ -38,18 +39,26 @@ public class BookingConfirmationFragment extends Fragment {
   private BookingCoordinator bookingCoordinator;
 
   // Top view
-  TextView bookingNumberTextView;
-  ProgressBar bookingConfirmationProgressBar;
+  private ProgressBar bookingConfirmationProgressBar;
+  private TextView bookingNumberTextView;
 
   // Booking Information views
-  TextView dateTextView;
-  TextView arrivalTextView;
-  TextView departureTextView;
-  TextView participantsTextView;
-  TextView costTextView;
-  TextView specialRequestTextView;
-  RecyclerView requestedTechnologyRecyclerView;
-  RecyclerView requestedFoodRecyclerView;
+  private RecyclerView requestedTechnologyRecyclerView;
+  private RecyclerView requestedFoodRecyclerView;
+  private TextView dateTextView;
+  private TextView arrivalTextView;
+  private TextView departureTextView;
+  private TextView participantsTextView;
+  private TextView costTextView;
+  private TextView specialRequestTextView;
+
+  // Personal information views
+  private TextView firstNameTextView;
+  private TextView lastNameTextView;
+  private TextView phoneNumberTextView;
+  private TextView emailTextView;
+  private TextView organizationNumberTextView;
+  private TextView organizationNameTextView;
 
   @Override
   public View onCreateView(
@@ -79,6 +88,13 @@ public class BookingConfirmationFragment extends Fragment {
     specialRequestTextView = view.findViewById(R.id.specialRequestTextView);
     requestedTechnologyRecyclerView = view.findViewById(R.id.requestedTechnologyRecyclerView);
     requestedFoodRecyclerView = view.findViewById(R.id.requestedFoodRecyclerView);
+
+    firstNameTextView = view.findViewById(R.id.firstNameTextView);
+    lastNameTextView = view.findViewById(R.id.lastNameTextView);
+    phoneNumberTextView = view.findViewById(R.id.phoneNumberTextView);
+    emailTextView = view.findViewById(R.id.emailTextView);
+    organizationNumberTextView = view.findViewById(R.id.organizationNumberTextView);
+    organizationNameTextView = view.findViewById(R.id.organizationNameTextView);
   }
 
   private void finalizeBooking(Context context, View view) {
@@ -173,6 +189,16 @@ public class BookingConfirmationFragment extends Fragment {
           new BookingConfirmationFoodBeverageRecyclerAdapter(context, foodBeverages)
       );
     }
+
+    // Set personal information fields
+    BookingConfirmationBookedByPerson bcbbp = bookingConfirmation.getBookedByPerson();
+
+    firstNameTextView.setText(bookingConfirmation.getMyFirstName());
+    lastNameTextView.setText(bookingConfirmation.getMyLastName());
+    phoneNumberTextView.setText(bookingConfirmation.getMyPhoneNumber());
+    emailTextView.setText(bcbbp.getEmail());
+    organizationNumberTextView.setText(bcbbp.getOrganizationNumber());
+    organizationNameTextView.setText(bcbbp.getOrganizationName());
 
     // All done, shut down the progress bar!
     bookingConfirmationProgressBar.setVisibility(View.GONE);

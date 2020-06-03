@@ -42,20 +42,20 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ConfirmRoomFragment extends Fragment {
-  AvailableRoom selectedRoom;
-  Button confirmRoomButton;
-  EditText specialRequestMultiLineText;
-  EditText numberOfParticipantsEditText;
-  EditText agreementNumberEditText;
-  ProgressBar progressBar;
-  RadioGroup timeSlotRadioGroup;
-  RadioGroup wantRoomInfoRadioGroup;
-  RadioGroup wantActivityInfoRadioGroup;
-  Runnable timeSlotChecker;
-  Spinner paymentAlternativeSpinner;
-  Spinner seatingChoiceSpinner;
-  String token;
-  BookingCoordinator bookingCoordinator;
+  private AvailableRoom selectedRoom;
+  private Button confirmRoomButton;
+  private BookingCoordinator bookingCoordinator;
+  private EditText specialRequestMultiLineText;
+  private EditText numberOfParticipantsEditText;
+  private EditText agreementNumberEditText;
+  private ProgressBar progressBar;
+  private RadioGroup timeSlotRadioGroup;
+  private RadioGroup wantRoomInfoRadioGroup;
+  private RadioGroup wantActivityInfoRadioGroup;
+  private Runnable timeSlotChecker;
+  private Spinner paymentAlternativeSpinner;
+  private Spinner seatingChoiceSpinner;
+  private String token;
 
   @Override
   public View onCreateView(
