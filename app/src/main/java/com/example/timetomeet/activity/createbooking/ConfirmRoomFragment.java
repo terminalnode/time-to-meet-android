@@ -295,7 +295,6 @@ public class ConfirmRoomFragment extends Fragment {
       TimeSlotAdd timeSlotAdd,
       List<TimeSlotAdd> finishedTimeSlots
   ) {
-    // TODO Add some kind of error handling if adding time slot fails
 
     RetrofitHelper
         .addTimeSlot(timeSlotAdd, timeSlotId, token)

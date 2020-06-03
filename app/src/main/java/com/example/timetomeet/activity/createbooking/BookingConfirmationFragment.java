@@ -174,7 +174,6 @@ public class BookingConfirmationFragment extends Fragment {
     }
 
     // Add requested food and beverages
-    // TODO Make better layout for adapter
     List<BookingConfirmationFoodBeverage> foodBeverages = bookingConfirmation.getBookedFoodBeverage();
     if (foodBeverages.isEmpty()) {
       view.findViewById(R.id.requestedFoodHeader).setVisibility(View.GONE);

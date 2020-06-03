@@ -38,8 +38,7 @@
   <string name="everything_loaded">Everything loaded!</string>
 
   <!-- Login screen -->
-  <string name="loading_label">Loading...</string>
-  <string name="username">Username</string>
+  <string name="loading_label">Loading…</string>
   <string name="password">Password</string>
   <string name="sign_in">Sign in</string>
   <string name="sign_up">Sign up</string>
@@ -98,16 +97,14 @@
   <string name="invalid_number_of_participants">Invalid number of participants</string>
   <string name="add_comment">Add a comment</string>
   <string name="food_beverage_price_each_place_holder" translatable="false">13.37 kr/st</string>
-  <string name="food_beverage_price_total_place_holder" translatable="false">1337 kr</string>
   <string name="finalize_booking_button">Finalize Booking</string>
   <string name="choose_tech_header">Choose technologies</string>
   <string name="choose_food_header">Choose food/beverage options</string>
   <string name="booking_add_options_title">Additions Options</string>
   <string name="booking_confirmation_title">Booking Confirmation</string>
-  <string name="booking_number_place_holder" translatable="false">#1234567890</string>
   <string name="personal_information_header">Personal Information</string>
   <string name="booking_information_header">Booking Information</string>
-  <string name="arrival_time" translatable="false">Arrival</string>
+  <string name="arrival_time">Arrival</string>
   <string name="departure_time">Departure</string>
   <string name="sum_total">Total cost</string>
   <string name="special_request">Special request</string>

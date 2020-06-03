@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/singleCitySimplifiedConstraintLayout"
   android:layout_width="match_parent"
   android:layout_height="wrap_content">
 
@@ -16,7 +15,6 @@
     app:layout_constraintTop_toTopOf="parent" />
 
   <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/priceConstraintLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +31,6 @@
       app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-      android:id="@+id/priceEachHeader"
       android:layout_width="75dp"
       android:layout_height="wrap_content"
       android:text="@string/price_each"
@@ -52,7 +49,6 @@
       app:layout_constraintTop_toBottomOf="@+id/priceEachTextView" />
 
     <TextView
-      android:id="@+id/priceTotalHeader"
       android:layout_width="75dp"
       android:layout_height="wrap_content"
       android:text="@string/price_total"
@@ -63,7 +59,6 @@
   </androidx.constraintlayout.widget.ConstraintLayout>
 
   <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/participantsConstraintLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +66,6 @@
     app:layout_constraintTop_toBottomOf="@+id/foodBeverageTextView">
 
     <ImageView
-      android:id="@+id/participantsImageView"
       android:layout_width="25dp"
       android:layout_height="25dp"
       android:layout_marginEnd="10dp"

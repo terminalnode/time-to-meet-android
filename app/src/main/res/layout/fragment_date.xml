@@ -51,7 +51,7 @@
     android:layout_height="@dimen/date_label_height"
     android:layout_marginStart="10dp"
     android:layout_marginTop="20dp"
-    android:gravity="center"
+    android:gravity="start"
     android:text="@string/end_date_label"
     android:textAlignment="viewStart"
     android:textSize="@dimen/date_label_font_size"
@@ -65,7 +65,7 @@
     android:layout_height="@dimen/date_label_height"
     android:layout_marginStart="10dp"
     android:layout_marginTop="20dp"
-    android:gravity="center"
+    android:gravity="start"
     android:text="@string/start_date_label"
     android:textAlignment="viewStart"
     android:textSize="@dimen/date_label_font_size"
@@ -93,7 +93,6 @@
     app:layout_constraintTop_toTopOf="@+id/midpointGuideline" />
 
   <TextView
-    android:id="@+id/searchAvailableRoomsTitle"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/search_available_rooms_title"

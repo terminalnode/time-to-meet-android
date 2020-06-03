@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="splash_image_description">Appens logga, silluetter av människor som sitter i möte.</string>
-  <string name="username">Användarnamn</string>
   <string name="password">Lösenord</string>
   <string name="sign_in">Logga in</string>
   <string name="sign_up">Registrera</string>
@@ -9,7 +8,7 @@
   <string name="invalid_credentials">Felaktigt användarnamn eller lösenord</string>
   <string name="pick_date">Välj ett datum</string>
   <string name="create_booking_button_label">Skapa Bokning</string>
-  <string name="loading_label">Laddar...</string>
+  <string name="loading_label">Laddar…</string>
   <string name="fetched_cities">Hämtat städer!</string>
   <string name="fetched_technology">Hämtat teknologier!</string>
   <string name="fetched_payment_alternatives">Hämtat betalningsalternativ!</string>
@@ -42,7 +41,7 @@
   <string name="empty_description_place_holder">Beskrivning saknas.</string>
   <string name="missing_name_place_holder">Namnlös</string>
   <string name="object_missing_place_holder">Objekt saknas</string>
-  <string name="description_place_holder">Laddar beskrivning...</string>
+  <string name="description_place_holder">Laddar beskrivning…</string>
   <string name="first_name">Förnamn</string>
   <string name="last_name">Efternamn</string>
   <string name="email">Epost</string>

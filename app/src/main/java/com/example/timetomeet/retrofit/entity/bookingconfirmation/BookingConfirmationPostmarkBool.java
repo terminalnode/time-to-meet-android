@@ -12,9 +12,6 @@ public class BookingConfirmationPostmarkBool {
   @SerializedName("wantActivityInfo")
   private IWantedToMakeABooleanButFailed wantActivityInfo;
 
-  //@SerializedName("specialRequest")
-  //private Object specialRequest; // TODO Create booking with special request and see what happens
-
   @SerializedName("notAgreementCustomer")
   private IWantedToMakeABooleanButFailed notAgreementCustomer;
 

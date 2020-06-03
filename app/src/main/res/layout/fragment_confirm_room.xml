@@ -8,12 +8,10 @@
   tools:context=".activity.createbooking.ConfirmRoomFragment">
 
   <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/reserveConferenceRoomConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
-      android:id="@+id/confirmRoomHeader"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/confirm_room_header"
@@ -75,7 +73,6 @@
         android:text="@string/radio_button_yes" />
 
       <RadioButton
-        android:id="@+id/noRoomInfoRadioButton"
         android:layout_width="@dimen/initialize_booking_radio_button_width"
         android:layout_height="wrap_content"
         android:text="@string/radio_button_no" />
@@ -108,7 +105,6 @@
         android:text="@string/radio_button_yes" />
 
       <RadioButton
-        android:id="@+id/noActivityInfoRadioButton"
         android:layout_width="@dimen/initialize_booking_radio_button_width"
         android:layout_height="wrap_content"
         android:text="@string/radio_button_no" />
@@ -204,7 +200,8 @@
       android:inputType="text|textCapCharacters"
       android:labelFor="@id/agreementNumberTextView"
       app:layout_constraintStart_toStartOf="@+id/agreementNumberTextView"
-      app:layout_constraintTop_toBottomOf="@+id/agreementNumberTextView" />
+      app:layout_constraintTop_toBottomOf="@+id/agreementNumberTextView"
+      tools:ignore="TextFields" />
 
     <TextView
       android:id="@+id/timeSlotTextView"

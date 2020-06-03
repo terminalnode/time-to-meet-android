@@ -40,8 +40,8 @@ public class BookingConfirmationFoodBeverageRecyclerAdapter
       BookingConfirmationFoodBeverage thisFood = food.get(position);
       holder.foodBeverageTextView.setText(thisFood.getName());
       holder.participantsTextView.setText(thisFood.getAmount());
-      holder.priceEachTextView.setText(thisFood.getIndividualPrice() + " kr");
-      holder.priceTotalTextView.setText(thisFood.getTotalPrice() + " kr");
+      holder.priceEachTextView.setText(String.format("%s kr", thisFood.getIndividualPrice()));
+      holder.priceTotalTextView.setText(String.format("%s kr", thisFood.getTotalPrice()));
     }
 
     @Override

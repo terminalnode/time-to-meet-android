@@ -21,14 +21,10 @@ public class Helper {
   public static final String BUNDLE_TOKEN = "bundle-token";
   public static final String BUNDLE_TECHNOLOGIES = "bundle-technologies";
   public static final String BUNDLE_PAYMENT_ALTERNATIVES = "bundle-payment-alternatives";
-  public static final String BUNDLE_AVAILABLE_ROOMS_LIST = "bundle-available-rooms-list";
   public static final String BUNDLE_FOOD_BEVARAGE_LIST = "bundle-food-bevarage-list";
   public static final String BUNDLE_FOOD_BEVARAGE_GROUP_LIST = "bundle-food-bevarage-group-list";
   public static final String BUNDLE_AVAILABLE_TECHNOLOGY_LIST = "bundle-available-technology-list";
-  public static final String BUNDLE_SELECTED_ROOM = "bundle-selected-room";
   public static final String BUNDLE_STANDARD_SEATING = "bundle-standard-seating";
-  public static final String BUNDLE_CONFERENCE_ROOM_SEATING = "bundle-conference-room-seating";
-  public static final String BUNDLE_TIME_SLOT_CODE = "bundle-time-slot-code";
 
   // Other
   private static String[] supportedLocales = new String[]{"en", "sv"};
