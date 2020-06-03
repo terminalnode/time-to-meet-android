@@ -1,17 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/singleCitySimplifiedConstraintLayout"
   android:layout_width="match_parent"
   android:layout_height="wrap_content">
 
   <TextView
     android:id="@+id/foodBeverageTextView"
-    android:layout_width="wrap_content"
+    android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:text="@string/single_wannabe_string_place_holder"
     android:textSize="14sp"
-    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/priceConstraintLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <TextView
+      android:id="@+id/priceEachTextView"
+      android:layout_width="75dp"
+      android:layout_height="wrap_content"
+      android:text="@string/price_placholder"
+      android:textAlignment="center"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+      android:id="@+id/priceEachHeader"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/price_each"
+      android:textAlignment="viewEnd"
+      app:layout_constraintBottom_toBottomOf="@+id/priceEachTextView"
+      app:layout_constraintEnd_toStartOf="@+id/priceEachTextView"
+      app:layout_constraintTop_toTopOf="@+id/priceEachTextView" />
+
+    <TextView
+      android:id="@+id/priceTotalTextView"
+      android:layout_width="75dp"
+      android:layout_height="wrap_content"
+      android:text="@string/price_placholder"
+      android:textAlignment="center"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/priceEachTextView" />
+
+    <TextView
+      android:id="@+id/priceTotalHeader"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/price_total"
+      android:textAlignment="viewEnd"
+      app:layout_constraintBottom_toBottomOf="@+id/priceTotalTextView"
+      app:layout_constraintEnd_toStartOf="@+id/priceTotalTextView"
+      app:layout_constraintTop_toTopOf="@+id/priceTotalTextView" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/participantsConstraintLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/foodBeverageTextView">
+
+    <ImageView
+      android:id="@+id/participantsImageView"
+      android:layout_width="25dp"
+      android:layout_height="25dp"
+      android:layout_marginEnd="10dp"
+      android:contentDescription="@string/seat_list_people_icon_description"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/participantsTextView"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/people" />
+
+    <TextView
+      android:id="@+id/participantsTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/number_place_holder"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.example.timetomeet.activity.createbooking;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -27,7 +26,6 @@ import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirm
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmationDetails;
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.BookingConfirmationFoodBeverage;
 import com.example.timetomeet.retrofit.entity.bookingconfirmation.IWantedToMakeAStringButFailed;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 

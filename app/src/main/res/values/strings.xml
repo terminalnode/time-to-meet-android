@@ -117,4 +117,6 @@
   <string name="api_empty_response_message">Something went wrong. When retrieving the confirmation the API returned an empty response. There was no error message and as such we can\'t tell you what happened. Press OK to do it all over again.</string>
   <string name="date">Date</string>
   <string name="single_wannabe_string_place_holder">[ Some text ]</string>
+  <string name="price_each">Price each</string>
+  <string name="price_total">Sum total</string>
 </resources>
