@@ -201,7 +201,7 @@ public class ConfirmRoomFragment extends Fragment {
     addBooking.setWantActivityInfo(wantActivityInfo);
     addBooking.setSpecialRequest(specialRequest);
     addBooking.setNumberOfParticipants(numberOfParticipants);
-    addBooking.setBookingSourceSystem(2);
+    addBooking.setBookingSourceSystem(1);
     addBooking.setAgreementNumber(agreementNumber);
 
     //Api calls
