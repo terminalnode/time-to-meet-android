@@ -6,7 +6,7 @@ public class BookingConfirmationFoodBeverage {
   @SerializedName("foodBeverageName")
   private String name;
 
-  @SerializedName("individual_price")
+  @SerializedName("indiviudal_price")
   private String individualPrice;
 
   @SerializedName("total_price")
