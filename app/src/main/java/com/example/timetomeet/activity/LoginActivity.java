@@ -13,6 +13,7 @@ import android.widget.EditText;
 import com.example.timetomeet.Helper;
 import com.example.timetomeet.Logging;
 import com.example.timetomeet.R;
+import com.example.timetomeet.activity.createbooking.CreateBookingActivity;
 import com.example.timetomeet.retrofit.RetrofitHelper;
 import com.example.timetomeet.retrofit.entity.Token;
 import com.google.android.material.snackbar.Snackbar;
@@ -70,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
           spe.putString(Helper.PREF_PASSWORD, password);
           spe.apply();
           apiData.putString(Helper.BUNDLE_TOKEN, String.format("Token %s", token.getToken()));
-          startMainMenu();
+          startCreateBooking();
 
         } else {
           Log.i(Logging.LoginActivity, "Failed to log in");
@@ -89,9 +90,9 @@ public class LoginActivity extends AppCompatActivity {
     });
   }
 
-  private void startMainMenu() {
+  private void startCreateBooking() {
     Log.i(Logging.LoginActivity, "Creating intent to start MainMenuActivity.");
-    Intent intent = new Intent(this, MainMenuActivity.class);
+    Intent intent = new Intent(this, CreateBookingActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     intent.putExtras(apiData);
     startActivity(intent);
